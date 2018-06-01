@@ -7,17 +7,14 @@
 \usepackage{hyperref}
 \usepackage{tabularx}
 % ----
+\usepackage[russian,english]{babel}
 \usepackage{fontspec}
-\usepackage{polyglossia}
-\usepackage{fontspec}
+\setmainfont{CMU Serif}
+% \setmainfont[SizeFeatures={Size=14}]{CMU Serif}
+
 
 \usepackage{amsmath,amsthm,amssymb,euscript,calc,graphicx,ifthen,textcomp,rotating,cmap,xstring,etoolbox,xparse,l3regex,xargs,changepage,tocloft,titlecaps,enumitem,upgreek}
 \usepackage{mathrsfs}
-
-\setmainfont{CMU Serif}
-% \setmainfont[SizeFeatures={Size=14}]{CMU Serif}
-\let\cyrillicfonttt\ttfamily
-\setmainlanguage{russian}
 
 
  \newtheorem{thm}{Theorem}
@@ -33,27 +30,125 @@
  \newtheorem*{rem}{Remark}
  \newtheorem*{reme}{Remark}
 
+
+\usepackage{biblatex}
+\addbibresource{thesis.bib}
 % \renewcommand{\baselinestretch}{1.3}
+
 \begin{document}
-\begin{abstract}
-    С помощью Метода Подобных Операторов~\cite{baskakov-harmonic,baskakov-split}
-    изучаются спектральные свойства
-    матриц смежностей графов, близких к ориентированным полным (графам).
-    Приведены оценки собственных значений таких матриц.
-    The~method~of~similar~operators~\cite{baskakov1983methods,baskakov2017method,baskakov2013completeness}
-        is used to investigate spectral properties
-        of a certain class of matrices in the context of graphs~\cite{van2003graphs,cvetkovic1980spectra}.
-    Specifically, we consider
-        the adjacency matrix of an ``almost-complete graph''.
-    Then we generalize the result to allow the matrices obtained as combinations
-        of the Kronecker products~\cite{bellman-matrices-kron,XIANG2005210}
-        and the small-norm perturbations.
-    We derive the estimates
-        of the spectra and the eigenvectors
-        of such matrices.
-\end{abstract}
 
+\begin{center}
+  \textbf{ВОРОНЕЖСКИЙ ГОСУДАРССТВЕННЫЙ УНИВЕРСИТЕТ}
+\end{center}
 
+\begin{flushright}
+  На правах рукописи?
+\end{flushright}
+
+\vfill
+
+\begin{center}
+  \textsc{\Large
+    Козлуков\\
+    Сергей Викторович
+  }
+  \\[1.5cm]
+  \textbf{SPECTRAL PROPERTIES OF CERTAIN PERTURBED BLOCK MATRICES}\\[1.5cm]
+  01.01.01 -- вещественный, комплексный и функциональный анализ?\\[1.5cm]
+  Бакалаврская \textbf{ДИПЛОМНАЯ РАБОТА}
+\end{center}
+
+\vfill
+\begin{flushright}
+  Научный руководитель\\
+  доктор физико-математических наук\\
+  профессор Баскаков~А.~Г.
+\end{flushright}
+ 
+\vfill
+\begin{center}
+  Воронеж~--~2018
+\end{center}
+
+\pagestyle{empty}
+\newpage
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+\newpage
+
+% \begin{abstract}
+%   This work is designated to the study of certain matrices' spectra,
+%   especially some graphs' matrices spectra~\cite{van2003graphs,cvetkovic1980spectra}.
+%   We also apply the method of similar operators~\cite{baskakov1983methods,baskakov2017method,baskakov2013completeness}
+%   to estimate the eigenvalues and eigenvectors of such matrices.
+%   In particular we consider the adjacency matrix of the ``almost-complete-digraph''~\cite{Koz17,sergekozlukov@vspu},
+%   a ``tiled matrix''~\cite{Koz18,sergekozlukov@currentproblems}, and Kronecker~\cite{Koz18,sergekozlukov@currentproblems,bellman-matrices-kron,XIANG2005210}
+%   products of squared matrices
+%   which correspond to the adjacency matrices of NEPS sums of graphs.
+% \end{abstract}
+
+\section*{Notation}
+
+We employ the following notation throughout the work:
+
+\( f: X\to Y: x\mapsto f(x) \) --- a function \( f \)
+with the domain set \( X \) and the target set \( Y \)
+mapping each \( x\in X \) into corresponding \( y=f(x) \in Y\);
+
+\( \mathbb{N} = \{ 1, 2, \ldots \}\) --- the set of all natural numbers without zero;
+
+\( \mathbb{Z} \) --- the set of integers;
+
+\( \mathbb{R} \) --- the field of real numbers.
+
+We use the notation \( a..b \) for ranges so that an open interval \( (a..b) \)
+can be distinguished from the tuple \( (a, b) \):
+
+\( [a..b] = \{ x\in\mathbb{R}:\ a\leq x\leq b\} \) --- the closed segment from
+\( a \) to \( b \);
+
+\( [a..b) = \{ x\in\mathbb{R}:\ a\leq x < b\} \) --- the half-open interval from
+\( a \) to \( b \);
+
+\( (a..b) = \{ x\in\mathbb{R}:\ a < x < b\} \) --- the open interval between
+\( a \) and \( b \);
+
+\( \mathbb{R}_+ = [0,+\infty) \) --- the set of nonnegative reals;
+
+\( \mathbb{J} \) --- either \( \mathbb{R} \) or \( \mathbb{R}_+ \);
+
+\( \mathbb{C} \) --- the field of complex numbers;
+
+\( \mathbb{K} \) --- either \( \mathbb{R} \) or \( \mathbb{C} \);
+
+\( M{\times}N = \{ (m, n):\ m{\in}M,\ n{\in}N \} \) with \( M \) and \( N \) sets
+denotes their Cartesian product;
+
+\( I \) denotes the identity operator and \( E \) the identity matrix;
+
+\( \sigma(A) \) --- the spectrum of the operator or matrix \( A \);
+
+\( \rho(A) \) --- the resolvent set;
+
+\( \mathtt{Hom}(\mathscr{X}, \mathscr{Y})\) --- the Banach space of bounded
+linear operators defined on \( \mathscr{X} \) with the values in \( \mathscr{Y} \).
+
+\( \mathtt{End}\mathscr{X} \) --- Banach algebra of bounded linear operators on
+\( \mathscr{X} \);
+
+\newpage
+
+\section*{Introduction}
+\newpage
+
+\section{Elements of graph spectra theory}
+\newpage
+
+\section{Introduction to the method of similar operators}
+\newpage
+
+\section{Almost complete graph adjacency matrix}
 \sloppy
 Рассмотрим матрицу \( \mathscr{A}_{MN} \) размера \( N\times N \),
  составленную из \( M \) нулей и \( N^2 - M \) единиц.
@@ -61,7 +156,7 @@
  полученному из полного графа с~петлями на \( N \) вершинах
  удалением некоторых \( M \) из \( N^2 \) р\"ебер.
 Некоторые важные свойства графа связаны с~спектром его матрицы смежностей.
-Так, например, в~\cite{epidemic} описана дискретная модель
+Так, например, в~\cite{wang2003epidemic,chakrabarti2008epidemic} описана дискретная модель
  распространения вируса в~сети, в~которой спектральный радиус матрицы смежностей графа сети
  оказывается пороговым значением \( ^1/_{\tau_0} \) отношения \( ^1/_\tau = ^\delta/_\nu \)
 интенсивности~\( \delta \) исцеления инфецированных узлов
@@ -69,7 +164,7 @@
  Положение \(^1/\tau\) относительно порога \(^1/_{\tau_0}\) определяет
  (эндемический или эпидемический) характер заражения.
 Спектральная теория графов и~е\"е приложения подробно рассмотрены
-в~монографии~\cite{cvet}.
+в~монографии~\cite{cvetkovic1980spectra,cvetkovic2010introduction,godsil2013algebraic}.
 
 Что можно сказать о~собственных значениях матриц рассматриваемого вида?
 
@@ -444,7 +539,8 @@ N - x_{11}^o & 0 \\
     % JPCS
     \newpage
 
-\section{Introduction}
+\section{TO BE MERGED: almost-all-ones again}
+
 Consider a~directed graph on \( N \) vertices.
 It is uniquely defined by its
 adjacency matrix
@@ -656,9 +752,7 @@ The main theorem of the method
         denotes the composition.
 \end{thm}
 
-\section{Results and discussion}
-
-\subsection*{Almost-complete graph example.}
+\section{Almost-complete graph example NOCH EIN WEITER}
 
 Consider a digraph defined by the following adjacency matrix:
 \[
@@ -796,7 +890,7 @@ This directly implies the following
     \]
 \end{thm}
 
-\subsection*{A-tiled matrix example.}
+\section{A-tiled matrix}
 
 Now let \( A\in\mathbb{K}^{M{\times}M} \)
     and consider the following (``A-tiled'') block-matrix
@@ -1019,7 +1113,7 @@ The eigenvectors
 for all \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).
 \end{thm}
 
-\subsection*{Kronecker products}
+\section{Perturbed Kronecker products' spectra}
 
 Now we consider Kronecker product
 \[
@@ -1240,7 +1334,7 @@ These results might be refined
 %     for the corresponding eigenvalue of the perturbed matrix.
     
 
-\section*{Conclusion}
+\section{Conclusion}
 
 We have derived bounds
     for perturbations of Kronecker products
@@ -1257,7 +1351,11 @@ An example of more general yet quite similar problem
     of finite-dimensional operators (defined by matrices)
     and abstract operators in Banach spaces.
 
-\section*{References}
-\bibliographystyle{iopart-num}
-\bibliography{serge_kozlukov_jpcs}{}
+\appendix
+\section{Definitions}
+
+
+\section{References}
+\nocite{*}
+\printbibliography
 \end{document}

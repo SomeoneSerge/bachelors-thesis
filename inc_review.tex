@@ -1,0 +1,163 @@
+\begin{center}
+  ОТЗЫВ\\
+  научного руководителя на бакалаврскую работу\\
+  Козлукова Сергея Викторовича\\
+  \textbf{``SPECTRAL PROPERTIES OF CERTAIN PERTURBED BLOCK MATRICES''},
+\end{center}
+
+Работа посвящена спектральным свойствам возмущённых матриц
+специального вида, возникающих, в том числе, при исследовании свойств некоторых
+графов. Отметим важность исследования спектральной теории матриц орграфов~---%
+подтверждением этому являются монографии~\cite{cvetkovic1997eigenspaces,cvetkovic1980spectra,godsil2013algebraic}.
+В основе исследования лежит:
+\begin{itemize}
+  \item Представление матрицы в виде разности двух матриц, для первой из которых
+    спектр описан, а вторая мала в смысле метода подобных операторов.
+    \item Метод подобных операторов, развиваемый А.~Г.~Баскаковым и его
+      командой~\cite{baskakov1986theorem,baskakov1994spectral,baskakov2002splitting}.
+      А именно, теорема о расщеплении линейного
+      оператора.
+\end{itemize}
+
+Основные результаты составляют:
+
+Теорема \ref{nk:thm:almost-all-ones}:
+    Пусть \( M < \frac{1}{16} N^2 \),
+    тогда спектр матрицы \( A \) можно представить в~виде
+    объединения \( \sigma\left(A\right) = \sigma_1 \cup \sigma_2 \)
+    непересекающихся
+    одноэлементного множества \( \sigma_1=\{\lambda_1\} \)
+    и~множества \( \sigma_2 \), удовлетворяющих условиям:
+    \[ \sigma_1 \subset \left\{ \mu\in\mathbb{R}; \lvert \mu - N \rvert < 4\sqrt{M} \right\}, \]
+    \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C}; \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
+
+Теорема \ref{nk:thm:tiled}
+Если \( A\in\mathtt{Mat}_n \) --- простой структуры и имеет место
+\[
+    \left\| \mathbb{B} \right\|_{\mathrm{op}}
+        \leq 
+        \frac{N}{4}
+         \min\left\{
+             \min\limits_{1\leq i{\neq}j \leq M }{|\lambda_i - \lambda_j|},
+             \min\limits_{1\leq j \leq M}{|\lambda_j|}
+         \right\}.
+ \]
+
+То спектр возмущённой матрицы \( \mathbb{A} - \mathbb{B} \) представим в виде:
+\[
+    \sigma\left(\mathbb{A}\right) =
+        \left\{
+            N\lambda_1 - x_{11}^o, \ldots, N\lambda_M - x_{MM}^o
+        \right\}
+    \cup \sigma_{M{+}1}.
+\]
+
+The eigenvectors
+    \( \hat{f}_j,\ \hat{f}_{j,k},\ j{=}\overline{1,M},\ k{=}\overline{1,N{-1}} \)
+    of the matrix \( \mathbb{A}{-}\mathbb{B} \),
+    the values \( x_{jj}^o,\ j{=}\overline{1,M} \)
+    and the set \( \sigma_{M{+}1} \) are in the following bounds:
+\[
+    \lvert x_{jj}^o\rvert,
+    \ \max_{\lambda\in\sigma_{M{+}1}} \lvert\lambda\rvert
+    \leq 4\|B\|,
+\]
+\[
+    \left\| \hat{f}_j - f_j \right\|_2,
+    \ \left\| \hat{f}_{j,k} - f_{j,k}\right\|_2
+    \leq
+    \frac4N \|B\|
+         \max\left\{
+         \frac{1}{
+             \min\limits_{1\leq l{\neq}p \leq M }{|\lambda_l - \lambda_p|}},
+         \frac{1}{
+             \min\limits_{1\leq l \leq M}{|\lambda_l|}}
+         \right\}
+\]
+for all \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).
+    
+Вторую часть работы составляют аналогичные оценки для возмущений Кронекеровых
+произведений матриц, возникающих в связи с определёнными операциями на
+графах~\cite{bellman-matrices-kron,XIANG2005210}, а именно
+
+Теорема \ref{nk:thm:kron}:
+    Consider the perturbed matrix~\eqref{-kronperturb}
+        \[
+            A{\otimes}B - F.
+        \]
+    Let \( A\in\mathbb{F}^{N{\times}N} \) and \( B\in\mathbb{F}^{M{\times}M} \)
+        be diagonalizable matrices.
+    Let \( f_1, \ldots, f_N \) be the eigenvectors of \( A \)
+        corresponding to the eigenvalues \( \mu_1, \ldots, \mu_N \)
+        and let \( h_1, \ldots, h_M \) be the eigenvectors of \( B \)
+        corresponding to the eigenvalues \( \lambda_1, \ldots, \lambda_M \).
+    The spectrum of their Kronecker product \( A{\otimes}B \)
+        is composed of all the possible pairwise products \( \mu_i \lambda_j \)
+        and the corresponding eigenvectors are \( f_i\otimes h_j \).
+    Suppose that out of these \( MN \) eigenvalues only \( s \) are distinct:
+        \( \nu_1, \ldots \nu_s \).
+
+    Suppose
+    \[
+        \|F\| \leq \frac14 \gamma^{-1} = \frac14 \min_{1\leq i{\neq}j\leq s}\lvert\nu_i - \nu_j\rvert.
+    \]
+
+    Then \( A{\otimes}B - F \) is similar to
+    \[ \sum_{k=1}^s \nu_k P_k - JX^o = \sum_{k=1}^s (\nu_k P_k - P_k X^o P_k) \]
+    for some \( X^o \in \mathbb{F}^{MN{\times}MN} \),
+    \( \|X^o - F\|\leq 3\|F\| \).
+
+    All the eigenvalues of \( A{\otimes}B - F \) are contained in the circles
+    \[
+        \Omega_k = \left\{
+            \lambda\in\mathbb{C};
+            \ \lvert\lambda - \nu_k\rvert \leq 4\|F\|
+            \right\},
+        \ k{=}\overline{1,s}.
+    \]
+    There is at least one eigenvalue in each of these circles.
+
+    Suppose the eigenvalue \( \nu_k=\mu_{i_k}\lambda_{j_k} \) of \( A{\otimes}B \) has multiplicity \( 1 \),
+        that is it has the only eigenvector \( v_k = f_{i_k}{\otimes}h_{j_k} \).
+    It is equivalent to the statement that the eigenvalue \( \mu_{i_k} \)
+        of \( A \) and the eigenvalue \( \lambda_{j_k} \) of \( B \)
+        are both of multiplicity \( 1 \).
+    Then \( A{\otimes}B - F \) has eigenvalue in the circle \( \Omega_k \)
+        and the corresponding eigenvector \( \hat{v}_k \) is within bounds
+    \[
+        \|\hat{v}_k - v_k\| \leq 4\gamma \|F\|.
+    \]
+    If \( \nu_k \) is well separated from all the other eigenvalues of \( A{\otimes}B \):
+    \[
+        \min_{l\neq k}
+        \lvert
+        \nu_k - \nu_l
+        \rvert
+        \geq 4\|F\|,
+    \]
+    then \( \nu_k \) is the only eigenvalue of \( A{\otimes}B - F \)
+    in that circle.
+
+Основными результатами работы являются локализация собственных значений и оценки
+собственных векторов таких матриц.
+
+Все полученные результаты являются новыми и были опубликованы в двух статьях в
+рецензируемых журналах, один из которых входит в перечь ВАК, а другой
+индексируется в Scopus и Web of Science. Работа также была представлена на двух
+конференциях, индексируемых в РИНЦ.
+
+Резюмируя изложенное, считаю, что бакалаврская работа
+``SPECTRAL PROPERTIES OF
+CERTAIN PERTURBED BLOCK MATRICES''
+безусловно заслуживает оценки ``отлично''.
+Автору работы рекомендую продолжить исследования в этом направлении, как в
+перспективном.
+
+\vfill
+\begin{minipage}{12em}
+Доктор физ.-мат. наук, профессор,
+факультет прикладной математики, информатики и механики,
+кафедра нелинейных колебаний
+\end{minipage}
+\hfill
+А.~Г.~Баскаков

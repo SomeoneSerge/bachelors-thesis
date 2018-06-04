@@ -1,5 +1,5 @@
-\documentclass[a4paper]{article}
-% \documentclass[14pt,a4paper,draft]{extarticle}
+%\documentclass[a4paper]{extarticle}
+\documentclass[14pt,a4paper]{extarticle}
 
 
 % \usepackage[left=30mm,right=15mm,top=25mm,bottom=20mm]{geometry}
@@ -37,6 +37,9 @@
 
 \begin{document}
 
+\include{inc_review}
+\newpage
+
 \begin{center}
   \textbf{ВОРОНЕЖСКИЙ ГОСУДАРССТВЕННЫЙ УНИВЕРСИТЕТ}
 \end{center}
@@ -53,9 +56,10 @@
     Сергей Викторович
   }
   \\[1.5cm]
-  \textbf{SPECTRAL PROPERTIES OF CERTAIN PERTURBED BLOCK MATRICES}\\[1.5cm]
+  \textbf{SPECTRAL PROPERTIES OF CERTAIN PERTURBED BLOCK MATRICES}\\[.5cm]
+  {\Huge DRAFT VERSION}\\[1.5cm]
   01.01.01 -- вещественный, комплексный и функциональный анализ?\\[1.5cm]
-  Бакалаврская \textbf{ДИПЛОМНАЯ РАБОТА}
+  \textbf{БАКАЛАВРСКАЯ РАБОТА}
 \end{center}
 
 \vfill
@@ -78,14 +82,6 @@
 \newpage
 
 % \begin{abstract}
-%   This work is designated to the study of certain matrices' spectra,
-%   especially some graphs' matrices spectra~\cite{van2003graphs,cvetkovic1980spectra}.
-%   We also apply the method of similar operators~\cite{baskakov1983methods,baskakov2017method,baskakov2013completeness}
-%   to estimate the eigenvalues and eigenvectors of such matrices.
-%   In particular we consider the adjacency matrix of the ``almost-complete-digraph''~\cite{Koz17,sergekozlukov@vspu},
-%   a ``tiled matrix''~\cite{Koz18,sergekozlukov@currentproblems}, and Kronecker~\cite{Koz18,sergekozlukov@currentproblems,bellman-matrices-kron,XIANG2005210}
-%   products of squared matrices
-%   which correspond to the adjacency matrices of NEPS sums of graphs.
 % \end{abstract}
 
 \section*{Notation}
@@ -120,7 +116,7 @@ can be distinguished from the tuple \( (a, b) \):
 
 \( \mathbb{C} \) --- the field of complex numbers;
 
-\( \mathbb{K} \) --- either \( \mathbb{R} \) or \( \mathbb{C} \);
+\( \mathbb{F} \) --- either \( \mathbb{R} \) or \( \mathbb{C} \);
 
 \( M{\times}N = \{ (m, n):\ m{\in}M,\ n{\in}N \} \) with \( M \) and \( N \) sets
 denotes their Cartesian product;
@@ -140,425 +136,56 @@ linear operators defined on \( \mathscr{X} \) with the values in \( \mathscr{Y} 
 \newpage
 
 \section*{Introduction}
-\newpage
+This work is designated to the study of of certain matrices' spectra,
+especially those which appear in relation to
+perturbations of graphs~\cite{cvetkovic1997eigenspaces}.
+The main tool in the study is the method of similar
+operators, developed~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}
+by A~G~Baskakov and his team. Specifically we take the common approach of
+representing the matrix as a difference of a well-behaved part and a small-norm
+perturbation. Thus the problem considered can be formulated as localizing
+eigenvalues and providing estimates for eigenvectors of some special matrices.
+
+We consider for instance adjacency matrices of the
+``almost-complete-digraphs''~\cite{Koz17,sergekozlukov@vspu},
+a ``tiled matrix''~\cite{Koz18,sergekozlukov@currentproblems}, and
+Kronecker~\cite{Koz18,sergekozlukov@currentproblems,bellman-matrices-kron,XIANG2005210}
+products of squared matrices
+which correspond to adjacency matrices of NEPS~\cite{cvetkovic1997eigenspaces} of graphs.
 
 \section{Elements of graph spectra theory}
-\newpage
+By a directed graph we mean a triple \((V, E, \phi)\) consisting
+of the set \( V \) of vertices, the set of edges \( E \),
+and the mapping \( \phi: E\to V^2\). The set of vertices is assumed
+to be finite: \( V = \{ v_1, v_2, \ldots, v_n \}\).
+An edge \( e \) is said to be \emph{originating} at \( v_i\in V \)
+and \emph{terminating} at \( v_j\in V \)
+if \( \phi(e)=(v_i, v_j)\).
+Such a graph is uniquely defined by its \emph{adjacency matrix}
+\[ A = ( a_{ij} ) \in \mathtt{Mat}_n, \]
+\[ a_{ij} = \mathtt{card}\{ e: \phi(e)=(v_i, v_j)\}, \]
+where \( \mathtt{Mat}_n \) is the algebra of all real valued matrices of the size
+\( n{\times}n \) with the usual multiplication rule.
+A value \( \lambda \in \mathbb{C} \) is said to be an eigenvalue of \(
+A\in\mathtt{Mat}_n \) if the matrix \( A - \lambda E \) with \( E \) the
+identity matrix is uninvertible. The set of all such values is called the
+spectrum of the matrix \( A \) and is denoted by \( \sigma(A) \).
+With \( \lambda \) fixed the set of all vectors \( h\in\mathbb{C}^n \)
+for which \( A h = \lambda h \) is called the eigenspace of \( A \)
+corresponding to \( \lambda \).
+Spectra and eigenspaces of adjacency matrices posses important information about
+their corresponding graphs. Yet exact computation of eigenvalues is often
+infeasible. This is when good estimates are needed.
 
-\section{Introduction to the method of similar operators}
-\newpage
-
-\section{Almost complete graph adjacency matrix}
-\sloppy
-Рассмотрим матрицу \( \mathscr{A}_{MN} \) размера \( N\times N \),
- составленную из \( M \) нулей и \( N^2 - M \) единиц.
-Как матрица смежности, \( \mathscr{A}_{MN} \) соответствует орграфу,
- полученному из полного графа с~петлями на \( N \) вершинах
- удалением некоторых \( M \) из \( N^2 \) р\"ебер.
-Некоторые важные свойства графа связаны с~спектром его матрицы смежностей.
-Так, например, в~\cite{wang2003epidemic,chakrabarti2008epidemic} описана дискретная модель
- распространения вируса в~сети, в~которой спектральный радиус матрицы смежностей графа сети
- оказывается пороговым значением \( ^1/_{\tau_0} \) отношения \( ^1/_\tau = ^\delta/_\nu \)
-интенсивности~\( \delta \) исцеления инфецированных узлов
- и~интенсивности~\( \nu \) заражения узлов, смежных инфецированным.
- Положение \(^1/\tau\) относительно порога \(^1/_{\tau_0}\) определяет
- (эндемический или эпидемический) характер заражения.
-Спектральная теория графов и~е\"е приложения подробно рассмотрены
-в~монографии~\cite{cvetkovic1980spectra,cvetkovic2010introduction,godsil2013algebraic}.
-
-Что можно сказать о~собственных значениях матриц рассматриваемого вида?
-
-Матрицу \( \mathscr{A}_{MN} \) можно представить в~виде
-\[ \mathscr{A}_{MN} = \mathcal{J}_N - \mathscr{B}_{MN} =
-    \begin{pmatrix}1 & \cdots & 1\\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1\end{pmatrix} - \mathscr{B}_{MN}, \]
- где \( \mathcal{J}_N \)~--- матрица, составленная из \( N\times N \) единиц,
- а~\( \mathscr{B}_{MN} \) имеет единицы в~точности на тех \( M \) местах,
- где в~\( \mathscr{A}_{MN} \) стоят нули.
-
-Спектр \( \sigma\left( \mathcal{J}_N \right) \)
- матрицы \( \mathcal{J}_N \) легко считается:
- \( \mathcal{J}_N^2 = N \mathcal{J}_N, \) т.е.
- \( \lambda(\lambda - N) \)~--- аннулирующий и, что легко проверить,
- минимальный многочлен матрицы \( \mathcal{J}_N \), а~значит
- \( \sigma\left( \mathcal{J}_N \right) = \left\{ 0,N \right\}. \)
-
-При достаточно малых \( M \),
- спектры матриц \( \mathcal{J}_N \) и~\( \mathscr{A}_{MN} \) будут ``близки''.
-Методом подобных операторов (см.~\cite{baskakov-harmonic,baskakov-split}),
- позволяющим для возмущений ``идеального'' объекта, спектральные свойства которого известны,
- найти элемент рассматриваемой алгебры, изоспектральный возмущ\"енному,
- но имеющий более удобную для вычислений структуру,
- в~статье доказывается
-\begin{thm}\label{kozlukovsv:thm:almost-all-ones}
-    Пусть \( M < \frac{N^2}{16} \),
-    тогда спектр матрицы \( \mathscr{A}_{MN} \) можно представить в~виде
-    объединения \( \sigma\left(\mathscr{A}_{MN}\right) = \sigma_1 \cup \sigma_2 \)
-    непересекающихся
-    одноэлементного множества \( \sigma_1=\{\lambda_1\} \)
-    и~множества \( \sigma_2 \), удовлетворяющих условиям:
-    \[ \sigma_1 \subset \left\{ \mu\in\mathbb{R}; \lvert \mu - N \rvert < 4\sqrt{M} \right\}, \]
-    \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C}; \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
-\end{thm}
-
-Доказательство состоит в~построении уравнения для матрицы, подобной \( \mathscr{A}_{MN} \),
- но устроеной ``проще''. Решение возникающего нелинейного уравнения
- в~банаховой алгебре \( \mathtt{Matr}_N\mathbb{C} \)
- доставляется методом простых итераций (см., например,~\cite{baskakov-harmonic}).
-
-Подобие матриц \( \mathcal{A}_1, \mathcal{A}_2 \)
- понимается в~смысле существования обратимой матрицы \( \mathcal{U} \),
- такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
-Подобные матрицы изоспектральны (их спектры совпадают).
-
-Провед\"ем предварительные преобразования.
-
-\begin{lem}
-    Матрица единиц 
-    \( \mathcal{J}_N =
-    \begin{pmatrix}
-        1 & \cdots & 1 \\
-        \vdots & \ddots & \vdots \\ 
-    1 & \cdots & 1 \end{pmatrix} \),
-    подобна матрице
-    \[
-        \mathcal{A} = \begin{pmatrix}
-            N & 0 & \cdots & 0 \\
-            0 & 0 & \cdots & 0 \\
-            \vdots & \vdots & \ddots & \vdots \\
-            0 & 0 & \cdots & 0 \end{pmatrix}. \]
-    Точнее, существует ортогональная матрица \( \mathcal{U} \),
-    такая что
-    \( \mathcal{J}_N = \mathcal{U}\mathcal{A} \mathcal{U}^{-1} \).
-\end{lem}
-\begin{proof}
-    Собственному значению \( 0 \) соответствует \( N-1 \) независимый собственный вектор
-        \( f_1 = {\left(1,-1,0,\ldots,0\right)}, \ldots,
-           f_{N-1} = {\left(0,\ldots,0,1,-1\right)} \),
-    а~собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
-    соответствует собственный вектор \( f_N = {\left(1,\ldots,1\right)} \).
-    Применив ортогонализацию Грамма-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \):
-    \[
-        h_k = \frac{1}{\sqrt{k(k+1)}}
-            \left(\smash{\underbrace{1,~\ldots,~1,}_{k \text{ раз}}}~-k,~0,~\ldots,~0\right)
-            \in \mathbb{R}^N, \quad k={1, \ldots, N-1} \]
-    \[
-        h_N = {\left(1,~\ldots,~1\right)} \in \mathbb{R}^N, \]
-    В~качестве матрицы \( \mathcal{U} \) выберем матрицу,
-    имеющую столбцами векторы \( h_N, h_1, \ldots, h_{N-1} \):
-    \[ \mathcal{U} =
-    \begin{pmatrix}
-        \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \vdots            & \vdots            &  \vdots             & \ddots & \vdots                      & \vdots   \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{2-N}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & 0                  & \frac{1-N}{\sqrt{(N-1)N}}
-    \end{pmatrix}.\]
-\end{proof}
-
-Таким образом, исходная матрица \( \mathcal{A}_{MN} \) подобна матрице
-\( \mathcal{A} - \mathcal{B} \), где \( \mathcal{B} = \mathcal{U}^{-1} \mathscr{B}_{MN} \mathcal{U} \).
-Далее ортогональность матрицы \( U \) будет играть важную роль.
-
-Матрицы из \( \mathtt{Matr}_N\mathbb{C} \) будем записывать в~блочном виде
-\( X \sim
-    \begin{pmatrix}
-    x_{11} & X_{12} \\
-    X_{21} & X_{22}
-    \end{pmatrix}, \)
-    где \( x_{11} \)~--- число,
-    \( X_{12} \)~--- строка, \( X_{21} \)~--- столбец,
-    \( X_{22} \)~--- квадратный блок размерности \( N-1 \).
-Такие блочные матрицы сами образуют алгебру, изоморфную исходной
-и~их можно естественным образом умножать
-на элементы пространства \( \mathbb{C}\times\mathbb{C}^{N-1} \),
-изоморфного~\( \mathbb{C}^N \):
-\[
-    \begin{pmatrix}
-    x_{11} & X_{12} \\
-    X_{21} & X_{22}
-    \end{pmatrix}
-    \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
-  = \begin{pmatrix}
-      x_{11} x_1 + X_{12} x_2 \\
-      X_{21} x_1 + X_{22} x_2
-      \end{pmatrix},\quad x \sim \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\in \mathbb{C}\times\mathbb{C}^{N-1}.
-    \]
-В~дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми.
-
-Следуя общей схеме метода подобных операторов~\cite{baskakov-split},
-будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
-в~виде \( \mathcal{A} - \mathfrak{J} X \)
-с~матрицей преобразования подобия \( E + \Gamma X \),
-где \( E\in{\mathtt{Matr}_N\mathbb{C}} \)~--- единичная матрица,
-\( \mathfrak{J},\Gamma : \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)~--- линейные операторы,
-действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \), подбираемые
-в~ходе решения,
-      прич\"ем \( \mathfrak{J} \) --- проектор (\(\mathfrak{J}^2=\mathfrak{J}\)),
-      ``упрощающий'' возмущение \( \mathfrak{J}X \),
-      а \( \Gamma \)
-      при всех \( X\in {\mathtt{Matr}_N\mathbb{C}} \) % \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in {\mathtt{Matr}_N\mathbb{C}} \)
-      удовлетворяет уравнению
-          \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J}X. \)
-
-% Короче, будем решать в~банаховой алгебре матриц порядка \( N \) уравнение
-% \begin{equation}\label{kozlukovsv:eq:similarity}
-%     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
-%     \end{equation}
-% Оператор \( \mathfrak{J} \) обычно выбирают проектором (\(\mathfrak{J}^2=\mathfrak{J}\)).
-% \( \Gamma \) определяют поточечно, как решение уравнения
-% \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J} X, \quad X\in\mathtt{Matr}_N\mathbb{C} \),
-% где \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = \mathtt{ad}_{\mathcal{A}} \Gamma X \),
-% \(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)
-% --- оператор коммутирования с \( \mathcal{A} \).
-% Ясно, \( \mathcal{A}-\mathfrak{J}X \) имеет тем более простую структуру,
-% чем шире ядро проектора \( \mathfrak{J} \).
-% Уравнение для \( \Gamma \) в~свою очередь не позволяет сузить ядро слишком сильно.
-
-\begin{lem}
-    Операторы \( \mathfrak{J} \) и \( \Gamma \)
-    следует задать формулами
-    \[
-        \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
-    \[
-        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
-        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \).
-
-\end{lem}
-\begin{crl}
-    Спектр блочно-диагональной матрицы
-    \( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
-    есть объединение спектров е\"е диагональных блоков:
-    \[
-        \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
-\end{crl}
-\begin{proof}
-Пусть \( \Gamma \) действует по формуле
-\( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
-                              \Gamma_{21}(X) & \Gamma_{22}(X)
-                              \end{pmatrix} \), тогда
-\[
-    \mathcal{A} \Gamma X - (\Gamma X)\mathcal{A} = 
-    \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
-        - N\Gamma_{21}(X) & 0
-        \end{pmatrix}, \]
-и~уравнение для \( \Gamma X \) сводится~к
-\[
-    X - \mathfrak{J} X =
-    N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
-        - \Gamma_{21}(X) & 0
-        \end{pmatrix}. \]
-
-Значит, \( \mathfrak{J} \) может обнулить в
-    \( X \sim
-    \begin{pmatrix}
-    x_{11} & X_{12} \\
-    X_{21} & X_{22}
-    \end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \)
-    вс\"е, кроме двух диагональных блоков \( x_{11} \) и \( X_{22} \),
-    поэтому положим
-\[
-    \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
-\[
-    \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
-\end{proof}
-
-Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
-и \( \mathcal{A} - \mathfrak{J} X \):
-\begin{equation}\label{kozlukovsv:eq:similarity}
-    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
-\end{equation}
-\begin{lem}
-    Уравнение~\eqref{kozlukovsv:eq:similarity} эквивалентно уравнению
-    \begin{equation}\label{kozlukovsv:eq:fixptn}
-        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
-    \end{equation}
-\end{lem}
-\begin{proof}
-Раскрывая скобки, уравнение~\eqref{kozlukovsv:eq:similarity} можно преобразовать к виду
-\begin{equation}\label{kozlukovsv:eq:fixptn-ini}
-    X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) \mathfrak{J} X.
-\end{equation}
-Пусть для \( X \) выполнено~\eqref{kozlukovsv:eq:fixptn-ini}.
-Тогда, учитывая равенство \( \mathfrak{J}\left((\Gamma X)\mathfrak{J}X\right) = 0, \)
-получим равенство
-    \begin{equation}\label{kozlukovsv:eq:jx}
-        \mathfrak{J} X = \mathfrak{J}\mathcal{B} + \mathfrak{J}\left(\mathcal{B}\Gamma X\right) = \mathfrak{J}(\mathcal{B} (E + \Gamma X)).
-    \end{equation}
-Подставляя это выражение обратно в~\eqref{kozlukovsv:eq:fixptn-ini},
-    получим~\eqref{kozlukovsv:eq:fixptn}.
-Аналогично, применяя к обеим частям равенства~\eqref{kozlukovsv:eq:fixptn} оператор \( \mathfrak{J} \)
-    и учитывая, что \( \mathfrak{J}\left( (\Gamma X)\mathfrak{J}(\mathcal{B} (E + \Gamma X)) \right) = 0 \),
-    получим~\eqref{kozlukovsv:eq:fixptn-ini}
-\end{proof}
-
-Выражение в правой части уравнения~\eqref{kozlukovsv:eq:fixptn} обозначим как
-\[
-    \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))).\]
-Теперь покажем, что, при определ\"енных условиях,
-возникшее нелинейное отображение \( \Phi:\mathtt{Matr}_N\mathbb{C}\to \mathtt{Matr}_N\mathbb{C} \) имеет инвариантным множеством
-некоторый шар \( \Omega \subset \mathtt{Matr}_N\mathbb{C} \) с~центром в~нуле
-(т.е.~\( \Phi(\Omega)\subset\Omega \)),
-на котором оно является сжимающим.
-
-Пусть в~\( \mathtt{Matr}_N\mathbb{C} \)
-выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
-(т.е.~норма, удовлетворяющая неравенству
- \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
- при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)).
-Нам нужно найти такой радиус \( r \geq 0 \),
-что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
-и~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
-Обозначим
-\( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
-
-\begin{lem}
-    Пусть \( \gamma\beta < \frac14\),
-    тогда шар
-    \[
-        \Omega = \left\{ X\in \mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\}, \]
-    \[  0 < r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
-    удовлетворяет условию \( \Phi(\Omega)\subset\Omega \).
-\end{lem}
-\begin{proof}
-Очевидно неравенство
-    \[ \| \Phi(X) \| \leq
-     \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
-Значит, если \( r \) удовлетворяет неравенству
-    \begin{equation}\label{kozlukovsv:ineq:invariance-radius}
-        \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0,
-    \end{equation}
-    то \( \|\Phi(X)\| \leq r \) при всех \( \|X\| \leq r \).
-Если \( \gamma\beta \leq \frac14 \),
-    то дискриминант \( \Delta = 1-4\gamma\beta \)
-    соответствующего уравнения положителен и~его корни вещественны.
-Из знаков коэффициентов возникшего многочлена видно, что оба корня положительны.
-Следовательно, наименьший положительный \( r \),
-    удовлетворяющий неравенству~\eqref{kozlukovsv:ineq:invariance-radius}
-    есть наименьший корень
-    соответствующего уравнения:
-    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
-Учитывая \( \gamma\beta<\frac14 \), имеем \( r_0 < 4\beta \).
-\end{proof}
-
-Аналогичным образом устанавливается
-\begin{lem}
-    Пусть \(\gamma\beta<\frac14\),
-    тогда \( \Phi \)~--- сжимающее отображение:
-    \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \quad X,Y\in\Omega \]
-    \[ q = (1+2\gamma r_0) \gamma\beta \leq (1+8\gamma\beta)\gamma\beta \leq \frac34. \]
-\end{lem}
-\begin{proof}
-    \begin{align*} \| \Phi(X) - \Phi(Y) \| = \| \mathcal{B}\Gamma (X-Y) + (\Gamma X)(\mathcal{B}\Gamma X + \mathcal{B})
-     - (\Gamma Y)(\mathcal{B} \Gamma Y + \mathcal{B}) \| \leq \\
-        \leq
-     \beta\gamma\|X-Y\| +
-     \beta \gamma^2 \|X-Y\| \|X+Y\| \leq \\
-        \leq
-     \beta\gamma\|X-Y\| +
-     2 r_0 \beta \gamma^2 \|X-Y\|.
-    \end{align*}
-Здесь использовано равенство
-\[ (\Gamma X) \mathfrak{J}(\mathcal{B}\Gamma X) - (\Gamma Y) \mathfrak{J}(\mathcal{B}\Gamma Y) =
-    \frac12\left[
-        \Gamma(X-Y) \mathfrak{J}(\mathcal{B}\Gamma(X+Y))
-    +   \Gamma(X+Y) \mathfrak{J}(\mathcal{B}\Gamma(X-Y))
-    \right]. \]
-\end{proof}
-
-Отсюда и~из теоремы Банаха о~неподвижной точке следует:
-\begin{lem}
-В~шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
-    существует и~при том единственное решение \( X^o \) уравнения~\eqref{kozlukovsv:eq:fixptn},
-    являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
-    где \( \Phi^k = \Phi\circ\Phi^{k-1} \)~--- композиция.
-\end{lem}
-
-\begin{crl}
-Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - \mathfrak{J} X^o \):
-\[ \mathcal{A} - \mathcal{B} \sim
-\begin{pmatrix}
-N - x_{11}^o & 0 \\
-0 & -X_{22}^o
-\end{pmatrix}, \]
-при этом выполняются условия:
-\[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
-    \[ x_{11}^o\in\mathbb{R}, \lvert x_{11}^o \rvert \leq r_0 \leq 4\beta, \]
-\[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert \leq r_0 \leq 4\beta \}. \]
-\end{crl}
-\begin{proof}
-    Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - \mathfrak{J} X^o \),
-    поэтому их спектры совпадают.
-    Спектр матрицы \( \mathcal{A} - \mathfrak{J} X^o \) есть объединение спектров е\"е диагональных блоков.
-    В~виду субмультипликативности нормы имеют место неравенства
-    \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
-    Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
-\end{proof}
-
-Верн\"емся, наконец, к~непосредственному доказательству основной теоремы:
-\begin{proof}[Доказательство Теоремы~\ref{kozlukovsv:thm:almost-all-ones}]
-    Для доказательства осталось лишь выбрать подходящую субмультипликативную норму.
-    Заметим, что матрица \( \mathcal{U} \),
-    приводящая \( \mathcal{J}_N \) к~диагональному виду
-    является ортогональной,
-    поэтому умножение на \( \mathcal{U} \) или \(\mathcal{U}^{-1}\)
-    есть изометрия.
-    Следовательно, \( \|\mathcal{B}\|=\|\mathscr{B}_{MN}\| \).
-    Рассмотрим в~пространстве \( \mathtt{Matr}_{N}\mathbb{C} \)
-    норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
-    определ\"енную формулой
-    \( {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}, \)
-    \( X = (x_{ij})\in\mathtt{Matr}_N\mathbb{C} \).
-    Она субмультипликативна.
-    При этом
-    \( \mathscr{B}_{MN} \) состоит из \( M \) единиц, поэтому
-    \[
-        \beta = {\left\|B\right\|}_{F} =
-        {\left\|\mathscr{B}_{MN}\right\|}_{F} = \sqrt{M}.
-        \]
-    Заметим также очевидное равенство
-    \[
-        \gamma = \frac1N
-                \sup_{{\left\|X\right\|}_{F}=1}{\left\|\begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix}\right\|}_{F}
-                = \frac1N. \]
-    
-    Если
-     \( \sqrt{M} < \frac{N}{4} \),
-     то выполняются условия леммы,
-     прич\"ем \( r_0 < 4\sqrt{M} \).
-    Это значит, что
-     \( \sigma(\mathscr{A}_{MN}) = \sigma_1 \cup \sigma_2 \),
-     где \( \sigma_1 = \{ \lambda_1 \}\subset\mathbb{R}, \lvert \lambda_1 - N \rvert < 4\sqrt{M} \),
-     \( \sigma_2 \subset \{ \mu\in\mathbb{C}; \lvert\mu\rvert < 4\sqrt{M} \} \),
-     \( \sigma_1 \cap \sigma_2 = \emptyset \).
-    Теорема доказана.
-    \end{proof}
-
-    % JPCS
-    \newpage
-
-\section{TO BE MERGED: almost-all-ones again}
-
-Consider a~directed graph on \( N \) vertices.
-It is uniquely defined by its
-adjacency matrix
-    \( A = (a_{ij}) \)
-    of the size \( N\times N \),
-    in which \( a_{ij} \)
-    is the number of edges
-    from the vertex \( i \)
-    to the vertex \( j \).
+Different spectra of a graph are defined in terms of different matrices
+    corresponding to the graph.
 The \emph{simple spectrum} of a graph
     is defined as the spectrum of its adjacency matrix.
-Different spectra of a graph are defined in terms of different matrices
-    corresponding to this graph.
 It is customary to consider combinations
     of the matrices \( A \),
     \( D \) (the out-degree matrix),
     \( E \) (the identity matrix)
-    and \( J_N \) (the all-ones matrix).
+    and \( \mathcal{J}_N \) (the all-ones matrix).
 These matrices arise naturally
     in some stochastic models~\cite[p.~184]{cvetkovic2010introduction}.
 Spectral  properties of these matrices
@@ -593,34 +220,37 @@ In the Susceptible-Infective-Susceptible model
     a viral spread in a network
     is modeled~\cite{wang2003epidemic,chakrabarti2008epidemic} as a Markov process
     with \( 2^N \) states.
+It is a discrete-time model of
+распространения вируса в~сети, в~которой спектральный радиус матрицы смежностей
+графа сети  оказывается пороговым значением \( ^1/_{\tau_0} \) отношения
+\( ^1/_\tau = ^\delta/_\nu \) интенсивности~\( \delta \) исцеления
+инфецированных узлов и~интенсивности~\( \nu \) заражения узлов, смежных
+инфецированным. 
 An asymptotic (endemic or epidemic) behaviour of such a system
-    is determined by the spectral radius (the largest absolute eigenvalue)
-    of the adjacency matrix
-    and the rates of curage and infection.
+    is determined by \(^1/\tau\) being smaller or greater than
+    spectral radius (the largest absolute eigenvalue)
+    of the adjacency matrix.
 
-We should also note that the Kronecker products
-    of the adjacency matrices
-    are themselves of interest
-    as they correspond to the adjacency matrices of
-    the \emph{non-complete extended p-sum}s~(NEPS)
-    of graphs~\cite[p.~44]{cvetkovic2010introduction}.
+One of the most generic and common operations on graph --- 
+    \emph{non-complete extended p-sum}s~(NEPS) of
+    graphs~\cite[p.~44]{cvetkovic2010introduction}~\cite{cvetkovic1997eigenspaces}
+    --- is defined in terms of Kronecker products of graphs.
 
 For more details and comprehensive description
     of the graph spectra theory
     and its applications
     refer to~\cite{cvetkovic1980spectra,cvetkovic2010introduction,godsil2013algebraic}.
 
-\section{The method of similar operators}
+
+\section{Introduction to the method of similar operators}
 
 In some applications
     it is infeasible to compute the exact eigenvalues.
 Then one needs to make reasonable estimates.
-We use the abstract method of similar operators
-    to estimate the eigenvalues and eigenvectors
-    for a certain class of matrices.
-This method originates from Friedrichs~\cite{friedrichs1965advanced}
-    and was later developed in abstract setting
-    by Baskakov~\cite{baskakov1983methods,baskakov2017method,baskakov2013completeness}.
+One of the methods of such estimations is the method of simiar operators
+originated in the works of Friedrichs~\cite{friedrichs1965advanced} and being developed in
+the abstract setting by
+Baskakov~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}.
 It relies on contraction mappings in Banach spaces
     and the Banach fixed-point theorem.
 This approach is often superior to usual methods of perturbation analysis
@@ -629,22 +259,22 @@ We are only concerned with finite-dimensional problems
     so we will only state the required notation and theorems
     in a simplified form.
 
-Let \( \mathbb{K}\in \{ \mathbb{R}, \mathbb{C} \} \)
+Let \( \mathbb{F}\in \{ \mathbb{R}, \mathbb{C} \} \)
     be a field of either real or complex numbers.
-We consider the vector space \( \mathbb{K}^n,\ n\in \mathbb{N} \)
+We consider the vector space \( \mathbb{F}^n,\ n\in \mathbb{N} \)
     supplied with Euclidean structure:
     \[
         (x, y){=}\sum_{k=1}^n x_k\overline{y_k},
         \ x{=}(x_1,\ldots, x_n),
         \ y=(y_1,\ldots, y_n)
-        \in \mathbb{K}^n
+        \in \mathbb{F}^n
         \]
     and the \( \mathrm{L}_2 \)-norm:
     \(
         \|x\|_2^2{=}(x,x).
         \)
 We also consider the canonical basis \( e_1, \ldots, e_n \)
-    in \( \mathbb{K}^n \) given by
+    in \( \mathbb{F}^n \) given by
     \( {(e_i)}_j = \delta_{ij},\ i,j=\overline{1,n} \)
     (\(\delta_{ij} \) is the Kronecker symbol).
 When \( V_1, V_2 \) are normed vector spaces
@@ -662,23 +292,23 @@ It is a Banach algebra with the operator norm:
             \substack{\|x\|=1,\\ x\in V}
         } \|A x\|,\ A\in L(V).
         \]
-Together with \( L(\mathbb{K}^n, \mathbb{K}^m) \)
-    we consider its isomorphic space \( \mathbb{K}^{m{\times}n} \)
+Together with \( L(\mathbb{F}^n, \mathbb{F}^m) \)
+    we consider its isomorphic space \( \mathbb{F}^{m{\times}n} \)
     of matrices of the size \( m{\times}n \)
-    with entries from the field \( \mathbb{K} \).
-The space \( \mathbb{K}^{n{\times}n}\sim L(\mathbb{K}^n) \)
+    with entries from the field \( \mathbb{F} \).
+The space \( \mathbb{F}^{n{\times}n}\sim L(\mathbb{F}^n) \)
     forms a Banach algebra
     when supplied with a submultiplicative norm
     \( \|\cdot\| \),
-    e.g.: \( \|A\|_{\mathrm{op}} = \sup_{\|x\|_2=1,\ x\in \mathbb{K}^n} \|A x\|_2,\ \)
+    e.g.: \( \|A\|_{\mathrm{op}} = \sup_{\|x\|_2=1,\ x\in \mathbb{F}^n} \|A x\|_2,\ \)
     \( \|A\|_{\mathrm{F}} = \sqrt{\sum_{i,j} |a_{ij}|^2},\ \)
     for 
-    \( A{=}(a_{ij})\in\mathbb{K}^{n\times n} \).
+    \( A{=}(a_{ij})\in\mathbb{F}^{n\times n} \).
 Finally we will also be dealing with the isomorphic spaces
-    \( L(L(\mathbb{K}^n)) \) and \( L(\mathbb{K}^{n{\times}n}) \)
+    \( L(L(\mathbb{F}^n)) \) and \( L(\mathbb{F}^{n{\times}n}) \)
     with the operator norm.
 We will follow Krein
-    and refer to elements of \( L(\mathbb{K}^{n{\times}n}) \)
+    and refer to elements of \( L(\mathbb{F}^{n{\times}n}) \)
     as ``transformers''.
 
 The spectrum of a matrix \( A \)
@@ -697,12 +327,12 @@ The most important notion
     in the abstract method of similar operators
     is that of an \emph{admissible triple}.
 For our specific purposes it suffices to say
-    that \( (\mathbb{K}^{n{\times}n}, J, \Gamma) \)
+    that \( (\mathbb{F}^{n{\times}n}, J, \Gamma) \)
     forms an \emph{admissible triple}
-    for a matrix \( A\in\mathbb{K}^{n{\times}n} \)
+    for a matrix \( A\in\mathbb{F}^{n{\times}n} \)
     if the following conditions are met:
 \begin{itemize}
-    \item \( J, \Gamma \in L(\mathbb{K}^{n{\times}n}) \)
+    \item \( J, \Gamma \in L(\mathbb{F}^{n{\times}n}) \)
         are transformers;
     \item \( J \) is a projection (\( J^2 = J \));
     \item  \( \Gamma \) satisfies the equations:
@@ -710,7 +340,7 @@ For our specific purposes it suffices to say
             A \Gamma X - (\Gamma X) A = X - JX,
         \]
         \[
-            J\Gamma X = 0,\ X\in\mathbb{K}^{n{\times}n}.
+            J\Gamma X = 0,\ X\in\mathbb{F}^{n{\times}n}.
         \]
 \end{itemize}
 
@@ -719,15 +349,15 @@ The main theorem of the method
 
 \begin{thm}
     Consider a matrix \( A - B \)
-        with \( A, B \in \mathbb{K}^{n{\times}n} \).
-    Suppose \( (\mathbb{K}^{n{\times}n}, J, \Gamma) \)
+        with \( A, B \in \mathbb{F}^{n{\times}n} \).
+    Suppose \( (\mathbb{F}^{n{\times}n}, J, \Gamma) \)
         is an admissible triple for the matrix \( A \)
         and suppose the following inequality holds:
         \[
             \|B\|\|\Gamma\|_{\mathrm{op}} \leq \frac14.
         \]
 
-    Then there exists such a matrix \( X^o\in\mathbb{K}^{n{\times}n} \)
+    Then there exists such a matrix \( X^o\in\mathbb{F}^{n{\times}n} \)
         that \( A - B \) is similar to \( A - J X^o \);
         the similarity matrix is \( E + \Gamma X^o \);
         the following estimates are valid:
@@ -741,9 +371,9 @@ The main theorem of the method
         is the spectral radius of \( X^o \) (the largest absolute eigenvalue).
     Such \( X^o \) can be found as the limit of a convergent sequence
         \( \left( \Phi^k(0);\ k\in\mathbb{N} \right) \)
-        in a Banach algebra \( \mathbb{K}^{n{\times}n} \).
+        in a Banach algebra \( \mathbb{F}^{n{\times}n} \).
         Here \( \Phi \) is a nonlinear contraction mapping
-        defined on the ball \( \{X\in\mathbb{K}^{m{\times}n};\ \|X-B\|\leq 3\|B\| \} \)
+        defined on the ball \( \{X\in\mathbb{F}^{m{\times}n};\ \|X-B\|\leq 3\|B\| \} \)
         and given by
     \[
         \Phi(X) = B\Gamma X - (\Gamma X)J(B + B\Gamma X) + B
@@ -752,14 +382,14 @@ The main theorem of the method
         denotes the composition.
 \end{thm}
 
-\section{Almost-complete graph example NOCH EIN WEITER}
-
+\section{Almost complete graph adjacency matrix}
+\sloppy
 Consider a digraph defined by the following adjacency matrix:
 \[
-    A = J_N - B = \begin{pmatrix}1 & \cdots & 1 \\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1\end{pmatrix} - B,
+    A = \mathcal{J}_N - B = \begin{pmatrix}1 & \cdots & 1 \\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1\end{pmatrix} - B,
 \]
 
-Here \( J_N \) is the all-ones matrix.
+Here \( \mathcal{J}_N \) is the all-ones matrix.
 The unity on the intersection
 of \( i \)'th row and \( j \)'th column of \( B \)
 corresponds to an edge from \( i \) to \( j \)
@@ -767,24 +397,128 @@ being absent in the graph.
 This example has already been considered in~\cite{sergekozlukov@volgograd}
 and here we will reproduce some steps to demonstrate the technique.
 
-One can easily find the minimal annihilating polynomial of \( J_N \)
-    to be \( \lambda(\lambda - N) \).
-This comes from the fact that \( J_N^2 = N J_N \).
-Consequently the spectrum of \( J_N \) is
+Рассмотрим матрицу \( A \) размера \( N\times N \),
+ составленную из \( M \) нулей и \( N^2 - M \) единиц.
 \[
-    \sigma(J_N) = \left\{0, N\right\}.
+    A = \mathcal{J}_N - B = \begin{pmatrix}1 & \cdots & 1 \\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1\end{pmatrix} - B,
 \]
+Здесь \( \mathcal{J}_N \)~--- матрица, составленная из \( N\times N \) единиц,
+ а~\( B \) имеет единицы в~точности на тех \( M \) местах,
+ где в~\( A \) стоят нули.
+
+Как матрица смежности, \( A \) соответствует орграфу,
+ полученному из полного графа с~петлями на \( N \) вершинах
+ удалением некоторых \( M \) из \( N^2 \) р\"ебер.
+Некоторые важные свойства графа связаны с~спектром его матрицы смежностей.
+Спектральная теория графов и~е\"е приложения подробно рассмотрены
+в~монографии~\cite{cvetkovic1997eigenspaces,cvetkovic1980spectra,cvetkovic2010introduction,godsil2013algebraic}.
+
+Что можно сказать о~собственных значениях матриц рассматриваемого вида?
+
+Спектр \( \sigma\left( \mathcal{J}_N \right) \)
+ матрицы \( \mathcal{J}_N \) легко считается:
+ \( \mathcal{J}_N^2 = N \mathcal{J}_N, \) т.е.
+ \( \lambda(\lambda - N) \)~--- аннулирующий и, что легко проверить,
+ минимальный многочлен матрицы \( \mathcal{J}_N \), а~значит
+ \( \sigma\left( \mathcal{J}_N \right) = \left\{ 0,N \right\}. \)
+
+One can easily find the minimal annihilating polynomial of \( \mathcal{J}_N \)
+    to be \( \lambda(\lambda - N) \).
+This comes from the fact that \( \mathcal{J}_N^2 = N \mathcal{J}_N \).
+Consequently the spectrum of \( \mathcal{J}_N \) is
+\[
+    \sigma(\mathcal{J}_N) = \left\{0, N\right\}.
+\]
+
+При достаточно малых \( M \),
+ спектры матриц \( \mathcal{J}_N \) и~\( A \) будут ``близки''.
+Методом подобных операторов (см.~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}),
+ позволяющим для возмущений ``идеального'' объекта, спектральные свойства которого известны,
+ найти элемент рассматриваемой алгебры, изоспектральный возмущ\"енному,
+ но имеющий более удобную для вычислений структуру,
+ в~статье доказывается
+\begin{thm}\label{nk:thm:almost-all-ones}
+    Пусть \( M < \frac{1}{16} N^2 \),
+    тогда спектр матрицы \( A \) можно представить в~виде
+    объединения \( \sigma\left(A\right) = \sigma_1 \cup \sigma_2 \)
+    непересекающихся
+    одноэлементного множества \( \sigma_1=\{\lambda_1\} \)
+    и~множества \( \sigma_2 \), удовлетворяющих условиям:
+    \[ \sigma_1 \subset \left\{ \mu\in\mathbb{R}; \lvert \mu - N \rvert < 4\sqrt{M} \right\}, \]
+    \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C}; \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
+\end{thm}
+
+Доказательство состоит в~построении уравнения для матрицы, подобной \( A \),
+ но устроеной ``проще''. Решение возникающего нелинейного уравнения
+ в~Банаховой алгебре \( \mathtt{Mat}_N\mathbb{C} \)
+ доставляется методом простых итераций (см., например,~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}).
+
+Подобие матриц \( \mathcal{A}_1, \mathcal{A}_2 \)
+ понимается в~смысле существования обратимой матрицы \( \mathcal{U} \),
+ такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
+Подобные матрицы изоспектральны (их спектры совпадают).
+
+Провед\"ем предварительные преобразования.
+
+\begin{lem}
+    Матрица единиц 
+    \( \mathcal{J}_N =
+    \begin{pmatrix}
+        1 & \cdots & 1 \\
+        \vdots & \ddots & \vdots \\ 
+    1 & \cdots & 1 \end{pmatrix} \),
+    подобна матрице
+    \[
+        \mathcal{A} = \begin{pmatrix}
+            N & 0 & \cdots & 0 \\
+            0 & 0 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & 0 \end{pmatrix}. \]
+    Точнее, существует ортогональная матрица \( \mathcal{U} \),
+    такая что
+    \( \mathcal{J}_N = \mathcal{U}\mathcal{A} \mathcal{U}^{-1} \).
+\end{lem}
+\begin{proof}
+    Собственному значению \( 0 \) соответствует \( N-1 \) независимый собственный вектор
+        \( f_1 = {\left(1,-1,0,\ldots,0\right)}, \ldots,
+           f_{N-1} = {\left(0,\ldots,0,1,-1\right)} \),
+    а~собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
+    соответствует собственный вектор \( f_N = {\left(1,\ldots,1\right)} \).
+    Применив ортогонализацию Грама-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \):
+    \[
+        h_k = \frac{1}{\sqrt{k(k+1)}}
+            \left(\smash{\underbrace{1,~\ldots,~1,}_{k \text{ раз}}}~-k,~0,~\ldots,~0\right)
+            \in \mathbb{R}^N, \quad k={1, \ldots, N-1} \]
+    \[
+        h_N = {\left(1,~\ldots,~1\right)} \in \mathbb{R}^N, \]
+
 The only non-zero eigenvalue \( N \) has the corresponding eigenvector
 \[
     h_N = \frac{1}{\sqrt{N}} \left(1, \ldots, 1\right)\in\mathbb{R}^N.
 \]
-The null-space of \( J_N \) is orthogonal to \( h_N \)
+The null-space of \( \mathcal{J}_N \) is orthogonal to \( h_N \)
     and allows the orthonormal basis:
 \[
     h_k = \frac{1}{\sqrt{k(k+1)}} \left(\underbrace{1, \ldots, 1}_{k\ \text{copies}}, -k, 0, \ldots, 0\right),\ k=\overline{1, N-1}.
 \]
 
-We conclude that the adjacency matrix \( A = J_N - B \) of this graph
+
+    В~качестве матрицы \( \mathcal{U} \) выберем матрицу,
+    имеющую столбцами векторы \( h_N, h_1, \ldots, h_{N-1} \):
+    \[ \mathcal{U} =
+    \begin{pmatrix}
+        \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
+        \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
+        \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
+        \vdots            & \vdots            &  \vdots             & \ddots & \vdots                      & \vdots   \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{2-N}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & 0                  & \frac{1-N}{\sqrt{(N-1)N}}
+    \end{pmatrix}.\]
+\end{proof}
+
+We conclude that the adjacency matrix \( A = \mathcal{J}_N - B \) of this graph
     is similar to \( \mathcal{A} - \mathcal{B} \)
     where \( A \) is a block matrix (subscripts denote block sizes; in what follows throughout this subsection block sizes are the same and will be omitted):
     \[
@@ -808,6 +542,114 @@ The similarity matrix \( U \) is given by stacking the eigenvectors in columns:
         \end{pmatrix}.
     \]
 
+
+Таким образом, исходная матрица \( \mathcal{A} \) подобна матрице
+\( \mathcal{A} - \mathcal{B} \), где \( \mathcal{B} = \mathcal{U}^{-1} B \mathcal{U} \).
+Далее ортогональность матрицы \( U \) будет играть важную роль.
+
+Матрицы из \( \mathtt{Mat}_N\mathbb{C} \) будем записывать в~блочном виде
+\( X \sim
+    \begin{pmatrix}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix}, \)
+    где \( x_{11} \)~--- число,
+    \( X_{12} \)~--- строка, \( X_{21} \)~--- столбец,
+    \( X_{22} \)~--- квадратный блок размерности \( N-1 \).
+Такие блочные матрицы сами образуют алгебру, изоморфную исходной
+и~их можно естественным образом умножать
+на элементы пространства \( \mathbb{C}\times\mathbb{C}^{N-1} \),
+изоморфного~\( \mathbb{C}^N \):
+\[
+    \begin{pmatrix}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix}
+    \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+  = \begin{pmatrix}
+      x_{11} x_1 + X_{12} x_2 \\
+      X_{21} x_1 + X_{22} x_2
+      \end{pmatrix},\quad x \sim \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\in \mathbb{C}\times\mathbb{C}^{N-1}.
+    \]
+В~дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми.
+
+Следуя общей схеме метода подобных операторов~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting},
+будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
+в~виде \( \mathcal{A} - J X \)
+с~матрицей преобразования подобия \( E + \Gamma X \),
+где \( E\in{\mathtt{Mat}_N\mathbb{C}} \)~--- единичная матрица,
+\( J,\Gamma : \mathtt{Mat}_N\mathbb{C}\to\mathtt{Mat}_N\mathbb{C} \)~--- линейные операторы,
+действующие на алгебре \( \mathtt{Mat}_N\mathbb{C} \), подбираемые
+в~ходе решения,
+      прич\"ем \( J \) --- проектор (\(J^2=J\)),
+      ``упрощающий'' возмущение \( JX \),
+      а \( \Gamma \)
+      при всех \( X\in {\mathtt{Mat}_N\mathbb{C}} \) % \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in {\mathtt{Mat}_N\mathbb{C}} \)
+      удовлетворяет уравнению
+          \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - JX. \)
+
+% Короче, будем решать в~Банаховой алгебре матриц порядка \( N \) уравнение
+% \begin{equation}\label{nk:eq:similarity}
+%     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - J X), \quad X\in\mathtt{Mat}_N\mathbb{C}.
+%     \end{equation}
+% Оператор \( J \) обычно выбирают проектором (\(J^2=J\)).
+% \( \Gamma \) определяют поточечно, как решение уравнения
+% \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - J X, \quad X\in\mathtt{Mat}_N\mathbb{C} \),
+% где \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = \mathtt{ad}_{\mathcal{A}} \Gamma X \),
+% \(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Mat}_N\mathbb{C}\to\mathtt{Mat}_N\mathbb{C} \)
+% --- оператор коммутирования с \( \mathcal{A} \).
+% Ясно, \( \mathcal{A}-JX \) имеет тем более простую структуру,
+% чем шире ядро проектора \( J \).
+% Уравнение для \( \Gamma \) в~свою очередь не позволяет сузить ядро слишком сильно.
+
+\begin{lem}
+    Операторы \( J \) и \( \Gamma \)
+    следует задать формулами
+    \[
+        J X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
+    \[
+        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
+        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Mat}_N\mathbb{C} \).
+
+\end{lem}
+\begin{crl}
+    Спектр блочно-диагональной матрицы
+    \( \mathcal{A} - JX = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
+    есть объединение спектров е\"е диагональных блоков:
+    \[
+        \sigma(\mathcal{A} - J X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
+\end{crl}
+\begin{proof}
+Пусть \( \Gamma \) действует по формуле
+\( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
+                              \Gamma_{21}(X) & \Gamma_{22}(X)
+                              \end{pmatrix} \), тогда
+\[
+    \mathcal{A} \Gamma X - (\Gamma X)\mathcal{A} = 
+    \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
+        - N\Gamma_{21}(X) & 0
+        \end{pmatrix}, \]
+и~уравнение для \( \Gamma X \) сводится~к
+\[
+    X - J X =
+    N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
+        - \Gamma_{21}(X) & 0
+        \end{pmatrix}. \]
+
+Значит, \( J \) может обнулить в
+    \( X \sim
+    \begin{pmatrix}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix} \in \mathtt{Mat}_N\mathbb{C} \)
+    вс\"е, кроме двух диагональных блоков \( x_{11} \) и \( X_{22} \),
+    поэтому положим
+\[
+    J X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
+\[
+    \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
+\end{proof}
+
 Following the general method,
     we should first construct an admissible triple.
 Since \( \mathcal{A} \) is block-diagonal
@@ -825,7 +667,7 @@ Since \( \mathcal{A} \) is block-diagonal
         \left(\begin{array}{c|c}
             x_{11} & X_{12} \\ \hline
             X_{21} & X_{22}
-        \end{array}\right)\in\mathbb{K}^{N{\times}N}.
+        \end{array}\right)\in\mathbb{F}^{N{\times}N}.
     \]
 Then \( A - JX \) is block-diagonal for any \( X \)
     and its spectrum is the union
@@ -850,8 +692,142 @@ Then the equations
      \]
 and \( J\Gamma X = 0 \) yield the result
     \[
-        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix},\ X\in\mathbb{K}^{N{\times}N}.
+        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix},\ X\in\mathbb{F}^{N{\times}N}.
     \]
+
+Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
+и \( \mathcal{A} - J X \):
+\begin{equation}\label{nk:eq:similarity}
+    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - J X), \quad X\in\mathtt{Mat}_N\mathbb{C}.
+\end{equation}
+\begin{lem}
+    Уравнение~\eqref{nk:eq:similarity} эквивалентно уравнению
+    \begin{equation}\label{nk:eq:fixptn}
+        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(J(\mathcal{B} (E + \Gamma X))), \quad X\in\mathtt{Mat}_N\mathbb{C}.
+    \end{equation}
+\end{lem}
+\begin{proof}
+Раскрывая скобки, уравнение~\eqref{nk:eq:similarity} можно преобразовать к виду
+\begin{equation}\label{nk:eq:fixptn-ini}
+    X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) J X.
+\end{equation}
+Пусть для \( X \) выполнено~\eqref{nk:eq:fixptn-ini}.
+Тогда, учитывая равенство \( J\left((\Gamma X)JX\right) = 0, \)
+получим равенство
+    \begin{equation}\label{nk:eq:jx}
+        J X = J\mathcal{B} + J\left(\mathcal{B}\Gamma X\right) = J(\mathcal{B} (E + \Gamma X)).
+    \end{equation}
+Подставляя это выражение обратно в~\eqref{nk:eq:fixptn-ini},
+    получим~\eqref{nk:eq:fixptn}.
+Аналогично, применяя к обеим частям равенства~\eqref{nk:eq:fixptn} оператор \( J \)
+    и учитывая, что \( J\left( (\Gamma X)J(\mathcal{B} (E + \Gamma X)) \right) = 0 \),
+    получим~\eqref{nk:eq:fixptn-ini}
+\end{proof}
+
+Выражение в правой части уравнения~\eqref{nk:eq:fixptn} обозначим как
+\[
+    \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(J(\mathcal{B} (E + \Gamma X))).\]
+Теперь покажем, что, при определ\"енных условиях,
+возникшее нелинейное отображение \( \Phi:\mathtt{Mat}_N\mathbb{C}\to \mathtt{Mat}_N\mathbb{C} \) имеет инвариантным множеством
+некоторый шар \( \Omega \subset \mathtt{Mat}_N\mathbb{C} \) с~центром в~нуле
+(т.е.~\( \Phi(\Omega)\subset\Omega \)),
+на котором оно является сжимающим.
+
+Пусть в~\( \mathtt{Mat}_N\mathbb{C} \)
+выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
+(т.е.~норма, удовлетворяющая неравенству
+ \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
+ при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Mat}_N\mathbb{C} \)).
+Нам нужно найти такой радиус \( r \geq 0 \),
+что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
+и~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
+Обозначим
+\( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
+
+\begin{lem}
+    Пусть \( \gamma\beta < \frac14\),
+    тогда шар
+    \[
+        \Omega = \left\{ X\in \mathtt{Mat}_N\mathbb{C}; \|X\| \leq r_0 \right\}, \]
+    \[  0 < r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
+    удовлетворяет условию \( \Phi(\Omega)\subset\Omega \).
+\end{lem}
+\begin{proof}
+Очевидно неравенство
+    \[ \| \Phi(X) \| \leq
+     \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
+Значит, если \( r \) удовлетворяет неравенству
+    \begin{equation}\label{nk:ineq:invariance-radius}
+        \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0,
+    \end{equation}
+    то \( \|\Phi(X)\| \leq r \) при всех \( \|X\| \leq r \).
+Если \( \gamma\beta \leq \frac14 \),
+    то ``дискриминант'' \( \Delta = 1-4\gamma\beta \)
+    соответствующего уравнения положителен и~его корни вещественны.
+Из знаков коэффициентов возникшего многочлена видно, что оба корня положительны.
+Следовательно, наименьший положительный \( r \),
+    удовлетворяющий неравенству~\eqref{nk:ineq:invariance-radius}
+    есть наименьший корень
+    соответствующего уравнения:
+    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
+Учитывая \( \gamma\beta<\frac14 \), имеем \( r_0 < 4\beta \).
+\end{proof}
+
+Аналогичным образом устанавливается
+\begin{lem}
+    Пусть \(\gamma\beta<\frac14\),
+    тогда \( \Phi \)~--- сжимающее отображение:
+    \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \quad X,Y\in\Omega \]
+    \[ q = (1+2\gamma r_0) \gamma\beta \leq (1+8\gamma\beta)\gamma\beta \leq \frac34. \]
+\end{lem}
+\begin{proof}
+    \begin{align*} \| \Phi(X) - \Phi(Y) \| = \| \mathcal{B}\Gamma (X-Y) + (\Gamma X)(\mathcal{B}\Gamma X + \mathcal{B})
+     - (\Gamma Y)(\mathcal{B} \Gamma Y + \mathcal{B}) \| \leq \\
+        \leq
+     \beta\gamma\|X-Y\| +
+     \beta \gamma^2 \|X-Y\| \|X+Y\| \leq \\
+        \leq
+     \beta\gamma\|X-Y\| +
+      2 r_0 \beta \gamma^2 \|X-Y\|.
+    \end{align*}
+Здесь использовано равенство
+\[ (\Gamma X) J(\mathcal{B}\Gamma X) - (\Gamma Y) J(\mathcal{B}\Gamma Y) =
+  \]
+ \[= \frac12\left[
+        \Gamma(X-Y) J(\mathcal{B}\Gamma(X+Y))
+    +   \Gamma(X+Y) J(\mathcal{B}\Gamma(X-Y))
+  \right].
+\]
+\end{proof}
+
+Отсюда и~из теоремы Банаха о~неподвижной точке следует:
+\begin{lem}
+В~шаре \[ \Omega = \left\{ X\in\mathtt{Mat}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
+    существует и~при том единственное решение \( X^o \) уравнения~\eqref{nk:eq:fixptn},
+    являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
+    где \( \Phi^k = \Phi\circ\Phi^{k-1} \)~--- композиция.
+\end{lem}
+
+\begin{crl}
+Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - J X^o \):
+\[ \mathcal{A} - \mathcal{B} \sim
+\begin{pmatrix}
+N - x_{11}^o & 0 \\
+0 & -X_{22}^o
+\end{pmatrix}, \]
+при этом выполняются условия:
+\[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
+    \[ x_{11}^o\in\mathbb{R}, \lvert x_{11}^o \rvert \leq r_0 \leq 4\beta, \]
+\[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert \leq r_0 \leq 4\beta \}. \]
+\end{crl}
+\begin{proof}
+    Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - J X^o \),
+    поэтому их спектры совпадают.
+    Спектр матрицы \( \mathcal{A} - J X^o \) есть объединение спектров е\"е диагональных блоков.
+    В~виду субмультипликативности нормы имеют место неравенства
+    \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
+    Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
+\end{proof}
 
 The last step is to estimate the norms and apply the theorem.
 One can easily check that \( \|\Gamma\|_{\mathrm{op}} = \frac1N \).
@@ -863,10 +839,49 @@ The Frobenius norm \( {\|B\|_{\mathrm{F}} = \sqrt{\sum_{ij} b_{ij}^2} = M} \)
     reduces to the square root of the number of absent edges.
 This directly implies the following
 
+Верн\"емся, наконец, к~непосредственному доказательству основной теоремы:
+\begin{proof}[Доказательство Теоремы~\ref{nk:thm:almost-all-ones}]
+    Для доказательства осталось лишь выбрать подходящую субмультипликативную норму.
+    Заметим, что матрица \( \mathcal{U} \),
+    приводящая \( \mathcal{J}_N \) к~диагональному виду
+    является ортогональной,
+    поэтому умножение на \( \mathcal{U} \) или \(\mathcal{U}^{-1}\)
+    есть изометрия.
+    Следовательно, \( \|\mathcal{B}\|=\|B\| \).
+    Рассмотрим в~пространстве \( \mathtt{Mat}_{N}\mathbb{C} \)
+    норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
+    определ\"енную формулой
+    \( {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}, \)
+    \( X = (x_{ij})\in\mathtt{Mat}_N\mathbb{C} \).
+    Она субмультипликативна.
+    При этом
+    \( B \) состоит из \( M \) единиц, поэтому
+    \[
+        \beta = {\left\|B\right\|}_{F} =
+        {\left\|B\right\|}_{F} = \sqrt{M}.
+        \]
+    Заметим также очевидное равенство
+    \[
+        \gamma = \frac1N
+                \sup_{{\left\|X\right\|}_{F}=1}{\left\|\begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix}\right\|}_{F}
+                = \frac1N. \]
+    
+    Если
+     \( \sqrt{M} < \frac{N}{4} \),
+     то выполняются условия леммы,
+     прич\"ем \( r_0 < 4\sqrt{M} \).
+    Это значит, что
+     \( \sigma(A) = \sigma_1 \cup \sigma_2 \),
+     где \( \sigma_1 = \{ \lambda_1 \}\subset\mathbb{R}, \lvert \lambda_1 - N \rvert < 4\sqrt{M} \),
+     \( \sigma_2 \subset \{ \mu\in\mathbb{C}; \lvert\mu\rvert < 4\sqrt{M} \} \),
+     \( \sigma_1 \cap \sigma_2 = \emptyset \).
+    Теорема доказана.
+    \end{proof}
+
 \begin{thm}
     Suppose the number of absent edges is
     \[ M < \frac{1}{16} N^2. \]
-    Then the spectrum of the adjacency matrix \( A = J_N - B \)
+    Then the spectrum of the adjacency matrix \( A = \mathcal{J}_N - B \)
         can be represented as disjoint union
     \[
         \sigma(A) = \{ N - x_{11}^o \} \cup \sigma_2.
@@ -890,9 +905,10 @@ This directly implies the following
     \]
 \end{thm}
 
+% JPCS
 \section{A-tiled matrix}
 
-Now let \( A\in\mathbb{K}^{M{\times}M} \)
+Now let \( A\in\mathbb{F}^{M{\times}M} \)
     and consider the following (``A-tiled'') block-matrix
     \[
         \mathbb{A} =
@@ -901,11 +917,11 @@ Now let \( A\in\mathbb{K}^{M{\times}M} \)
             \vdots & \ddots & \vdots \\
             A & \cdots & A
         \end{pmatrix}
-        \in\mathbb{K}^{{MN}{\times}{MN}}
+        \in\mathbb{F}^{{MN}{\times}{MN}}
     \]
     and the perturbed matrix
     \[
-        \mathbb{A} - \mathbb{B},\ \mathbb{B}\in\mathbb{K}^{{MN}{\times}{MN}}.
+        \mathbb{A} - \mathbb{B},\ \mathbb{B}\in\mathbb{F}^{{MN}{\times}{MN}}.
     \]
 
 \begin{lem}
@@ -921,7 +937,7 @@ Now let \( A\in\mathbb{K}^{M{\times}M} \)
     Non-zero eigenvalues of \( \mathbb{A} \)
         have corresponding block eigenvectors:
     \[
-        f_j = \frac{1}{\sqrt{N}} (h_j, \ldots, h_j)\in \mathbb{K}^{MN},\ j=\overline{1,M}.
+        f_j = \frac{1}{\sqrt{N}} (h_j, \ldots, h_j)\in \mathbb{F}^{MN},\ j=\overline{1,M}.
     \]
     The null-space of \( \mathbb{A} \)
         has an orthonormal basis:
@@ -931,7 +947,7 @@ Now let \( A\in\mathbb{K}^{M{\times}M} \)
         \underbrace{e_j, \ldots, e_j}_{k\ \text{copies}},
         -ke_j,
         0, \ldots, 0
-        ) \in\mathbb{K}^{{MN}{\times}{MN}}
+        ) \in\mathbb{F}^{{MN}{\times}{MN}}
     \]
 
     The matrix \( \mathbb{A} \) is similar to a block-diagonal matrix:
@@ -940,7 +956,7 @@ Now let \( A\in\mathbb{K}^{M{\times}M} \)
         \left(\begin{array}{c|c}
             \operatorname{diag}(N\lambda_1,\ldots,N\lambda_M) & \mathbf{0} \\ \hline
             \mathbf{0} & \mathbf{0}
-        \end{array}\right)\in\mathbb{K}^{{MN}{\times}{MN}};
+        \end{array}\right)\in\mathbb{F}^{{MN}{\times}{MN}};
     \]
     the similarity transform matrix is
     \[
@@ -977,7 +993,7 @@ Throughout this subsection
 where
 \( X_{ij}      {=} x_{ij},
  \ X_{M{+}1,j} {=} x_{M{+}1,j},
- \ X_{i,M{+}1} {=} x_{i,M{+}1} \in \mathbb{K} \)
+ \ X_{i,M{+}1} {=} x_{i,M{+}1} \in \mathbb{F} \)
 for \( 1 \leq {i,j} \leq M \),
 and
 \( X_{M{+}1,M{+}1} \) is a block of the size \( {M(N{-}1){\times}M(N-1)} \).
@@ -1011,31 +1027,44 @@ Suppose \( A \) has a simple spectrum,
     i.e.\ its eigenvalues are pairwise distinct:
     \( \lambda_i\neq\lambda_j \) for all \( 1\leq i{\neq}j \leq M \).
 
-    Then a tuple \( (\mathbb{K}^{{MN}{\times}{MN}}, J, \Gamma) \)
+    Then a tuple \( (\mathbb{F}^{{MN}{\times}{MN}}, J, \Gamma) \)
         forms an admissible triple if we define
     \[
         \Gamma X = 
-            \frac1n \left(\begin{array}{c|c}
-            \begin{matrix}
+        \frac1n \left(\begin{array}{c|c}
+                        \Gamma_{11}(X) & \Gamma_{12}(X) \\ \hline
+                        \Gamma_{21}(X) & \Gamma_{22}(X)
+                      \end{array}\right),
+                                      \]
+    \[
+        \Gamma_{11}(X) =
+              \begin{pmatrix}
                 0               & \gamma_{12}x_{12} & \cdots & \gamma_{1M}x_{1M} \\
                 \gamma_{21}x_{21}  & 0              & \cdots & \gamma_{2M}x_{2M} \\
                 \vdots          & \vdots         & \ddots & \vdots & \ \\
                 \gamma_{M1}x_{M1}  & \gamma_{M2}x_{M2} & \cdots & 0
-            \end{matrix} &
-            \begin{matrix}
+              \end{pmatrix}
+    \]
+    \[
+        \Gamma_{12}(X) =
+            \begin{pmatrix}
                 \gamma_{1,M+1}x_{1,M+1} \\
                 \gamma_{2,M+1}x_{2,M+1} \\
                 \vdots \\
                 \gamma_{M,M+1}x_{M,M+1}
-            \end{matrix} \\ \hline
-            \begin{matrix}
+            \end{pmatrix}
+    \]
+    \[
+        \Gamma_{11}(X) =
+            \begin{pmatrix}
                 \gamma_{M{+}1,1}x_{M{+}1,1} &
                 \gamma_{M{+}1,2}x_{M{+}1,2} &
                 \cdots &
                 \gamma_{M{+}1,M}x_{M{+}1,M}
-            \end{matrix} &
-            \mathbf{0}
-        \end{array}\right),
+            \end{pmatrix}
+    \]
+    \[
+        \Gamma_{22}(X) = \mathbf{0},
     \]
     \[
         \gamma_{ij} = \left\{
@@ -1045,7 +1074,7 @@ Suppose \( A \) has a simple spectrum,
             \end{aligned}
             \right.
     \]
-    and we use the convention:
+    where we've used the convention:
     \[
         \lambda_{M{+}1} = 0.
     \]
@@ -1067,7 +1096,7 @@ Suppose \( A \) has a simple spectrum,
         \]
 \end{lem}
 
-\begin{thm}
+\begin{thm}\label{nk:thm:tiled}
 Suppose \( A \) has simple spectrum and the following inequality holds:
 \[
     \left\| \mathbb{B} \right\|_{\mathrm{op}}
@@ -1123,11 +1152,11 @@ Now we consider Kronecker product
         \vdots   & \ddots & \vdots \\
         a_{N1} B & \cdots & a_{NN} B
     \end{pmatrix}
-    \in \mathbb{K}^{{MN}{\times}{MN}}
+    \in \mathbb{F}^{{MN}{\times}{MN}}
 \]
 of squared matrices
-\( A={(a_{ij})}\in\mathbb{K}^{N{\times}N},
- \ B={(b_{ij})}\in\mathbb{K}^{M{\times}M}. \)
+\( A={(a_{ij})}\in\mathbb{F}^{N{\times}N},
+ \ B={(b_{ij})}\in\mathbb{F}^{M{\times}M}. \)
 We will analyze its spectral properties
     under small-norm perturbations:
 \begin{equation}\label{-kronperturb}
@@ -1162,7 +1191,7 @@ Note also that the ``tiled'' matrix from the last example
     A & \cdots & A\\
     \vdots & \ddots & \vdots \\
     A & \cdots & A\end{pmatrix} =
-        J_N\otimes A.
+        \mathcal{J}_N\otimes A.
     \]
 
 \begin{lem}
@@ -1181,16 +1210,16 @@ Then \( A\otimes B \) also has simple structure;
 Now suppose that among these pairwise products \( \mu_i \lambda_j \)
     there are only \( s \) distinct values \( \nu_1, \ldots, \nu_s \).
 To each eigenvalue \( \nu_k \) (\( k{=}\overline{1,s} \)) there corresponds
-    an eigenspace \[ E_k = \operatorname{span}(f_i\otimes h_j;\ \mu_i\lambda_j = v_k,\ i{=}\overline{1,N},\ j{=}\overline{1,M}) \subset \mathbb{K}^{MN}. \]
-These eigenspaces form a direct-sum decomposition of \( \mathbb{K}^{MN} \):
-    \[ \mathbb{K}^{MN} = E_1 \oplus \cdots \oplus E_s. \]
-Any vector \( x\in\mathbb{K}^{MN} \) can be uniquely represented
+    an eigenspace \[ E_k = \operatorname{span}(f_i\otimes h_j;\ \mu_i\lambda_j = v_k,\ i{=}\overline{1,N},\ j{=}\overline{1,M}) \subset \mathbb{F}^{MN}. \]
+These eigenspaces form a direct-sum decomposition of \( \mathbb{F}^{MN} \):
+    \[ \mathbb{F}^{MN} = E_1 \oplus \cdots \oplus E_s. \]
+Any vector \( x\in\mathbb{F}^{MN} \) can be uniquely represented
     in the form
     \begin{equation}\label{-decomposition-x}
         x = x_1 + \cdots + x_s,\ x_k\in E_k,\ k=\overline{1,s}.
     \end{equation}
-This direct-sum decomposition of \( \mathbb{K}^{MN} \)
-    corresponds to a decomposition of the identity matrix \( E\in \mathbb{K}^{MN{\times}MN} \)
+This direct-sum decomposition of \( \mathbb{F}^{MN} \)
+    corresponds to a decomposition of the identity matrix \( E\in \mathbb{F}^{MN{\times}MN} \)
     (which defines an identity operator)
     into a sum of matrices of the spectral projections:
     \[
@@ -1198,11 +1227,11 @@ This direct-sum decomposition of \( \mathbb{K}^{MN} \)
     \]
 The spectral projection \( \mathcal{P}_k \) (\(k{=}\overline{1,s}\)) is given by the formula
     \[
-        \mathcal{P}_k x = x_k \in E_k\subset \mathbb{K}^{MN}
+        \mathcal{P}_k x = x_k \in E_k\subset \mathbb{F}^{MN}
     \]
     with respect to the decomposition~\eqref{-decomposition-x} of \( x \).
 
-For any matrix \( X\in \mathbb{K}^{MN{\times}MN} \)
+For any matrix \( X\in \mathbb{F}^{MN{\times}MN} \)
     the following trivial equality holds:
     \[
         X = \sum_{i,j=1}^s P_i X P_j.
@@ -1226,7 +1255,7 @@ The natural way to define \( J \) is as follows:
 The system of equations
     \[\left\{\begin{aligned}
         & \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - JX, \\
-        & J\Gamma X = 0,\ X\in \mathbb{K}^{MN{\times}MN}
+        & J\Gamma X = 0,\ X\in \mathbb{F}^{MN{\times}MN}
     \end{aligned}\right.\]
     has the unique solution:
     \[
@@ -1240,12 +1269,12 @@ The system of equations
 % \end{center}
 
 
-\begin{thm}
+\begin{thm}\label{nk:thm:kron}
     Consider the perturbed matrix~\eqref{-kronperturb}
         \[
             A{\otimes}B - F.
         \]
-    Let \( A\in\mathbb{K}^{N{\times}N} \) and \( B\in\mathbb{K}^{M{\times}M} \)
+    Let \( A\in\mathbb{F}^{N{\times}N} \) and \( B\in\mathbb{F}^{M{\times}M} \)
         be diagonalizable matrices.
     Let \( f_1, \ldots, f_N \) be the eigenvectors of \( A \)
         corresponding to the eigenvalues \( \mu_1, \ldots, \mu_N \)
@@ -1264,7 +1293,7 @@ The system of equations
 
     Then \( A{\otimes}B - F \) is similar to
     \[ \sum_{k=1}^s \nu_k P_k - JX^o = \sum_{k=1}^s (\nu_k P_k - P_k X^o P_k) \]
-    for some \( X^o \in \mathbb{K}^{MN{\times}MN} \),
+    for some \( X^o \in \mathbb{F}^{MN{\times}MN} \),
     \( \|X^o - F\|\leq 3\|F\| \).
 
     All the eigenvalues of \( A{\otimes}B - F \) are contained in the circles
@@ -1301,7 +1330,7 @@ The system of equations
 
 For example, in the case of a ``tiled'' matrix
 \[
-    J_N{\otimes}B =
+    \mathcal{J}_N{\otimes}B =
     \begin{pmatrix}
         B & \cdots & B \\
         \vdots & \ddots & \vdots \\
@@ -1313,9 +1342,9 @@ For example, in the case of a ``tiled'' matrix
     \( \nu_2=0 \).
 Let \( \lambda_1,\ldots,\lambda_M \)
     be the eigenvalues of \( B \).
-Spectrum of \( J_N{\otimes}B \) is
+Spectrum of \( \mathcal{J}_N{\otimes}B \) is
     \[
-        \sigma(J_N{\otimes}B) = \left\{ \mu_i\lambda_j;\ i{=}\overline{1,2},\ j{=}\overline{1,M}\right\} = \{0\}\cup N\sigma(B).
+        \sigma(\mathcal{J}_N{\otimes}B) = \left\{ \mu_i\lambda_j;\ i{=}\overline{1,2},\ j{=}\overline{1,M}\right\} = \{0\}\cup N\sigma(B).
     \]
 All of these eigenvalues except for \( 0 \)
     are of multiplicity \( 1 \)
@@ -1328,11 +1357,10 @@ These results might be refined
     which allows to consider each eigenvalue individually
     and obtain more precise estimates for the corresponding
     eigenvalue of the perturbed matrix.
-% The higher the gap between a picked eigenvalue
-%     and the rest of the spectrum
-%     the higher the precision of the estimate
-%     for the corresponding eigenvalue of the perturbed matrix.
-    
+The higher the gap between a picked eigenvalue
+    and the rest of the spectrum
+    the higher the precision of the estimate
+    for the corresponding eigenvalue of the perturbed matrix.
 
 \section{Conclusion}
 
@@ -1348,14 +1376,55 @@ The problem of perturbation analysis for the Kronecker products
     despite being old still has a whole open field for future research.
 An example of more general yet quite similar problem
     is that of an analysis of tensor products
-    of finite-dimensional operators (defined by matrices)
+    of finite-rank operators
     and abstract operators in Banach spaces.
 
+\newpage
 \appendix
 \section{Definitions}
 
+\textbf{Function} --- a triple \( (X, Y, f) \) of the domain set \( X \),
+the target set \( Y \), and the rule \( f \) mapping each \( x\in X\)
+into corresponding \( y\in Y \).
 
+\textbf{Vector space over a field \(\mathbb{F}\) } --- a tuple \( (X, 0, +, \cdot) \)
+of a set \( X \) which is an Abelian group with respect to addition \( +:X\to X\)
+with identity \( 0\in X \) and a scaling (external multiplication by a scalar)
+operation \(\cdot: \mathbb{F}\times X \to X \) with usual properties.
+Sometimes we shall denote such space merely by \( X \).
+Examples: coordinate spaces \( \mathbb{F}^n,\ n\in\mathbb{N} \) with elementwise
+scaling and addition, polynomials of a given order \( k \) (i.e. of a degree
+strictly less than \( k \)), etc.
+
+\textbf{Linear operator} --- a mapping between vector spaces (over same field),
+which ``respects'' and ``preserves'' their linear structure, i.e. such a mapping
+\( A:X\to Y \) that \( A(\alpha x_1 + x_2) = \alpha Ax_1 + Ax_2,\
+\alpha\in\mathbb{F}, x_i\in X \).
+
+\textbf{Linear algebra} --- a vector space \( X \) with associative
+multiplication operation \( (A, B)\mapsto AB: X^2\to X \).
+
+\textbf{Inner product space}
+
+(Directed multi-)\textbf{Graph} --- a triple \(G = (V, E, \phi)\)
+of the set \( V \) of vertices, the set \( E \) of edges,
+and the mapping \( \phi: E\to V^2\).
+
+Graph is \textbf{undirected} if for each \( e\in E, \phi(e)=(u, v)\)
+there is \( f\in E, \phi(f)=(v, u) \).
+
+\textbf{Edge} --- an element \( e\in E \); if \( \phi(e) = (u, v)\in V^2 \)
+we will say that ``\( e \) is an edge originating at \( u \) and terminating at \(
+v \)'', or simply ``an edge from \( u \) to \( v \)''.
+
+A vertex \( v \) is said to be \textbf{incident with} an edge \( e \)
+if \( e \) originates (and) or terminates at \( v \).
+
+Two vertices \( u, v\) are said to be \textbf{adjacent}
+if they share same edge, i.e. if there is an edge \( e\in E \)
+such that \( \phi(e)\in\{(u, v),\ (v, u) \}\).
+\newpage
 \section{References}
 \nocite{*}
-\printbibliography
+\printbibliography[heading=none]
 \end{document}

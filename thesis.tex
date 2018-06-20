@@ -84,128 +84,139 @@
 % \begin{abstract}
 % \end{abstract}
 
-\section*{Notation}
+\section*{Нотация}
 
-We employ the following notation throughout the work:
+В работе используются следующие обозначения и соглашения
 
-\( f: X\to Y: x\mapsto f(x) \) --- a function \( f \)
-with the domain set \( X \) and the target set \( Y \)
-mapping each \( x\in X \) into corresponding \( y=f(x) \in Y\);
+\( f: X\to Y: x\mapsto f(x) \) --- функция \( f \)
+из domain множества \( X \) в target множество \( Y \),
+сопоставляющая каждому \( x\in X \) некоторый \( y=f(x) \in Y\);
 
-\( \mathbb{N} = \{ 1, 2, \ldots \}\) --- the set of all natural numbers without zero;
+\( \mathbb{N} = \{ 1, 2, \ldots \}\) --- множество натуральных чисел без нуля;
 
-\( \mathbb{Z} \) --- the set of integers;
+\( \mathbb{Z} \) --- кольцо целых чисел;
 
-\( \mathbb{R} \) --- the field of real numbers.
+\( \mathbb{R} \) --- поле вещественных чисел.
 
-We use the notation \( a..b \) for ranges so that an open interval \( (a..b) \)
-can be distinguished from the tuple \( (a, b) \):
+Промежутки вещественной прямой обозначаются пределами, разделёнными двумя
+точками так, чтобы отличать интервалы  ---
+\( (a..b] \subset \mathbb{R} \) --- от упорядоченных пар: \( (a, b)\in\mathbb{R}^2 \).
 
-\( [a..b] = \{ x\in\mathbb{R}:\ a\leq x\leq b\} \) --- the closed segment from
-\( a \) to \( b \);
+\( [a..b] = \{ x\in\mathbb{R}:\ a\leq x\leq b\} \) --- отрезок
+от \( a \) до \( b \), \( a\leq b \);
 
-\( [a..b) = \{ x\in\mathbb{R}:\ a\leq x < b\} \) --- the half-open interval from
-\( a \) to \( b \);
+\( [a..b) = \{ x\in\mathbb{R}:\ a\leq x < b\} \) --- полуинтервал;
 
-\( (a..b) = \{ x\in\mathbb{R}:\ a < x < b\} \) --- the open interval between
-\( a \) and \( b \);
+\( (a..b) = \{ x\in\mathbb{R}:\ a < x < b\} \) --- открытый интервал;
 
-\( \mathbb{R}_+ = [0,+\infty) \) --- the set of nonnegative reals;
+\( \mathbb{R}_+ = [0,+\infty) \) --- множество неотрицательных вещественных чисел;
 
-\( \mathbb{J} \) --- either \( \mathbb{R} \) or \( \mathbb{R}_+ \);
+\( \mathbb{C} \) --- поле комплексных чисел;
 
-\( \mathbb{C} \) --- the field of complex numbers;
+\( \mathbb{K} \) --- одно из полей: \( \mathbb{R} \) или \( \mathbb{C} \);
 
-\( \mathbb{F} \) --- either \( \mathbb{R} \) or \( \mathbb{C} \);
+\( M{\times}N = \{ (m, n):\ m{\in}M,\ n{\in}N \} \), где \( M \) и \( N \)
+--- множества, обозначает прямое произведение этих множеств;
 
-\( M{\times}N = \{ (m, n):\ m{\in}M,\ n{\in}N \} \) with \( M \) and \( N \) sets
-denotes their Cartesian product;
+\( I \) означает тождественный оператор, а \( E \) единичную матрицу;
 
-\( I \) denotes the identity operator and \( E \) the identity matrix;
+\( \sigma(A) \) --- спектр матрицы или оператора \( A \);
 
-\( \sigma(A) \) --- the spectrum of the operator or matrix \( A \);
+\( \rho(A) \) --- резольвентное множество матрицы (оператора) \( A \);
 
-\( \rho(A) \) --- the resolvent set;
+\( \mathtt{Hom}(\mathscr{X}, \mathscr{Y})\) --- Банахово пространство ограниченных
+линейных операторов, определённых на \( \mathscr{X} \) с значениями в \( \mathscr{Y} \).
 
-\( \mathtt{Hom}(\mathscr{X}, \mathscr{Y})\) --- the Banach space of bounded
-linear operators defined on \( \mathscr{X} \) with the values in \( \mathscr{Y} \).
-
-\( \mathtt{End}\mathscr{X} \) --- Banach algebra of bounded linear operators on
+\( \mathtt{End}\mathscr{X} \) --- Банахова алгебра операторов на
 \( \mathscr{X} \);
 
 \newpage
 
-\section*{Introduction}
-This work is designated to the study of of certain matrices' spectra,
-especially those which appear in relation to
-perturbations of graphs~\cite{cvetkovic1997eigenspaces}.
-The main tool in the study is the method of similar
-operators, developed~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}
-by A~G~Baskakov and his team. Specifically we take the common approach of
-representing the matrix as a difference of a well-behaved part and a small-norm
-perturbation. Thus the problem considered can be formulated as localizing
-eigenvalues and providing estimates for eigenvectors of some special matrices.
+\section*{Интродукция}
+Работа посвящена исследование спектральных свойств определённого класса, или,
+вернее, классов матриц,
+особенно специальных матриц, возникающих в отношении теории возмущения
+графов~\cite{cvetkovic1997eigenspaces}.
+Основным инструментом исследования является метод подобных операторов,
+развиваемый~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}
+А.~Г.~Баскаковым и его командой. Именно, используется представление матрицы
+в виде разности хорошо изученной части и пренебрежимо-малого возмущения.
+Так, целью работы является локализация собственных значений и собственных векторов
+матриц специального вида.
 
-We consider for instance adjacency matrices of the
-``almost-complete-digraphs''~\cite{Koz17,sergekozlukov@vspu},
-a ``tiled matrix''~\cite{Koz18,sergekozlukov@currentproblems}, and
-Kronecker~\cite{Koz18,sergekozlukov@currentproblems,bellman-matrices-kron,XIANG2005210}
-products of squared matrices
-which correspond to adjacency matrices of NEPS~\cite{cvetkovic1997eigenspaces} of graphs.
 
-\section{Elements of graph spectra theory}
-By a directed graph we mean a triple \((V, E, \phi)\) consisting
-of the set \( V \) of vertices, the set of edges \( E \),
-and the mapping \( \phi: E\to V^2\). The set of vertices is assumed
-to be finite: \( V = \{ v_1, v_2, \ldots, v_n \}\).
-An edge \( e \) is said to be \emph{originating} at \( v_i\in V \)
-and \emph{terminating} at \( v_j\in V \)
-if \( \phi(e)=(v_i, v_j)\).
-Such a graph is uniquely defined by its \emph{adjacency matrix}
+В частности, мы рассматриваем матрицу смежностей
+``почти-полного орграфа''~\cite{Koz17,sergekozlukov@vspu},
+все элементы которых за небольшим числом --- единицы,
+рассматриваем возмущения аналогичной матрицы, составленной из одинаковых
+квадратных блоков --- здесь мы её называем``tiled
+matrix''~\cite{Koz18,sergekozlukov@currentproblems},
+и, наконец, возмущения кронекеровых произведений квадратных матриц
+~\cite{Koz18,sergekozlukov@currentproblems,bellman-matrices-kron,XIANG2005210}.
+Заметим, что последние возникают в связи с некоторыми операциями на графах~\cite{cvetkovic1997eigenspaces}.
+
+\section{Элементы теории графов}
+Под графом мы понимаем тройку \((V, E, \phi)\), состояющую
+из множества \( V \) вершин, множества \( E \) рёбер,
+и отображения \( \phi: E\to V^2\). Где не означено иное,
+множество \( V \) будем считать конечным и пронумерованным: \( V = \{ v_1, v_2,
+\ldots, v_n \}\). 
+Будем говорить, что ребро \( e \) \emph{исходит из} (\emph{is originating at})
+вершины \( v_i\in V \)
+и входит (\emph{is terminating at}) в вершину \( v_j\in V \),
+если \( \phi(e)=(v_i, v_j)\). При этом вершины \( v_i, v_j \) называются
+\emph{смежными} по отношению друг к другу, и \emph{инцидентными} к ребру \( e \).
+На практике мы будем считать кратные рёбра неразличимыми,
+так что граф однозначно задаётся его \emph{матрицей смежностей}
 \[ A = ( a_{ij} ) \in \mathtt{Mat}_n, \]
 \[ a_{ij} = \mathtt{card}\{ e: \phi(e)=(v_i, v_j)\}, \]
-where \( \mathtt{Mat}_n \) is the algebra of all real valued matrices of the size
-\( n{\times}n \) with the usual multiplication rule.
-A value \( \lambda \in \mathbb{C} \) is said to be an eigenvalue of \(
-A\in\mathtt{Mat}_n \) if the matrix \( A - \lambda E \) with \( E \) the
-identity matrix is uninvertible. The set of all such values is called the
-spectrum of the matrix \( A \) and is denoted by \( \sigma(A) \).
-With \( \lambda \) fixed the set of all vectors \( h\in\mathbb{C}^n \)
-for which \( A h = \lambda h \) is called the eigenspace of \( A \)
-corresponding to \( \lambda \).
-Spectra and eigenspaces of adjacency matrices posses important information about
-their corresponding graphs. Yet exact computation of eigenvalues is often
-infeasible. This is when good estimates are needed.
+где \( \mathtt{Mat}_n(\mathbb{R}) \) --- Банахова алгебра всех
+вещественно-значных матриц размера
+\( n{\times}n \) с естественной операцией умножения.
+Значение \( \lambda \in \mathbb{C} \) называют собственным значением
+матрицы \(
+A\in\mathtt{Mat}_n \) если матрица \( A - \lambda E \) с \( E \) --- единичной
+матрицей, необратима. Множество всех таких значений называется
+\emph{спектром} матрицы \( A \) и обозначается \( \sigma(A) \).
+При фиксированном \( \lambda \),  множество всех векторов \( h\in\mathbb{C}^n \)
+для которых \( A h = \lambda h \) называется собственым подпространством матрицы
+\( A \), соответствующим собственному значению \( \lambda \).
+Спектры и собственные подпространства матриц смежностей несут в себе важную
+информацию о соответствующих графах. Однако, точное вычисление собственных
+значений и векторов на практике чрезвычайно ресурсоёмкая задача, страдающая
+своего рода \emph{curse of dimensionality}. Поэтому требуются дешёвые и
+достаточно точные оценки.
 
-Different spectra of a graph are defined in terms of different matrices
-    corresponding to the graph.
-The \emph{simple spectrum} of a graph
-    is defined as the spectrum of its adjacency matrix.
-It is customary to consider combinations
-    of the matrices \( A \),
-    \( D \) (the out-degree matrix),
-    \( E \) (the identity matrix)
-    and \( \mathcal{J}_N \) (the all-ones matrix).
-These matrices arise naturally
-    in some stochastic models~\cite[p.~184]{cvetkovic2010introduction}.
-Spectral  properties of these matrices
-    often play a vital role in such models.
-For instance, the Markovian random walk on a~graph
-    yields the notion of eigenvector centrality
-    in a~network~\cite{ilprints422,bonacich1972factoring}.
-The score of a vertex \( i \)
-    is defined as the \( i \)'th coordinate
-    of a dominating (left) eigenvector
-    of the transition matrix of such a process.
-This eigenvector
-    defines the only stationary distribution
-    of this random walk.
-The PageRank~\cite{ilprints422} algorithm
-    originally used by Google
-    to compute the eigenvector centrality
-    relies on the Power-Method.
-Its speed of convergence depends on
-    the ratio of the two largest absolute eigenvalues.
+Различные спектры графов определяются с помощью различных матриц,
+соответствующих этим графам.
+Так называемый \emph{simple spectrum} --- простой спектр --- графа
+определяется как спектр матрицы смежностей.
+В прикладных моделях часто требуется рассматривать комбинации
+    матриц \( A \),
+    \( D \) (``out-degree'' матрица, диагональные элементы которой
+    содержат исходящие степени вершин),
+    \( E \) (единичная матрица)
+    и матрицы \( \mathcal{J}_N \) (матрица единиц).
+Такие комбинации естественным образом возникают во многих стохастических
+моделях~\cite[p.~184]{cvetkovic2010introduction}.
+Спектральные свойства таких матриц
+часто играют существенную роль в этих моделях.
+Например, Марковское случайное блуждание на графе
+    приводит к понятию т.н. ``eigenvector centrality''
+    в сети~\cite{ilprints422,bonacich1972factoring}.
+Eigenvector-ранг \( i \)-й вершины определяется как
+\( i \)-я координата
+доминирующего (т.е. соответствующего наибольшему по модулю собственному
+значению) (левого) собственного вектора 
+матрицы переходов рассматриваемого процесса.
+Этот собственный вектор
+    задаёт (единственное) стационарное распределение этого процесса.
+Алгоритм PageRank~\cite{ilprints422}
+    изначально лежавший в основе поискового движка Google
+    использует метод power-итерации для вычисления главного собственного
+    вектора.
+Скорость сходимости метода зависит от
+    отношения двух наибольших сосбтвенных значений.
 Stability of a stationary distribution
     is determined~\cite{meyer1994sensitivity}
     by the condition number
@@ -259,22 +270,22 @@ We are only concerned with finite-dimensional problems
     so we will only state the required notation and theorems
     in a simplified form.
 
-Let \( \mathbb{F}\in \{ \mathbb{R}, \mathbb{C} \} \)
+Let \( \mathbb{K}\in \{ \mathbb{R}, \mathbb{C} \} \)
     be a field of either real or complex numbers.
-We consider the vector space \( \mathbb{F}^n,\ n\in \mathbb{N} \)
+We consider the vector space \( \mathbb{K}^n,\ n\in \mathbb{N} \)
     supplied with Euclidean structure:
     \[
         (x, y){=}\sum_{k=1}^n x_k\overline{y_k},
         \ x{=}(x_1,\ldots, x_n),
         \ y=(y_1,\ldots, y_n)
-        \in \mathbb{F}^n
+        \in \mathbb{K}^n
         \]
     and the \( \mathrm{L}_2 \)-norm:
     \(
         \|x\|_2^2{=}(x,x).
         \)
 We also consider the canonical basis \( e_1, \ldots, e_n \)
-    in \( \mathbb{F}^n \) given by
+    in \( \mathbb{K}^n \) given by
     \( {(e_i)}_j = \delta_{ij},\ i,j=\overline{1,n} \)
     (\(\delta_{ij} \) is the Kronecker symbol).
 When \( V_1, V_2 \) are normed vector spaces
@@ -292,23 +303,23 @@ It is a Banach algebra with the operator norm:
             \substack{\|x\|=1,\\ x\in V}
         } \|A x\|,\ A\in L(V).
         \]
-Together with \( L(\mathbb{F}^n, \mathbb{F}^m) \)
-    we consider its isomorphic space \( \mathbb{F}^{m{\times}n} \)
+Together with \( L(\mathbb{K}^n, \mathbb{K}^m) \)
+    we consider its isomorphic space \( \mathbb{K}^{m{\times}n} \)
     of matrices of the size \( m{\times}n \)
-    with entries from the field \( \mathbb{F} \).
-The space \( \mathbb{F}^{n{\times}n}\sim L(\mathbb{F}^n) \)
+    with entries from the field \( \mathbb{K} \).
+The space \( \mathbb{K}^{n{\times}n}\sim L(\mathbb{K}^n) \)
     forms a Banach algebra
     when supplied with a submultiplicative norm
     \( \|\cdot\| \),
-    e.g.: \( \|A\|_{\mathrm{op}} = \sup_{\|x\|_2=1,\ x\in \mathbb{F}^n} \|A x\|_2,\ \)
+    e.g.: \( \|A\|_{\mathrm{op}} = \sup_{\|x\|_2=1,\ x\in \mathbb{K}^n} \|A x\|_2,\ \)
     \( \|A\|_{\mathrm{F}} = \sqrt{\sum_{i,j} |a_{ij}|^2},\ \)
     for 
-    \( A{=}(a_{ij})\in\mathbb{F}^{n\times n} \).
+    \( A{=}(a_{ij})\in\mathbb{K}^{n\times n} \).
 Finally we will also be dealing with the isomorphic spaces
-    \( L(L(\mathbb{F}^n)) \) and \( L(\mathbb{F}^{n{\times}n}) \)
+    \( L(L(\mathbb{K}^n)) \) and \( L(\mathbb{K}^{n{\times}n}) \)
     with the operator norm.
 We will follow Krein
-    and refer to elements of \( L(\mathbb{F}^{n{\times}n}) \)
+    and refer to elements of \( L(\mathbb{K}^{n{\times}n}) \)
     as ``transformers''.
 
 The spectrum of a matrix \( A \)
@@ -327,12 +338,12 @@ The most important notion
     in the abstract method of similar operators
     is that of an \emph{admissible triple}.
 For our specific purposes it suffices to say
-    that \( (\mathbb{F}^{n{\times}n}, J, \Gamma) \)
+    that \( (\mathbb{K}^{n{\times}n}, J, \Gamma) \)
     forms an \emph{admissible triple}
-    for a matrix \( A\in\mathbb{F}^{n{\times}n} \)
+    for a matrix \( A\in\mathbb{K}^{n{\times}n} \)
     if the following conditions are met:
 \begin{itemize}
-    \item \( J, \Gamma \in L(\mathbb{F}^{n{\times}n}) \)
+    \item \( J, \Gamma \in L(\mathbb{K}^{n{\times}n}) \)
         are transformers;
     \item \( J \) is a projection (\( J^2 = J \));
     \item  \( \Gamma \) satisfies the equations:
@@ -340,7 +351,7 @@ For our specific purposes it suffices to say
             A \Gamma X - (\Gamma X) A = X - JX,
         \]
         \[
-            J\Gamma X = 0,\ X\in\mathbb{F}^{n{\times}n}.
+            J\Gamma X = 0,\ X\in\mathbb{K}^{n{\times}n}.
         \]
 \end{itemize}
 
@@ -349,15 +360,15 @@ The main theorem of the method
 
 \begin{thm}
     Consider a matrix \( A - B \)
-        with \( A, B \in \mathbb{F}^{n{\times}n} \).
-    Suppose \( (\mathbb{F}^{n{\times}n}, J, \Gamma) \)
+        with \( A, B \in \mathbb{K}^{n{\times}n} \).
+    Suppose \( (\mathbb{K}^{n{\times}n}, J, \Gamma) \)
         is an admissible triple for the matrix \( A \)
         and suppose the following inequality holds:
         \[
             \|B\|\|\Gamma\|_{\mathrm{op}} \leq \frac14.
         \]
 
-    Then there exists such a matrix \( X^o\in\mathbb{F}^{n{\times}n} \)
+    Then there exists such a matrix \( X^o\in\mathbb{K}^{n{\times}n} \)
         that \( A - B \) is similar to \( A - J X^o \);
         the similarity matrix is \( E + \Gamma X^o \);
         the following estimates are valid:
@@ -371,9 +382,9 @@ The main theorem of the method
         is the spectral radius of \( X^o \) (the largest absolute eigenvalue).
     Such \( X^o \) can be found as the limit of a convergent sequence
         \( \left( \Phi^k(0);\ k\in\mathbb{N} \right) \)
-        in a Banach algebra \( \mathbb{F}^{n{\times}n} \).
+        in a Banach algebra \( \mathbb{K}^{n{\times}n} \).
         Here \( \Phi \) is a nonlinear contraction mapping
-        defined on the ball \( \{X\in\mathbb{F}^{m{\times}n};\ \|X-B\|\leq 3\|B\| \} \)
+        defined on the ball \( \{X\in\mathbb{K}^{m{\times}n};\ \|X-B\|\leq 3\|B\| \} \)
         and given by
     \[
         \Phi(X) = B\Gamma X - (\Gamma X)J(B + B\Gamma X) + B
@@ -667,7 +678,7 @@ Since \( \mathcal{A} \) is block-diagonal
         \left(\begin{array}{c|c}
             x_{11} & X_{12} \\ \hline
             X_{21} & X_{22}
-        \end{array}\right)\in\mathbb{F}^{N{\times}N}.
+        \end{array}\right)\in\mathbb{K}^{N{\times}N}.
     \]
 Then \( A - JX \) is block-diagonal for any \( X \)
     and its spectrum is the union
@@ -692,7 +703,7 @@ Then the equations
      \]
 and \( J\Gamma X = 0 \) yield the result
     \[
-        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix},\ X\in\mathbb{F}^{N{\times}N}.
+        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix},\ X\in\mathbb{K}^{N{\times}N}.
     \]
 
 Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
@@ -908,7 +919,7 @@ This directly implies the following
 % JPCS
 \section{A-tiled matrix}
 
-Now let \( A\in\mathbb{F}^{M{\times}M} \)
+Now let \( A\in\mathbb{K}^{M{\times}M} \)
     and consider the following (``A-tiled'') block-matrix
     \[
         \mathbb{A} =
@@ -917,11 +928,11 @@ Now let \( A\in\mathbb{F}^{M{\times}M} \)
             \vdots & \ddots & \vdots \\
             A & \cdots & A
         \end{pmatrix}
-        \in\mathbb{F}^{{MN}{\times}{MN}}
+        \in\mathbb{K}^{{MN}{\times}{MN}}
     \]
     and the perturbed matrix
     \[
-        \mathbb{A} - \mathbb{B},\ \mathbb{B}\in\mathbb{F}^{{MN}{\times}{MN}}.
+        \mathbb{A} - \mathbb{B},\ \mathbb{B}\in\mathbb{K}^{{MN}{\times}{MN}}.
     \]
 
 \begin{lem}
@@ -937,7 +948,7 @@ Now let \( A\in\mathbb{F}^{M{\times}M} \)
     Non-zero eigenvalues of \( \mathbb{A} \)
         have corresponding block eigenvectors:
     \[
-        f_j = \frac{1}{\sqrt{N}} (h_j, \ldots, h_j)\in \mathbb{F}^{MN},\ j=\overline{1,M}.
+        f_j = \frac{1}{\sqrt{N}} (h_j, \ldots, h_j)\in \mathbb{K}^{MN},\ j=\overline{1,M}.
     \]
     The null-space of \( \mathbb{A} \)
         has an orthonormal basis:
@@ -947,7 +958,7 @@ Now let \( A\in\mathbb{F}^{M{\times}M} \)
         \underbrace{e_j, \ldots, e_j}_{k\ \text{copies}},
         -ke_j,
         0, \ldots, 0
-        ) \in\mathbb{F}^{{MN}{\times}{MN}}
+        ) \in\mathbb{K}^{{MN}{\times}{MN}}
     \]
 
     The matrix \( \mathbb{A} \) is similar to a block-diagonal matrix:
@@ -956,7 +967,7 @@ Now let \( A\in\mathbb{F}^{M{\times}M} \)
         \left(\begin{array}{c|c}
             \operatorname{diag}(N\lambda_1,\ldots,N\lambda_M) & \mathbf{0} \\ \hline
             \mathbf{0} & \mathbf{0}
-        \end{array}\right)\in\mathbb{F}^{{MN}{\times}{MN}};
+        \end{array}\right)\in\mathbb{K}^{{MN}{\times}{MN}};
     \]
     the similarity transform matrix is
     \[
@@ -993,7 +1004,7 @@ Throughout this subsection
 where
 \( X_{ij}      {=} x_{ij},
  \ X_{M{+}1,j} {=} x_{M{+}1,j},
- \ X_{i,M{+}1} {=} x_{i,M{+}1} \in \mathbb{F} \)
+ \ X_{i,M{+}1} {=} x_{i,M{+}1} \in \mathbb{K} \)
 for \( 1 \leq {i,j} \leq M \),
 and
 \( X_{M{+}1,M{+}1} \) is a block of the size \( {M(N{-}1){\times}M(N-1)} \).
@@ -1027,7 +1038,7 @@ Suppose \( A \) has a simple spectrum,
     i.e.\ its eigenvalues are pairwise distinct:
     \( \lambda_i\neq\lambda_j \) for all \( 1\leq i{\neq}j \leq M \).
 
-    Then a tuple \( (\mathbb{F}^{{MN}{\times}{MN}}, J, \Gamma) \)
+    Then a tuple \( (\mathbb{K}^{{MN}{\times}{MN}}, J, \Gamma) \)
         forms an admissible triple if we define
     \[
         \Gamma X = 
@@ -1152,11 +1163,11 @@ Now we consider Kronecker product
         \vdots   & \ddots & \vdots \\
         a_{N1} B & \cdots & a_{NN} B
     \end{pmatrix}
-    \in \mathbb{F}^{{MN}{\times}{MN}}
+    \in \mathbb{K}^{{MN}{\times}{MN}}
 \]
 of squared matrices
-\( A={(a_{ij})}\in\mathbb{F}^{N{\times}N},
- \ B={(b_{ij})}\in\mathbb{F}^{M{\times}M}. \)
+\( A={(a_{ij})}\in\mathbb{K}^{N{\times}N},
+ \ B={(b_{ij})}\in\mathbb{K}^{M{\times}M}. \)
 We will analyze its spectral properties
     under small-norm perturbations:
 \begin{equation}\label{-kronperturb}
@@ -1210,16 +1221,16 @@ Then \( A\otimes B \) also has simple structure;
 Now suppose that among these pairwise products \( \mu_i \lambda_j \)
     there are only \( s \) distinct values \( \nu_1, \ldots, \nu_s \).
 To each eigenvalue \( \nu_k \) (\( k{=}\overline{1,s} \)) there corresponds
-    an eigenspace \[ E_k = \operatorname{span}(f_i\otimes h_j;\ \mu_i\lambda_j = v_k,\ i{=}\overline{1,N},\ j{=}\overline{1,M}) \subset \mathbb{F}^{MN}. \]
-These eigenspaces form a direct-sum decomposition of \( \mathbb{F}^{MN} \):
-    \[ \mathbb{F}^{MN} = E_1 \oplus \cdots \oplus E_s. \]
-Any vector \( x\in\mathbb{F}^{MN} \) can be uniquely represented
+    an eigenspace \[ E_k = \operatorname{span}(f_i\otimes h_j;\ \mu_i\lambda_j = v_k,\ i{=}\overline{1,N},\ j{=}\overline{1,M}) \subset \mathbb{K}^{MN}. \]
+These eigenspaces form a direct-sum decomposition of \( \mathbb{K}^{MN} \):
+    \[ \mathbb{K}^{MN} = E_1 \oplus \cdots \oplus E_s. \]
+Any vector \( x\in\mathbb{K}^{MN} \) can be uniquely represented
     in the form
     \begin{equation}\label{-decomposition-x}
         x = x_1 + \cdots + x_s,\ x_k\in E_k,\ k=\overline{1,s}.
     \end{equation}
-This direct-sum decomposition of \( \mathbb{F}^{MN} \)
-    corresponds to a decomposition of the identity matrix \( E\in \mathbb{F}^{MN{\times}MN} \)
+This direct-sum decomposition of \( \mathbb{K}^{MN} \)
+    corresponds to a decomposition of the identity matrix \( E\in \mathbb{K}^{MN{\times}MN} \)
     (which defines an identity operator)
     into a sum of matrices of the spectral projections:
     \[
@@ -1227,11 +1238,11 @@ This direct-sum decomposition of \( \mathbb{F}^{MN} \)
     \]
 The spectral projection \( \mathcal{P}_k \) (\(k{=}\overline{1,s}\)) is given by the formula
     \[
-        \mathcal{P}_k x = x_k \in E_k\subset \mathbb{F}^{MN}
+        \mathcal{P}_k x = x_k \in E_k\subset \mathbb{K}^{MN}
     \]
     with respect to the decomposition~\eqref{-decomposition-x} of \( x \).
 
-For any matrix \( X\in \mathbb{F}^{MN{\times}MN} \)
+For any matrix \( X\in \mathbb{K}^{MN{\times}MN} \)
     the following trivial equality holds:
     \[
         X = \sum_{i,j=1}^s P_i X P_j.
@@ -1255,7 +1266,7 @@ The natural way to define \( J \) is as follows:
 The system of equations
     \[\left\{\begin{aligned}
         & \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - JX, \\
-        & J\Gamma X = 0,\ X\in \mathbb{F}^{MN{\times}MN}
+        & J\Gamma X = 0,\ X\in \mathbb{K}^{MN{\times}MN}
     \end{aligned}\right.\]
     has the unique solution:
     \[
@@ -1274,7 +1285,7 @@ The system of equations
         \[
             A{\otimes}B - F.
         \]
-    Let \( A\in\mathbb{F}^{N{\times}N} \) and \( B\in\mathbb{F}^{M{\times}M} \)
+    Let \( A\in\mathbb{K}^{N{\times}N} \) and \( B\in\mathbb{K}^{M{\times}M} \)
         be diagonalizable matrices.
     Let \( f_1, \ldots, f_N \) be the eigenvectors of \( A \)
         corresponding to the eigenvalues \( \mu_1, \ldots, \mu_N \)
@@ -1293,7 +1304,7 @@ The system of equations
 
     Then \( A{\otimes}B - F \) is similar to
     \[ \sum_{k=1}^s \nu_k P_k - JX^o = \sum_{k=1}^s (\nu_k P_k - P_k X^o P_k) \]
-    for some \( X^o \in \mathbb{F}^{MN{\times}MN} \),
+    for some \( X^o \in \mathbb{K}^{MN{\times}MN} \),
     \( \|X^o - F\|\leq 3\|F\| \).
 
     All the eigenvalues of \( A{\otimes}B - F \) are contained in the circles
@@ -1387,19 +1398,19 @@ An example of more general yet quite similar problem
 the target set \( Y \), and the rule \( f \) mapping each \( x\in X\)
 into corresponding \( y\in Y \).
 
-\textbf{Vector space over a field \(\mathbb{F}\) } --- a tuple \( (X, 0, +, \cdot) \)
+\textbf{Vector space over a field \(\mathbb{K}\) } --- a tuple \( (X, 0, +, \cdot) \)
 of a set \( X \) which is an Abelian group with respect to addition \( +:X\to X\)
 with identity \( 0\in X \) and a scaling (external multiplication by a scalar)
-operation \(\cdot: \mathbb{F}\times X \to X \) with usual properties.
+operation \(\cdot: \mathbb{K}\times X \to X \) with usual properties.
 Sometimes we shall denote such space merely by \( X \).
-Examples: coordinate spaces \( \mathbb{F}^n,\ n\in\mathbb{N} \) with elementwise
+Examples: coordinate spaces \( \mathbb{K}^n,\ n\in\mathbb{N} \) with elementwise
 scaling and addition, polynomials of a given order \( k \) (i.e. of a degree
 strictly less than \( k \)), etc.
 
 \textbf{Linear operator} --- a mapping between vector spaces (over same field),
 which ``respects'' and ``preserves'' their linear structure, i.e. such a mapping
 \( A:X\to Y \) that \( A(\alpha x_1 + x_2) = \alpha Ax_1 + Ax_2,\
-\alpha\in\mathbb{F}, x_i\in X \).
+\alpha\in\mathbb{K}, x_i\in X \).
 
 \textbf{Linear algebra} --- a vector space \( X \) with associative
 multiplication operation \( (A, B)\mapsto AB: X^2\to X \).

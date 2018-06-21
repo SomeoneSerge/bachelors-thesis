@@ -850,11 +850,11 @@ N - x_{11}^o & 0 \\
             \vdots & \ddots & \vdots \\
             A & \cdots & A
         \end{pmatrix}
-        \in\mathbb{K}^{{MN}{\times}{MN}}
+        \in\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K})
     \]
     и возмущённую матрицу
     \[
-        \mathbb{A} - \mathbb{B},\ \mathbb{B}\in\mathbb{K}^{{MN}{\times}{MN}}.
+        \mathbb{A} - \mathbb{B},\ \mathbb{B}\in\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K}).
     \]
 
 \begin{lem}
@@ -881,7 +881,7 @@ N - x_{11}^o & 0 \\
         \underbrace{e_j, \ldots, e_j}_{k\ \text{copies}},
         -ke_j,
         0, \ldots, 0
-        ) \in\mathbb{K}^{{MN}{\times}{MN}}
+        ) \in\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K})
     \]
 
     Матрица \( \mathbb{A} \) таким образом подобна блочной матрице:
@@ -890,7 +890,7 @@ N - x_{11}^o & 0 \\
         \left(\begin{array}{c|c}
             \operatorname{diag}(N\lambda_1,\ldots,N\lambda_M) & \mathbf{0} \\ \hline
             \mathbf{0} & \mathbf{0}
-        \end{array}\right)\in\mathbb{K}^{{MN}{\times}{MN}};
+        \end{array}\right)\in\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K});
     \]
     the similarity transform matrix is
     \[
@@ -961,7 +961,7 @@ Suppose \( A \) has a simple spectrum,
     i.e.\ its eigenvalues are pairwise distinct:
     \( \lambda_i\neq\lambda_j \) for all \( 1\leq i{\neq}j \leq M \).
 
-    Then a tuple \( (\mathbb{K}^{{MN}{\times}{MN}}, J, \Gamma) \)
+    Then a tuple \( (\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K}), J, \Gamma) \)
         forms an admissible triple if we define
     \[
         \Gamma X = 
@@ -1086,7 +1086,7 @@ Now we consider Kronecker product
         \vdots   & \ddots & \vdots \\
         a_{N1} B & \cdots & a_{NN} B
     \end{pmatrix}
-    \in \mathbb{K}^{{MN}{\times}{MN}}
+    \in \mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K})
 \]
 of squared matrices
 \( A={(a_{ij})}\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}),
@@ -1153,7 +1153,7 @@ Any vector \( x\in\mathbb{K}^{MN} \) can be uniquely represented
         x = x_1 + \cdots + x_s,\ x_k\in E_k,\ k=\overline{1,s}.
     \end{equation}
 This direct-sum decomposition of \( \mathbb{K}^{MN} \)
-    corresponds to a decomposition of the identity matrix \( E\in \mathbb{K}^{MN{\times}MN} \)
+    corresponds to a decomposition of the identity matrix \( E\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \)
     (which defines an identity operator)
     into a sum of matrices of the spectral projections:
     \[
@@ -1165,7 +1165,7 @@ The spectral projection \( \mathcal{P}_k \) (\(k{=}\overline{1,s}\)) is given by
     \]
     with respect to the decomposition~\eqref{-decomposition-x} of \( x \).
 
-For any matrix \( X\in \mathbb{K}^{MN{\times}MN} \)
+For any matrix \( X\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \)
     the following trivial equality holds:
     \[
         X = \sum_{i,j=1}^s P_i X P_j.
@@ -1189,7 +1189,7 @@ The natural way to define \( J \) is as follows:
 The system of equations
     \[\left\{\begin{aligned}
         & \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - JX, \\
-        & J\Gamma X = 0,\ X\in \mathbb{K}^{MN{\times}MN}
+        & J\Gamma X = 0,\ X\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K})
     \end{aligned}\right.\]
     has the unique solution:
     \[
@@ -1208,7 +1208,7 @@ The system of equations
         \[
             A{\otimes}B - F.
         \]
-    Let \( A\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}) \) and \( B\in\mathbb{K}^{M{\times}M} \)
+    Let \( A\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}) \) and \( B\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
         be diagonalizable matrices.
     Let \( f_1, \ldots, f_N \) be the eigenvectors of \( A \)
         corresponding to the eigenvalues \( \mu_1, \ldots, \mu_N \)
@@ -1227,7 +1227,7 @@ The system of equations
 
     Then \( A{\otimes}B - F \) is similar to
     \[ \sum_{k=1}^s \nu_k P_k - JX^o = \sum_{k=1}^s (\nu_k P_k - P_k X^o P_k) \]
-    for some \( X^o \in \mathbb{K}^{MN{\times}MN} \),
+    for some \( X^o \in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \),
     \( \|X^o - F\|\leq 3\|F\| \).
 
     All the eigenvalues of \( A{\otimes}B - F \) are contained in the circles

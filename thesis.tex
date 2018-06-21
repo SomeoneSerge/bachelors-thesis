@@ -168,14 +168,14 @@ matrix''~\cite{Koz18,sergekozlukov@currentproblems},
 \emph{смежными} по отношению друг к другу, и \emph{инцидентными} к ребру \( e \).
 На практике мы будем считать кратные рёбра неразличимыми,
 так что граф однозначно задаётся его \emph{матрицей смежностей}
-\[ A = ( a_{ij} ) \in \mathtt{Mat}_n, \]
+\[ A = ( a_{ij} ) \in \mathtt{Mat}_n(\mathbb{R}), \]
 \[ a_{ij} = \mathtt{card}\{ e: \phi(e)=(v_i, v_j)\}, \]
 где \( \mathtt{Mat}_n(\mathbb{R}) \) --- Банахова алгебра всех
 вещественно-значных матриц размера
 \( n{\times}n \) с естественной операцией умножения.
 Значение \( \lambda \in \mathbb{C} \) называют собственным значением
 матрицы \(
-A\in\mathtt{Mat}_n \) если матрица \( A - \lambda E \) с \( E \) --- единичной
+A\in\mathtt{Mat}_n(\mathbb{R}) \) если матрица \( A - \lambda E \) с \( E \) --- единичной
 матрицей, необратима. Множество всех таких значений называется
 \emph{спектром} матрицы \( A \) и обозначается \( \sigma(A) \).
 При фиксированном \( \lambda \),  множество всех векторов \( h\in\mathbb{C}^n \)
@@ -304,10 +304,10 @@ It is a Banach algebra with the operator norm:
         } \|A x\|,\ A\in L(V).
         \]
 Together with \( L(\mathbb{K}^n, \mathbb{K}^m) \)
-    we consider its isomorphic space \( \mathbb{K}^{m{\times}n} \)
+    we consider its isomorphic space \( \mathtt{Mat}_{m{\times}n}(\mathbb{K}) \)
     of matrices of the size \( m{\times}n \)
     with entries from the field \( \mathbb{K} \).
-The space \( \mathbb{K}^{n{\times}n}\sim L(\mathbb{K}^n) \)
+The space \( \mathtt{Mat}_{n{\times}n}(\mathbb{K})\sim L(\mathbb{K}^n) \)
     forms a Banach algebra
     when supplied with a submultiplicative norm
     \( \|\cdot\| \),
@@ -316,10 +316,10 @@ The space \( \mathbb{K}^{n{\times}n}\sim L(\mathbb{K}^n) \)
     for 
     \( A{=}(a_{ij})\in\mathbb{K}^{n\times n} \).
 Finally we will also be dealing with the isomorphic spaces
-    \( L(L(\mathbb{K}^n)) \) and \( L(\mathbb{K}^{n{\times}n}) \)
+    \( L(L(\mathbb{K}^n)) \) and \( L(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
     with the operator norm.
 We will follow Krein
-    and refer to elements of \( L(\mathbb{K}^{n{\times}n}) \)
+    and refer to elements of \( L(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
     as ``transformers''.
 
 The spectrum of a matrix \( A \)
@@ -338,12 +338,12 @@ The most important notion
     in the abstract method of similar operators
     is that of an \emph{admissible triple}.
 For our specific purposes it suffices to say
-    that \( (\mathbb{K}^{n{\times}n}, J, \Gamma) \)
+    that \( (\mathtt{Mat}_{n{\times}n}(\mathbb{K}), J, \Gamma) \)
     forms an \emph{admissible triple}
-    for a matrix \( A\in\mathbb{K}^{n{\times}n} \)
+    for a matrix \( A\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}) \)
     if the following conditions are met:
 \begin{itemize}
-    \item \( J, \Gamma \in L(\mathbb{K}^{n{\times}n}) \)
+    \item \( J, \Gamma \in L(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
         are transformers;
     \item \( J \) is a projection (\( J^2 = J \));
     \item  \( \Gamma \) satisfies the equations:
@@ -351,7 +351,7 @@ For our specific purposes it suffices to say
             A \Gamma X - (\Gamma X) A = X - JX,
         \]
         \[
-            J\Gamma X = 0,\ X\in\mathbb{K}^{n{\times}n}.
+            J\Gamma X = 0,\ X\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}).
         \]
 \end{itemize}
 
@@ -360,15 +360,15 @@ The main theorem of the method
 
 \begin{thm}
     Consider a matrix \( A - B \)
-        with \( A, B \in \mathbb{K}^{n{\times}n} \).
-    Suppose \( (\mathbb{K}^{n{\times}n}, J, \Gamma) \)
+        with \( A, B \in \mathtt{Mat}_{n{\times}n}(\mathbb{K}) \).
+    Suppose \( (\mathtt{Mat}_{n{\times}n}(\mathbb{K}), J, \Gamma) \)
         is an admissible triple for the matrix \( A \)
         and suppose the following inequality holds:
         \[
             \|B\|\|\Gamma\|_{\mathrm{op}} \leq \frac14.
         \]
 
-    Then there exists such a matrix \( X^o\in\mathbb{K}^{n{\times}n} \)
+    Then there exists such a matrix \( X^o\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}) \)
         that \( A - B \) is similar to \( A - J X^o \);
         the similarity matrix is \( E + \Gamma X^o \);
         the following estimates are valid:
@@ -382,9 +382,9 @@ The main theorem of the method
         is the spectral radius of \( X^o \) (the largest absolute eigenvalue).
     Such \( X^o \) can be found as the limit of a convergent sequence
         \( \left( \Phi^k(0);\ k\in\mathbb{N} \right) \)
-        in a Banach algebra \( \mathbb{K}^{n{\times}n} \).
+        in a Banach algebra \( \mathtt{Mat}_{n{\times}n}(\mathbb{K}) \).
         Here \( \Phi \) is a nonlinear contraction mapping
-        defined on the ball \( \{X\in\mathbb{K}^{m{\times}n};\ \|X-B\|\leq 3\|B\| \} \)
+        defined on the ball \( \{X\in\mathtt{Mat}_{m{\times}n}(\mathbb{K});\ \|X-B\|\leq 3\|B\| \} \)
         and given by
     \[
         \Phi(X) = B\Gamma X - (\Gamma X)J(B + B\Gamma X) + B
@@ -536,11 +536,11 @@ We conclude that the adjacency matrix \( A = \mathcal{J}_N - B \) of this graph
         \mathcal{A} = \left(\begin{array}{c|c}
         N & \mathbf{0}_{1{\times}(N{-}1)} \\ \hline
             \mathbf{0}_{(N{-}1){\times}1} & \mathbf{0}_{(N{-}1){\times}(N{-}1)}
-        \end{array}\right) \in \mathbb{R}^{N{\times}N}
+        \end{array}\right) \in \mathtt{Mat}_{N{\times}N}(\mathbb{R})
     \]
     and \( \mathcal{B} \) is obtained with a similarity transform:
     \(
-        \mathcal{B} = U^{-1} B U \in \mathbb{R}^{N{\times}N}.
+        \mathcal{B} = U^{-1} B U \in \mathtt{Mat}_{N{\times}N}(\mathbb{R}).
     \)
 The similarity matrix \( U \) is given by stacking the eigenvectors in columns:
     \[
@@ -678,7 +678,7 @@ Since \( \mathcal{A} \) is block-diagonal
         \left(\begin{array}{c|c}
             x_{11} & X_{12} \\ \hline
             X_{21} & X_{22}
-        \end{array}\right)\in\mathbb{K}^{N{\times}N}.
+        \end{array}\right)\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}).
     \]
 Then \( A - JX \) is block-diagonal for any \( X \)
     and its spectrum is the union
@@ -703,7 +703,7 @@ Then the equations
      \]
 and \( J\Gamma X = 0 \) yield the result
     \[
-        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix},\ X\in\mathbb{K}^{N{\times}N}.
+        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix},\ X\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}).
     \]
 
 Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
@@ -919,7 +919,7 @@ This directly implies the following
 % JPCS
 \section{A-tiled matrix}
 
-Now let \( A\in\mathbb{K}^{M{\times}M} \)
+Now let \( A\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
     and consider the following (``A-tiled'') block-matrix
     \[
         \mathbb{A} =
@@ -1166,8 +1166,8 @@ Now we consider Kronecker product
     \in \mathbb{K}^{{MN}{\times}{MN}}
 \]
 of squared matrices
-\( A={(a_{ij})}\in\mathbb{K}^{N{\times}N},
- \ B={(b_{ij})}\in\mathbb{K}^{M{\times}M}. \)
+\( A={(a_{ij})}\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}),
+ \ B={(b_{ij})}\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}). \)
 We will analyze its spectral properties
     under small-norm perturbations:
 \begin{equation}\label{-kronperturb}
@@ -1285,7 +1285,7 @@ The system of equations
         \[
             A{\otimes}B - F.
         \]
-    Let \( A\in\mathbb{K}^{N{\times}N} \) and \( B\in\mathbb{K}^{M{\times}M} \)
+    Let \( A\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}) \) and \( B\in\mathbb{K}^{M{\times}M} \)
         be diagonalizable matrices.
     Let \( f_1, \ldots, f_N \) be the eigenvectors of \( A \)
         corresponding to the eigenvalues \( \mu_1, \ldots, \mu_N \)

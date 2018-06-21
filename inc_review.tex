@@ -2,7 +2,7 @@
   ОТЗЫВ\\
   научного руководителя на бакалаврскую работу\\
   Козлукова Сергея Викторовича\\
-  \textbf{``SPECTRAL PROPERTIES OF CERTAIN PERTURBED BLOCK MATRICES''},
+  \textbf{``СПЕКТРАЛЬНЫЕ СВОЙСТВА НЕКОТОРЫХ ВОЗМУЩЁННЫХ МАТРИЦ''},
 \end{center}
 
 Работа посвящена спектральным свойствам возмущённых матриц
@@ -32,7 +32,7 @@
     \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C}; \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
 
 Теорема \ref{nk:thm:tiled}
-Если \( A\in\mathtt{Mat}_n \) --- простой структуры и имеет место
+Пусть \( A \) --- простого спектра, и имеет место следующее неравенство:
 \[
     \left\| \mathbb{B} \right\|_{\mathrm{op}}
         \leq 
@@ -43,7 +43,7 @@
          \right\}.
  \]
 
-То спектр возмущённой матрицы \( \mathbb{A} - \mathbb{B} \) представим в виде:
+Тогда спектр пертурбированной матрицы \( \mathbb{A} - \mathbb{B} \) представим в виде
 \[
     \sigma\left(\mathbb{A}\right) =
         \left\{
@@ -52,11 +52,11 @@
     \cup \sigma_{M{+}1}.
 \]
 
-The eigenvectors
+Собственные векторы
     \( \hat{f}_j,\ \hat{f}_{j,k},\ j{=}\overline{1,M},\ k{=}\overline{1,N{-1}} \)
-    of the matrix \( \mathbb{A}{-}\mathbb{B} \),
-    the values \( x_{jj}^o,\ j{=}\overline{1,M} \)
-    and the set \( \sigma_{M{+}1} \) are in the following bounds:
+    матрицы \( \mathbb{A}{-}\mathbb{B} \),
+    значения \( x_{jj}^o,\ j{=}\overline{1,M} \)
+    и множество \( \sigma_{M{+}1} \) удовлетворяют следующим ограничениям:
 \[
     \lvert x_{jj}^o\rvert,
     \ \max_{\lambda\in\sigma_{M{+}1}} \lvert\lambda\rvert
@@ -74,40 +74,41 @@ The eigenvectors
              \min\limits_{1\leq l \leq M}{|\lambda_l|}}
          \right\}
 \]
-for all \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).
+Для всех \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).
     
 Вторую часть работы составляют аналогичные оценки для возмущений Кронекеровых
 произведений матриц, возникающих в связи с определёнными операциями на
 графах~\cite{bellman-matrices-kron,XIANG2005210}, а именно
 
 Теорема \ref{nk:thm:kron}:
-    Consider the perturbed matrix~\eqref{-kronperturb}
+    Рассмотрим возмущённую матрицу~\eqref{-kronperturb}:
         \[
             A{\otimes}B - F.
         \]
-    Let \( A\in\mathbb{F}^{N{\times}N} \) and \( B\in\mathbb{F}^{M{\times}M} \)
-        be diagonalizable matrices.
-    Let \( f_1, \ldots, f_N \) be the eigenvectors of \( A \)
-        corresponding to the eigenvalues \( \mu_1, \ldots, \mu_N \)
-        and let \( h_1, \ldots, h_M \) be the eigenvectors of \( B \)
-        corresponding to the eigenvalues \( \lambda_1, \ldots, \lambda_M \).
-    The spectrum of their Kronecker product \( A{\otimes}B \)
-        is composed of all the possible pairwise products \( \mu_i \lambda_j \)
-        and the corresponding eigenvectors are \( f_i\otimes h_j \).
-    Suppose that out of these \( MN \) eigenvalues only \( s \) are distinct:
+    Пусть \( A\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}) \) and \( B\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
+    --- диагонализуемые матрицы.
+    Пусть \( f_1, \ldots, f_N \) --- eigen-векторы \( A \),
+        которые соответствуют eigen-числам \( \mu_1, \ldots, \mu_N \),
+        и пусть \( h_1, \ldots, h_M \) --- собственные векторы \( B \)
+        с собственными числами \( \lambda_1, \ldots, \lambda_M \).
+    Спектр их произведения Кронекера --- \( A{\otimes}B \) ---
+        состоит из всевозможных попарных произведений \( \mu_i \lambda_j \)
+        с соответствующими собственными векторами \( f_i\otimes h_j \).
+    Сгруппируем эти \( MN \) произведений в \( s \) попарно различных
+    собственных чисел:
         \( \nu_1, \ldots \nu_s \).
 
-    Suppose
+    Пусть
     \[
         \|F\| \leq \frac14 \gamma^{-1} = \frac14 \min_{1\leq i{\neq}j\leq s}\lvert\nu_i - \nu_j\rvert.
     \]
 
-    Then \( A{\otimes}B - F \) is similar to
+    Тогда матрица \( A{\otimes}B - F \) подобна матрице
     \[ \sum_{k=1}^s \nu_k P_k - JX^o = \sum_{k=1}^s (\nu_k P_k - P_k X^o P_k) \]
-    for some \( X^o \in \mathbb{F}^{MN{\times}MN} \),
+    для некоторого \( X^o \in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \),
     \( \|X^o - F\|\leq 3\|F\| \).
 
-    All the eigenvalues of \( A{\otimes}B - F \) are contained in the circles
+    Все собственные значения \( A{\otimes}B - F \) содержатся в шарах
     \[
         \Omega_k = \left\{
             \lambda\in\mathbb{C};
@@ -115,28 +116,29 @@ for all \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).
             \right\},
         \ k{=}\overline{1,s}.
     \]
-    There is at least one eigenvalue in each of these circles.
+    В каждом из шаров есть хотя бы одно собственное число.
 
-    Suppose the eigenvalue \( \nu_k=\mu_{i_k}\lambda_{j_k} \) of \( A{\otimes}B \) has multiplicity \( 1 \),
-        that is it has the only eigenvector \( v_k = f_{i_k}{\otimes}h_{j_k} \).
-    It is equivalent to the statement that the eigenvalue \( \mu_{i_k} \)
-        of \( A \) and the eigenvalue \( \lambda_{j_k} \) of \( B \)
-        are both of multiplicity \( 1 \).
-    Then \( A{\otimes}B - F \) has eigenvalue in the circle \( \Omega_k \)
-        and the corresponding eigenvector \( \hat{v}_k \) is within bounds
+    Пусть \( \nu_k=\mu_{i_k}\lambda_{j_k} \) --- собственное число \( A{\otimes}B \) кратности \( 1 \),
+        id est ему соответствует единственный собственный вектор \( v_k = f_{i_k}{\otimes}h_{j_k} \).
+    Эквивалентно: eigenvalue \( \mu_{i_k} \)
+        матрицы \( A \) и eigenvalue \( \lambda_{j_k} \) матрицы \( B \)
+        оба имеют кратность \( 1 \).
+    Тогда \( A{\otimes}B - F \) имеет собственно значение в шаре \( \Omega_k \)
+        которому соответствует собственный вектор \( \hat{v}_k \),
+        удовлетворяющий неравенству
     \[
         \|\hat{v}_k - v_k\| \leq 4\gamma \|F\|.
     \]
-    If \( \nu_k \) is well separated from all the other eigenvalues of \( A{\otimes}B \):
+    Если \( \nu_k \) хорошо отделено от прочего спектра \( A{\otimes}B \):
     \[
         \min_{l\neq k}
         \lvert
         \nu_k - \nu_l
         \rvert
-        \geq 4\|F\|,
+        \geq 4\|F\|,\ \text{(спектральная отделимость)},
     \]
-    then \( \nu_k \) is the only eigenvalue of \( A{\otimes}B - F \)
-    in that circle.
+    то \( \nu_k \) --- единственное собственное значение \( A{\otimes}B - F \)
+    в этом шаре.
 
 Основными результатами работы являются локализация собственных значений и оценки
 собственных векторов таких матриц.
@@ -147,8 +149,7 @@ for all \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).
 конференциях, индексируемых в РИНЦ.
 
 Резюмируя изложенное, считаю, что бакалаврская работа
-``SPECTRAL PROPERTIES OF
-CERTAIN PERTURBED BLOCK MATRICES''
+``СПЕКТРАЛЬНЫЕ СВОЙСТВА НЕКОТОРЫХ ВОЗМУЩЁННЫХ МАТРИЦ''
 безусловно заслуживает оценки ``отлично''.
 Автору работы рекомендую продолжить исследования в этом направлении, как в
 перспективном.

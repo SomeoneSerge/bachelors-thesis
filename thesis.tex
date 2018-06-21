@@ -302,7 +302,7 @@ Eigenvector-ранг \( i \)-й вершины определяется как
     из Банахова пространства \( V \)
     в себя обозначается символом \( \mathtt{End}(V) = \mathtt{Hom}(V, V) \).
 На самом деле это множество наделено ещё более структурой \emph{Банаховой
-  алгебры} --- кроме операции умножения на нём определена субмультипликативная
+  алгебры} --- кроме операции умножения на нём определена суб\-мульти\-пликатив\-ная
 (относительно этого умножения) норма:
     \[
         \|A\|_{\mathrm{op}} =
@@ -320,7 +320,7 @@ Eigenvector-ранг \( i \)-й вершины определяется как
     с коэффициентами из поля \( \mathbb{K} \).
 Пространство \( \mathtt{Mat}_{n{\times}n}(\mathbb{K})\sim
 \mathtt{End}(\mathbb{K}^n) \)
-также образует алгебру Банаха, снабженное любой субмультипликативной нормой
+также образует алгебру Банаха, снабженное любой суб\-мульти\-пликатив\-ной нормой
     \( \|\cdot\| \):
     \( \|A\|_{\mathrm{op}} = \sup_{\|x\|_2=1,\ x\in \mathbb{K}^n} \|A x\|_2,\ \)
     \( \|A\|_{\mathrm{F}} = \sqrt{\sum_{i,j} |a_{ij}|^2},\ \)
@@ -357,7 +357,7 @@ Eigenvector-ранг \( i \)-й вершины определяется как
     \item \( J, \Gamma \in \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
       являются трансформерами;
     \item \( J \) --- линейный проектор (\( J^2 = J \));
-    \item  \( \Gamma \) удовлетворяет уравнениям:
+    \item  \( \Gamma \) удовле\-творяет уравнениям:
         \[
             A \Gamma X - (\Gamma X) A = X - JX,
         \]
@@ -437,7 +437,7 @@ Eigenvector-ранг \( i \)-й вершины определяется как
 В терминах теории возмущений, мы понимаем матрицу \( \mathcal{J}_N \)
 ``идеальным случаем'', а матрицу \( B \) --- малым возмущением.
 Метод подобных операторов (см.~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}),
-предлагает систему уравнений для нахождения матрицы подобной \( \mathbb{J}_N -
+предлагает систему уравнений для нахождения матрицы подобной \( \mathcal{J}_N -
 B \), но имеющей более ``простую'' структуру. Эти уравнения решаются методом
 простой итерации~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}
 Результатом решения этих уравнений
@@ -479,7 +479,7 @@ B \), но имеющей более ``простую'' структуру. Эт
   \[
     h_N = \frac{1}{\sqrt{N}} \left(1, \ldots, 1\right)\in\mathbb{R}^N.
   \]
-  Ядро (null-space) матрицы \( \mathbb{J}_N \) ортогонально вектору \( h_N \)
+  Ядро (null-space) матрицы \( \mathcal{J}_N \) ортогонально вектору \( h_N \)
   и порождается базисом
   \( f_1 = {\left(1,-1,0,\ldots,0\right)}, \ldots,
      f_{N-1} = {\left(0,\ldots,0,1,-1\right)}. \)
@@ -524,19 +524,23 @@ B \), но имеющей более ``простую'' структуру. Эт
 
 Далее ортогональность матрицы \( U \) будет играть важную роль.
 
-Матрицы из \( \mathtt{Mat}_N\mathbb{C} \) будем записывать в~блочном виде
-\( X \sim
+Матрицы из \( \mathtt{Mat}_N(\mathbb{C}) \) будем записывать в~блочном виде
+\[ X \sim
     \begin{pmatrix}
     x_{11} & X_{12} \\
     X_{21} & X_{22}
-    \end{pmatrix}, \)
-    где \( x_{11} \)~--- число,
-    \( X_{12} \)~--- строка, \( X_{21} \)~--- столбец,
-    \( X_{22} \)~--- квадратный блок размерности \( N-1 \).
-Такие блочные матрицы сами образуют алгебру, изоморфную исходной
-и~их можно естественным образом умножать
+    \end{pmatrix}, \]
+    где \[ x_{11} \in \mathtt{Mat}_{1{\times}1}(\mathbb{C})\ \text{--- число}, \]
+    \[ X_{12} \in \mathtt{Mat}_{1{\times}(N-1)}(\mathbb{C})\ \text{--- строка}, \]
+    \[ X_{21} \in \mathtt{Mat}_{(N-1){\times}1}(\mathbb{C})\ \text{--- столбец}, \]
+    \[ X_{22} \in \mathtt{Mat}_{(N-1){\times}(N-1)}(\mathbb{C}). \]
+Её блоки имеют естественную матричную структуру с левым и правым умножением,
+равно как составленные из них квадратные блочные матрицы имеют структуру
+Банаховой алгебры, изоморфной \( \mathtt{Mat}_{N{\times}N}(\mathbb{C})\).
+Кроме того, их можно естественным образом умножать на
 на элементы пространства \( \mathbb{C}\times\mathbb{C}^{N-1} \),
-изоморфного~\( \mathbb{C}^N \):
+изоморфного~\( \mathbb{C}^N \), если рассматривать его как
+\( \mathtt{Mat}_{N{\times}1}(\mathbb{C})\):
 \[
     \begin{pmatrix}
     x_{11} & X_{12} \\
@@ -548,32 +552,32 @@ B \), но имеющей более ``простую'' структуру. Эт
       X_{21} x_1 + X_{22} x_2
       \end{pmatrix},\quad x \sim \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\in \mathbb{C}\times\mathbb{C}^{N-1}.
     \]
-В~дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми.
+В~дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми и не различаются.
 
 Следуя общей схеме метода подобных операторов~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting},
 будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
 в~виде \( \mathcal{A} - J X \)
 с~матрицей преобразования подобия \( E + \Gamma X \),
-где \( E\in{\mathtt{Mat}_N\mathbb{C}} \)~--- единичная матрица,
-\( J,\Gamma : \mathtt{Mat}_N\mathbb{C}\to\mathtt{Mat}_N\mathbb{C} \)~--- линейные операторы,
-действующие на алгебре \( \mathtt{Mat}_N\mathbb{C} \), подбираемые
+где \( E\in{\mathtt{Mat}_{N{\times}N}(\mathbb{C})} \)~--- единичная матрица,
+\( J,\Gamma : \mathtt{Mat}_{N{\times}N}(\mathbb{C})\to\mathtt{Mat}_{N{\times}N}(\mathbb{C}) \)~--- линейные операторы,
+действующие на алгебре \( \mathtt{Mat}_{N{\times}N}(\mathbb{C}) \), подбираемые
 в~ходе решения,
       прич\"ем \( J \) --- проектор (\(J^2=J\)),
       ``упрощающий'' возмущение \( JX \),
       а \( \Gamma \)
-      при всех \( X\in {\mathtt{Mat}_N\mathbb{C}} \) % \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in {\mathtt{Mat}_N\mathbb{C}} \)
+      при всех \( X\in {\mathtt{Mat}_{N{\times}N}(\mathbb{C})} \) % \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in {\mathtt{Mat}_{N{\times}N}(\mathbb{C})} \)
       удовлетворяет уравнению
           \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - JX. \)
 
 % Короче, будем решать в~Банаховой алгебре матриц порядка \( N \) уравнение
 % \begin{equation}\label{nk:eq:similarity}
-%     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - J X), \quad X\in\mathtt{Mat}_N\mathbb{C}.
+%     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - J X), \quad X\in\mathtt{Mat}_{N{\times}N}(\mathbb{C}).
 %     \end{equation}
 % Оператор \( J \) обычно выбирают проектором (\(J^2=J\)).
 % \( \Gamma \) определяют поточечно, как решение уравнения
-% \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - J X, \quad X\in\mathtt{Mat}_N\mathbb{C} \),
+% \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - J X, \quad X\in\mathtt{Mat}_{N{\times}N}(\mathbb{C}) \),
 % где \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = \mathtt{ad}_{\mathcal{A}} \Gamma X \),
-% \(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Mat}_N\mathbb{C}\to\mathtt{Mat}_N\mathbb{C} \)
+% \(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Mat}_{N{\times}N}(\mathbb{C})\to\mathtt{Mat}_{N{\times}N}(\mathbb{C}) \)
 % --- оператор коммутирования с \( \mathcal{A} \).
 % Ясно, \( \mathcal{A}-JX \) имеет тем более простую структуру,
 % чем шире ядро проектора \( J \).
@@ -586,27 +590,31 @@ B \), но имеющей более ``простую'' структуру. Эт
         J X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
     \[
         \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
-        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Mat}_N\mathbb{C} \).
+        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Mat}_{N{\times}N}(\mathbb{C}) \).
 
 \end{lem}
 \begin{crl}
     Спектр блочно-диагональной матрицы
-    \( \mathcal{A} - JX = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
+    \[ \mathcal{A} - JX = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \]
     есть объединение спектров е\"е диагональных блоков:
     \[
         \sigma(\mathcal{A} - J X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
 \end{crl}
 \begin{proof}
 Пусть \( \Gamma \) действует по формуле
-\( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
+\[ \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
                               \Gamma_{21}(X) & \Gamma_{22}(X)
-                              \end{pmatrix} \), тогда
-\[
-    \mathcal{A} \Gamma X - (\Gamma X)\mathcal{A} = 
-    \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
-        - N\Gamma_{21}(X) & 0
-        \end{pmatrix}, \]
-и~уравнение для \( \Gamma X \) сводится~к
+                            \end{pmatrix}, \]
+тогда уравнение для \( \Gamma X \) приобретает вид
+    \[
+        \mathcal{A} \Gamma X - (\Gamma X)\mathcal{A} =
+        N
+        \begin{pmatrix}
+          0 & \Gamma_{12}(X) \\
+          -\Gamma_{21}(X) & 0
+        \end{pmatrix} = X - JX,
+     \]
+     и, так как \( J\Gamma X = 0 \), получаем соотношение
 \[
     X - J X =
     N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
@@ -618,69 +626,26 @@ B \), но имеющей более ``простую'' структуру. Эт
     \begin{pmatrix}
     x_{11} & X_{12} \\
     X_{21} & X_{22}
-    \end{pmatrix} \in \mathtt{Mat}_N\mathbb{C} \)
+    \end{pmatrix} \in \mathtt{Mat}_{N{\times}N}(\mathbb{C}) \)
     вс\"е, кроме двух диагональных блоков \( x_{11} \) и \( X_{22} \),
     поэтому положим
 \[
     J X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
 \[
-    \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
+    \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} &
+      0 \end{pmatrix},\ X\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}). 
+\]
 \end{proof}
-
-Following the general method,
-    we should first construct an admissible triple.
-Since \( \mathcal{A} \) is block-diagonal
-    it is natural to set \( J \) with the formula
-    \[
-        JX =
-        \left(\begin{array}{c|c}
-            x_{11} & \mathbf{0} \\ \hline
-            \mathbf{0} & X_{22}
-        \end{array}\right)
-    \]
-    for all block matrices
-    \[
-        X =
-        \left(\begin{array}{c|c}
-            x_{11} & X_{12} \\ \hline
-            X_{21} & X_{22}
-        \end{array}\right)\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}).
-    \]
-Then \( A - JX \) is block-diagonal for any \( X \)
-    and its spectrum is the union
-    of its diagonal blocks' spectra:
-    \( \sigma(A - JX) = \{N, \sigma(-X_{22}) \} \).
-
-Now we can find the corresponding \( \Gamma \).
-Suppose it is defined by the formula
-    \[ \Gamma X = \begin{pmatrix}
-        \Gamma_{11}(X) & \Gamma_{12}(X) \\
-        \Gamma_{21}(X) & \Gamma_{22}(X)
-        \end{pmatrix}.
-    \]
-Then the equations
-    \[
-        \mathcal{A} \Gamma X - (\Gamma X)\mathcal{A} =
-        N
-        \begin{pmatrix}
-          0 & \Gamma_{12}(X) \\
-          -\Gamma_{21}(X) & 0
-        \end{pmatrix} = X - JX,
-     \]
-and \( J\Gamma X = 0 \) yield the result
-    \[
-        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix},\ X\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}).
-    \]
 
 Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
 и \( \mathcal{A} - J X \):
 \begin{equation}\label{nk:eq:similarity}
-    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - J X), \quad X\in\mathtt{Mat}_N\mathbb{C}.
+    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - J X), \quad X\in\mathtt{Mat}_{N{\times}N}(\mathbb{C}).
 \end{equation}
 \begin{lem}
     Уравнение~\eqref{nk:eq:similarity} эквивалентно уравнению
     \begin{equation}\label{nk:eq:fixptn}
-        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(J(\mathcal{B} (E + \Gamma X))), \quad X\in\mathtt{Mat}_N\mathbb{C}.
+        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(J(\mathcal{B} (E + \Gamma X))), \quad X\in\mathtt{Mat}_{N{\times}N}(\mathbb{C}).
     \end{equation}
 \end{lem}
 \begin{proof}
@@ -705,19 +670,23 @@ and \( J\Gamma X = 0 \) yield the result
 \[
     \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(J(\mathcal{B} (E + \Gamma X))).\]
 Теперь покажем, что, при определ\"енных условиях,
-возникшее нелинейное отображение \( \Phi:\mathtt{Mat}_N\mathbb{C}\to \mathtt{Mat}_N\mathbb{C} \) имеет инвариантным множеством
-некоторый шар \( \Omega \subset \mathtt{Mat}_N\mathbb{C} \) с~центром в~нуле
+возникшее нелинейное отображение
+\[ \Phi:\mathtt{Mat}_{N{\times}N}(\mathbb{C})\to \mathtt{Mat}_{N{\times}N}(\mathbb{C}) \]
+имеет инвариантным множеством
+некоторый шар \( \Omega \subset \mathtt{Mat}_{N{\times}N}(\mathbb{C}) \) с~центром в~нуле
 (т.е.~\( \Phi(\Omega)\subset\Omega \)),
 на котором оно является сжимающим.
 
-Пусть в~\( \mathtt{Mat}_N\mathbb{C} \)
-выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
-(т.е.~норма, удовлетворяющая неравенству
- \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
- при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Mat}_N\mathbb{C} \)).
+Пусть в~\( \mathtt{Mat}_{N{\times}N}(\mathbb{C}) \)
+выбрана какая-нибудь суб\-мульти\-пликативная норма \( \|\cdot\| \)
+(т.е.~норма, удовле\-творя\-ющая неравенству
+ \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\|, \)
+ \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Mat}_{N{\times}N}(\mathbb{C}) \)).
 Нам нужно найти такой радиус \( r \geq 0 \),
-что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
-и~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
+что при \[ \|X\|,\|Y\| \leq r \]
+выполнялись бы неравенства
+\[ \|\Phi(X) - \Phi(Y)\| < q\|X-Y\|,\ q\in(0,1), \]
+\[ \|\Phi(X)\| \leq r. \]
 Обозначим
 \( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
 
@@ -725,15 +694,15 @@ and \( J\Gamma X = 0 \) yield the result
     Пусть \( \gamma\beta < \frac14\),
     тогда шар
     \[
-        \Omega = \left\{ X\in \mathtt{Mat}_N\mathbb{C}; \|X\| \leq r_0 \right\}, \]
+        \Omega = \left\{ X\in \mathtt{Mat}_{N{\times}N}(\mathbb{C}); \|X\| \leq r_0 \right\}, \]
     \[  0 < r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
-    удовлетворяет условию \( \Phi(\Omega)\subset\Omega \).
+    удовле\-творяет условию \( \Phi(\Omega)\subset\Omega \).
 \end{lem}
 \begin{proof}
 Очевидно неравенство
     \[ \| \Phi(X) \| \leq
      \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
-Значит, если \( r \) удовлетворяет неравенству
+Значит, если \( r \) удовле\-творяет неравенству
     \begin{equation}\label{nk:ineq:invariance-radius}
         \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0,
     \end{equation}
@@ -742,8 +711,8 @@ and \( J\Gamma X = 0 \) yield the result
     то ``дискриминант'' \( \Delta = 1-4\gamma\beta \)
     соответствующего уравнения положителен и~его корни вещественны.
 Из знаков коэффициентов возникшего многочлена видно, что оба корня положительны.
-Следовательно, наименьший положительный \( r \),
-    удовлетворяющий неравенству~\eqref{nk:ineq:invariance-radius}
+Следовательно, наименьший положительный~\( r \),
+    удовле\-творя\-ющий неравенству~\eqref{nk:ineq:invariance-radius}
     есть наименьший корень
     соответствующего уравнения:
     \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
@@ -779,7 +748,7 @@ and \( J\Gamma X = 0 \) yield the result
 
 Отсюда и~из теоремы Банаха о~неподвижной точке следует:
 \begin{lem}
-В~шаре \[ \Omega = \left\{ X\in\mathtt{Mat}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
+В~шаре \[ \Omega = \left\{ X\in\mathtt{Mat}_{N{\times}N}(\mathbb{C}); \quad \|X\| \leq r_0 \right\} \]
     существует и~при том единственное решение \( X^o \) уравнения~\eqref{nk:eq:fixptn},
     являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
     где \( \Phi^k = \Phi\circ\Phi^{k-1} \)~--- композиция.
@@ -806,32 +775,21 @@ N - x_{11}^o & 0 \\
     Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
 \end{proof}
 
-The last step is to estimate the norms and apply the theorem.
-One can easily check that \( \|\Gamma\|_{\mathrm{op}} = \frac1N \).
-It is also apparent that \( \|\mathcal{B}\|_{\mathrm{op}} = \|B\|_{\mathrm{op}} \leq \|B\|_{\mathrm{F}} \)
-    since multiplication by the orthogonal matrix \( U \)
-    is an isometry in Euclidean space.
-The Frobenius norm \( {\|B\|_{\mathrm{F}} = \sqrt{\sum_{ij} b_{ij}^2} = M} \)
-    of \( B \)
-    reduces to the square root of the number of absent edges.
-This directly implies the following
-
 Верн\"емся, наконец, к~непосредственному доказательству основной теоремы:
 \begin{proof}[Доказательство Теоремы~\ref{nk:thm:almost-all-ones}]
-    Для доказательства осталось лишь выбрать подходящую субмультипликативную норму.
+    Рассмотрим в~пространстве \( \mathtt{Mat}_{N}(\mathbb{C}) \)
+    норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
+    определ\"енную формулой
+    \[ {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}, \]
+    \( X = (x_{ij})\in\mathtt{Mat}_{N{\times}N}(\mathbb{C}) \).
+    Она суб\-мульти\-пли\-кативна.
     Заметим, что матрица \( \mathcal{U} \),
     приводящая \( \mathcal{J}_N \) к~диагональному виду
     является ортогональной,
     поэтому умножение на \( \mathcal{U} \) или \(\mathcal{U}^{-1}\)
-    есть изометрия.
-    Следовательно, \( \|\mathcal{B}\|=\|B\| \).
-    Рассмотрим в~пространстве \( \mathtt{Mat}_{N}\mathbb{C} \)
-    норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
-    определ\"енную формулой
-    \( {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}, \)
-    \( X = (x_{ij})\in\mathtt{Mat}_N\mathbb{C} \).
-    Она субмультипликативна.
-    При этом
+    есть изометрия относительно \( \|\cdot\|_F \) и поэтому
+    \[ \|\mathcal{B}\|_F=\|B\|_F. \]
+    Наконец,
     \( B \) состоит из \( M \) единиц, поэтому
     \[
         \beta = {\left\|B\right\|}_{F} =
@@ -852,41 +810,39 @@ This directly implies the following
      где \( \sigma_1 = \{ \lambda_1 \}\subset\mathbb{R}, \lvert \lambda_1 - N \rvert < 4\sqrt{M} \),
      \( \sigma_2 \subset \{ \mu\in\mathbb{C}; \lvert\mu\rvert < 4\sqrt{M} \} \),
      \( \sigma_1 \cap \sigma_2 = \emptyset \).
-    Теорема доказана.
-    \end{proof}
 
-\begin{thm}
-    Suppose the number of absent edges is
-    \[ M < \frac{1}{16} N^2. \]
-    Then the spectrum of the adjacency matrix \( A = \mathcal{J}_N - B \)
-        can be represented as disjoint union
-    \[
-        \sigma(A) = \{ N - x_{11}^o \} \cup \sigma_2.
-    \]
-    The dominating eigenvector of \( A \) is
-    \[
-        \hat{h}_N = U(E+\Gamma X^o) e_1 =
-            h_N - \frac1N (X_{21,(1)}^o h_1 + \cdots + X_{21, (N{-}1)}^o h_{N{-}1}),
-    \]
-    where \( X_{21,(i)}^o,\ i=\overline{1,N{-}1} \) are the coordinates
-    of the vector \( X_{21}^o \).
-    Moreover \( \hat{h}_N\in\mathbb{R}^{N} \),
-    \( x_{11}^o\in\mathbb{R} \) and \( \sigma_2\subset\mathbb{C} \)
-    satisfy the following inequalities:
-    \[
-        \|\hat{h}_N - h_N\|_2 \leq 4\frac{\sqrt{M}}{N},
-    \]
-    \[
-        \lvert x_{11}^o \rvert,
-        \ \sup_{\lambda\in\sigma_2} \lvert\lambda\rvert \leq 4\sqrt{M}.
-    \]
-\end{thm}
+Дополнительно можно сказать, что 
+     главный собственный вектор \( A \) имеет вид
+     \[
+       \hat{h}_N = U(E+\Gamma X^o) e_1 =
+       h_N - \frac1N (X_{21,(1)}^o h_1 + \cdots + X_{21, (N{-}1)}^o h_{N{-}1}),
+     \]
+     где \( X_{21,(i)}^o,\ i=\overline{1,N{-}1} \) --- координаты вектора
+     \( X_{21}^o \).
+     Более того \( \hat{h}_N\in\mathbb{R}^{N} \),
+     удовлетворяет неравенствам
+     \[
+       \|\hat{h}_N - h_N\|_2 \leq 4\frac{\sqrt{M}}{N},
+     \]
+     Здесь
+     \[ X^o =
+       \begin{pmatrix}
+         x_{11}^o & X_{12}^o \\
+         X_{21}^o & X_{22}^o
+       \end{pmatrix}
+       = \left( \Phi^k(0);\ k\in\mathbb{N} \right), \]
+     \[
+       \Phi(X) = B\Gamma X - (\Gamma X)J(B + B\Gamma X) + B.
+     \]
+     
+     Теорема доказана.
+   \end{proof}
 
 % JPCS
 \section{A-tiled matrix}
 
-Now let \( A\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
-    and consider the following (``A-tiled'') block-matrix
+Пусть теперь \( A\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \).
+Рассмотрим следующую (``A-tiled'') блочную матрицу:
     \[
         \mathbb{A} =
         \begin{pmatrix}
@@ -896,28 +852,29 @@ Now let \( A\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
         \end{pmatrix}
         \in\mathbb{K}^{{MN}{\times}{MN}}
     \]
-    and the perturbed matrix
+    и возмущённую матрицу
     \[
         \mathbb{A} - \mathbb{B},\ \mathbb{B}\in\mathbb{K}^{{MN}{\times}{MN}}.
     \]
 
 \begin{lem}
-    Suppose \( A \) is an invertible self-adjoint matrix.
-    Then it has \( M \) orthonormal eigenvectors \( h_1, \ldots, h_M \)
+    ПУсть \( A \) обратима и самосопряжена.
+    Тогда она имеет \( M \) ортонормальных собственных векторов \( h_1, \ldots, h_M \)
     (\(\left\|h_i\right\|_2 = 1,\ i{=}\overline{1,M}\))
-    with the corresponding eigenvalues
+    которым соответствует (не обязательно различные) собственные значения
     \( \lambda_1, \ldots, \lambda_M \neq 0\).
-    The spectrum of \( \mathbb{A} \) is
+
+    Спектр \( \mathbb{A} \) есть
     \[
         \sigma(\mathbb{A}) = \{0\}\cup N\sigma(A) = \{0\} \cup \{N\lambda;\ \lambda\in\sigma(A) \}.
     \]
-    Non-zero eigenvalues of \( \mathbb{A} \)
-        have corresponding block eigenvectors:
+    Ненулевые собственные значения матрицы \( \mathbb{A} \)
+    соответствуют следующим блочным собственным векторам:
     \[
         f_j = \frac{1}{\sqrt{N}} (h_j, \ldots, h_j)\in \mathbb{K}^{MN},\ j=\overline{1,M}.
     \]
-    The null-space of \( \mathbb{A} \)
-        has an orthonormal basis:
+    Ядро \( \mathbb{A} \)
+    также обладает ортобазисом:
     \[
         f_{j,k} = \frac{1}{\sqrt{k(k+1)}}
         (
@@ -927,7 +884,7 @@ Now let \( A\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
         ) \in\mathbb{K}^{{MN}{\times}{MN}}
     \]
 
-    The matrix \( \mathbb{A} \) is similar to a block-diagonal matrix:
+    Матрица \( \mathbb{A} \) таким образом подобна блочной матрице:
     \[
         \mathcal{A} =
         \left(\begin{array}{c|c}

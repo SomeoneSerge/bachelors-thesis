@@ -231,7 +231,7 @@ Eigenvector-ранг \( i \)-й вершины определяется как
 на \( 2^N \) состояниях --- состояние сети задаётся вектором состояний всех \( N
 \) вершин . Это discrete-time модель, в~которой спектральный радиус
 матрицы смежностей графа сети  оказывается пороговым значением \( {^1/_{\tau_0}}
-\) отношения \( {^1/_\tau = ^\delta/_\nu{} \) интенсивн\-ости~\( \delta \) исцеления
+\) отношения \( {^1/_\tau = ^\delta/_\nu} \) интенсивн\-ости~\( \delta \) исцеления
 инфецированных узлов и~интенсивности~\( \nu \) заражения узлов, смежных
 инфецированным. 
 Асимптотическое эндемическое или эпидемическое поведение такой системы
@@ -251,85 +251,99 @@ Eigenvector-ранг \( i \)-й вершины определяется как
     За общим изложением теории графов отсылаем читателя к~\cite{godsil2013algebraic}.
 
 
-\section{Introduction to the method of similar operators}
+\section{Введение в метод подобных операторов}
 
-In some applications
-    it is infeasible to compute the exact eigenvalues.
-Then one needs to make reasonable estimates.
-One of the methods of such estimations is the method of simiar operators
-originated in the works of Friedrichs~\cite{friedrichs1965advanced} and being developed in
-the abstract setting by
-Baskakov~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}.
-It relies on contraction mappings in Banach spaces
-    and the Banach fixed-point theorem.
-This approach is often superior to usual methods of perturbation analysis
-    that use series expansions.
-We are only concerned with finite-dimensional problems
-    so we will only state the required notation and theorems
-    in a simplified form.
+Как мы уже заметили выше, точное вычисление собственных чисел и векторов
+для существенно больших матриц --- задачи алгоритмически сложная (i.e. ``сложная'' в
+смысле time complexity). Однако часто то достаточно лишь приблизительной оценки
+--- интервалов (шаров), содержащих собственные значения (векторы).
+Один из методов построения таких оценок ---
+\emph{метод подобных операторов}, предлагающий как конкретные оценки, так и
+итеративную процедуру точного вычисления собственных значений и векторов.
+Истоки метода лежатв работах Friedrichs~\cite{friedrichs1965advanced} и в
+абстрактной постановке были разработаны
+Баскаковым~А.~Г.~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}.
+В его основе лежит понятие сжимающего отображения в Банаховом пространстве
+и связанная с ним теорема о неподвижной точки of Banach's.
+Этот подход часто даёт лучшие результаты в сравнении с классическими методами
+теории возмущений, основанными на разложении функций в степенные ряды.
 
-Let \( \mathbb{K}\in \{ \mathbb{R}, \mathbb{C} \} \)
-    be a field of either real or complex numbers.
-We consider the vector space \( \mathbb{K}^n,\ n\in \mathbb{N} \)
-    supplied with Euclidean structure:
+В настоящем изложении мы пока ограничиваемся конечно-мерным случаем, а потому
+приводим ниже формулировку основных понятий и теорем метода в их соответственным
+образом упрощённом --- конечно-мерном --- виде.
+
+Пусть \( \mathbb{K}\in \{ \mathbb{R}, \mathbb{C} \} \)
+--- какое-нибудь поле.
+Мы рассматриваем векторное пространство \( \mathbb{K}^n,\ n\in \mathbb{N} \)
+наделённым Эвклидовой структурой:
     \[
         (x, y){=}\sum_{k=1}^n x_k\overline{y_k},
         \ x{=}(x_1,\ldots, x_n),
         \ y=(y_1,\ldots, y_n)
         \in \mathbb{K}^n
         \]
-    and the \( \mathrm{L}_2 \)-norm:
+    и порождаемой ей \( \mathrm{L}_2 \)-нормой:
     \(
         \|x\|_2^2{=}(x,x).
         \)
-We also consider the canonical basis \( e_1, \ldots, e_n \)
-    in \( \mathbb{K}^n \) given by
-    \( {(e_i)}_j = \delta_{ij},\ i,j=\overline{1,n} \)
-    (\(\delta_{ij} \) is the Kronecker symbol).
-When \( V_1, V_2 \) are normed vector spaces
-    we denote by \( \mathtt{Hom}(V_1, V_2) \)
-    the space of bounded linear mappings
-    from \( V_1 \) to \( V_2 \).
-An algebra of bounded linear endomorphisms
-    from a Banach space \( V \)
-    into itself
-    is denoted by \( \mathtt{Hom}(V) = \mathtt{Hom}(V, V) \).
-It is a Banach algebra with the operator norm:
+В этом пространстве мы выделяем канонический базис \( e_1, \ldots, e_n \),
+        заданный формулами:
+        \( {(e_i)}_j = \delta_{ij},\ i,j=\overline{1,n} \)
+    (где \(\delta_{ij} \) --- ``Delta'' Кронекера).
+Для нормированных пространств \( V_1, V_2 \) 
+    мы будем обозначать симвлом \( \mathtt{Hom}(V_1, V_2) \)
+    пространство ограниченных линейных операторов
+    из \( V_1 \) в \( V_2 \).
+Здесь сразу следует заметить, что мы не спешим без необходимости различать
+``снабжённое нормой \(x\mapsto \|x\| \) множество \( X \)''
+и ``нормированное пространство \( (X, x\mapsto \|x\|) \)''
+и, где это не создаёт двусмысленности, обозначаем оба символом \( X \).
+Алгебра (линейных ограниченных) эндоморфизмов
+    из Банахова пространства \( V \)
+    в себя обозначается символом \( \mathtt{End}(V) = \mathtt{Hom}(V, V) \).
+На самом деле это множество наделено ещё более структурой \emph{Банаховой
+  алгебры} --- кроме операции умножения на нём определена субмультипликативная
+(относительно этого умножения) норма:
     \[
         \|A\|_{\mathrm{op}} =
         \sup_{
             \substack{\|x\|=1,\\ x\in V}
-        } \|A x\|,\ A\in \mathtt{End}(V).
+        } \|A x\|,\ A\in \mathtt{End}(V),
         \]
-Together with \( \mathtt{Hom}(\mathbb{K}^n, \mathbb{K}^m) \)
-    we consider its isomorphic space \( \mathtt{Mat}_{m{\times}n}(\mathbb{K}) \)
-    of matrices of the size \( m{\times}n \)
-    with entries from the field \( \mathbb{K} \).
-The space \( \mathtt{Mat}_{n{\times}n}(\mathbb{K})\sim \mathtt{End}(\mathbb{K}^n) \)
-    forms a Banach algebra
-    when supplied with a submultiplicative norm
-    \( \|\cdot\| \),
-    e.g.: \( \|A\|_{\mathrm{op}} = \sup_{\|x\|_2=1,\ x\in \mathbb{K}^n} \|A x\|_2,\ \)
+     \[
+       \|AB\|_{\mathrm{op}} \leq \|A\|_{\mathrm{op}} \|B\|_{\mathrm{op}}.
+        \]
+Вместе с пространством \( \mathtt{Hom}(\mathbb{K}^n, \mathbb{K}^m) \)
+    мы рассматриваем изоморфные им пространства \(
+    \mathtt{Mat}_{m{\times}n}(\mathbb{K}) \)
+    матриц размера \( m{\times}n \)
+    с коэффициентами из поля \( \mathbb{K} \).
+Пространство \( \mathtt{Mat}_{n{\times}n}(\mathbb{K})\sim
+\mathtt{End}(\mathbb{K}^n) \)
+также образует алгебру Банаха, снабженное любой субмультипликативной нормой
+    \( \|\cdot\| \):
+    \( \|A\|_{\mathrm{op}} = \sup_{\|x\|_2=1,\ x\in \mathbb{K}^n} \|A x\|_2,\ \)
     \( \|A\|_{\mathrm{F}} = \sqrt{\sum_{i,j} |a_{ij}|^2},\ \)
-    for 
+    для 
     \( A{=}(a_{ij})\in\mathbb{K}^{n\times n} \).
-Finally we will also be dealing with the isomorphic spaces
-    \( \mathtt{End}(\mathtt{End}(\mathbb{K}^n)) \) and \( \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
-    with the operator norm.
-We will follow Krein
-    and refer to elements of \( \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
-    as ``transformers''.
+Наконец, в работе возникнут изоморфные пространства
+    \( \mathtt{End}(\mathtt{End}(\mathbb{K}^n)) \) и \(
+    \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
+    снабжённые соответствующими операторными нормами.
+Следуя Крейну, элементы \( \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
+    будем называть ``трансформерами''.
 
-The spectrum of a matrix \( A \)
-    (the set of its eigenvalues)
-    will be denoted as \( \sigma(A) \).
-We call two matrices \( A_1, A_2 \) \emph{similar}
-    if there is an invertible matrix \( U \)
-    (the similarity matrix)
-    such that \( A_1 U = U A_2 \).
-Similar matrices share some spectral properties:
-    they are isospectral (\( \sigma(A_1) = \sigma(A_2) \))
-    and \( U \) maps the eigenvectors of one to another's:
+Спектр матрицы \( A \)
+    (множество собственных значений)
+    мы будем обозначать \( \sigma(A) \).
+Две матрицы \( A_1, A_2 \) будем понимать \emph{подобными}
+    в смысле существования обратимой матрицы \( U \)
+    (матрицы преобразования подобия),
+    такой что \( A_1 U = U A_2 \).
+Подобные матрицы ``разделяют'' многие спектральные свойства:
+    подобные матрицы изоспектральны, (\( \sigma(A_1) = \sigma(A_2) \)),
+    а матрица подобия \( U \) отображает собственные векторы одной матрицы
+    в соответствующие собственные векторы второй матрицы,
     \( A_2 x = \lambda x \implies A_1 U x = \lambda U x \).
 
 The most important notion

@@ -289,25 +289,25 @@ We also consider the canonical basis \( e_1, \ldots, e_n \)
     \( {(e_i)}_j = \delta_{ij},\ i,j=\overline{1,n} \)
     (\(\delta_{ij} \) is the Kronecker symbol).
 When \( V_1, V_2 \) are normed vector spaces
-    we denote by \( L(V_1, V_2) \)
+    we denote by \( \mathtt{Hom}(V_1, V_2) \)
     the space of bounded linear mappings
     from \( V_1 \) to \( V_2 \).
 An algebra of bounded linear endomorphisms
     from a Banach space \( V \)
     into itself
-    is denoted by \( L(V) = L(V, V) \).
+    is denoted by \( \mathtt{Hom}(V) = \mathbb{Hom}(V, V) \).
 It is a Banach algebra with the operator norm:
     \[
         \|A\|_{\mathrm{op}} =
         \sup_{
             \substack{\|x\|=1,\\ x\in V}
-        } \|A x\|,\ A\in L(V).
+        } \|A x\|,\ A\in \mathtt{End}(V).
         \]
-Together with \( L(\mathbb{K}^n, \mathbb{K}^m) \)
+Together with \( \mathtt{Hom}(\mathbb{K}^n, \mathbb{K}^m) \)
     we consider its isomorphic space \( \mathtt{Mat}_{m{\times}n}(\mathbb{K}) \)
     of matrices of the size \( m{\times}n \)
     with entries from the field \( \mathbb{K} \).
-The space \( \mathtt{Mat}_{n{\times}n}(\mathbb{K})\sim L(\mathbb{K}^n) \)
+The space \( \mathtt{Mat}_{n{\times}n}(\mathbb{K})\sim \mathtt{End}(\mathbb{K}^n) \)
     forms a Banach algebra
     when supplied with a submultiplicative norm
     \( \|\cdot\| \),
@@ -316,10 +316,10 @@ The space \( \mathtt{Mat}_{n{\times}n}(\mathbb{K})\sim L(\mathbb{K}^n) \)
     for 
     \( A{=}(a_{ij})\in\mathbb{K}^{n\times n} \).
 Finally we will also be dealing with the isomorphic spaces
-    \( L(L(\mathbb{K}^n)) \) and \( L(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
+    \( \mathtt{End}(\mathtt{End}(\mathbb{K}^n)) \) and \( \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
     with the operator norm.
 We will follow Krein
-    and refer to elements of \( L(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
+    and refer to elements of \( \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
     as ``transformers''.
 
 The spectrum of a matrix \( A \)
@@ -343,7 +343,7 @@ For our specific purposes it suffices to say
     for a matrix \( A\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}) \)
     if the following conditions are met:
 \begin{itemize}
-    \item \( J, \Gamma \in L(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
+    \item \( J, \Gamma \in \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
         are transformers;
     \item \( J \) is a projection (\( J^2 = J \));
     \item  \( \Gamma \) satisfies the equations:

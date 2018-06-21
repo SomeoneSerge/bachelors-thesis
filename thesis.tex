@@ -183,21 +183,21 @@ A\in\mathtt{Mat}_n(\mathbb{R}) \) если матрица \( A - \lambda E \) с
 \( A \), соответствующим собственному значению \( \lambda \).
 Спектры и собственные подпространства матриц смежностей несут в себе важную
 информацию о соответствующих графах. Однако, точное вычисление собственных
-значений и векторов на практике чрезвычайно ресурсоёмкая задача, страдающая
+значений и век\-торов на практике чрезвычайно ресурсо\-ёмкая задача, страдающая
 своего рода \emph{curse of dimensionality}. Поэтому требуются дешёвые и
-достаточно точные оценки.
+дос\-таточно точные оценки.
 
-Различные спектры графов определяются с помощью различных матриц,
-соответствующих этим графам.
+Различные спектры графов определяются с помощью различ\-ных матриц,
+соответ\-ствующих этим графам.
 Так называемый \emph{simple spectrum} --- простой спектр --- графа
 определяется как спектр матрицы смежностей.
-В прикладных моделях часто требуется рассматривать комбинации
+В прикладных моделях часто требуется рас\-сматривать комбинации
     матриц \( A \),
     \( D \) (``out-degree'' матрица, диагональные элементы которой
     содержат исходящие степени вершин),
     \( E \) (единичная матрица)
     и матрицы \( \mathcal{J}_N \) (матрица единиц).
-Такие комбинации естественным образом возникают во многих стохастических
+Такие комбинации естественным образом возникают во многих стохастич\-еских
 моделях~\cite[p.~184]{cvetkovic2010introduction}.
 Спектральные свойства таких матриц
 часто играют существенную роль в этих моделях.
@@ -217,40 +217,38 @@ Eigenvector-ранг \( i \)-й вершины определяется как
     вектора.
 Скорость сходимости метода зависит от
     отношения двух наибольших сосбтвенных значений.
-Stability of a stationary distribution
-    is determined~\cite{meyer1994sensitivity}
-    by the condition number
-    which is bounded from below
-    by the spectral gap --- the distance between
-    the two largest eigenvalues
-    of the transition matrix of a process.
-The method of estimation of almost-invariant sets
-    proposed in~\cite{schwartz2006fluctuation}
-    also relies on spectral decompositions of such matrices.
-In the Susceptible-Infective-Susceptible model
-    a viral spread in a network
-    is modeled~\cite{wang2003epidemic,chakrabarti2008epidemic} as a Markov process
-    with \( 2^N \) states.
-It is a discrete-time model of
-распространения вируса в~сети, в~которой спектральный радиус матрицы смежностей
-графа сети  оказывается пороговым значением \( ^1/_{\tau_0} \) отношения
-\( ^1/_\tau = ^\delta/_\nu \) интенсивности~\( \delta \) исцеления
+Устойчивость стационарного распределения
+    определена~\cite{meyer1994sensitivity}
+    кондиционным числом (числом обусловленности) матрицы переходов процесса,
+    которое снизу ограничено спектраль\-ным зазором
+    --- расстояние между двумя наибольшими по модулю собственными значениями
+    этой матрицы.
+Метод аппроксимации почти-инвариант\-ных множеств, описанный в~\cite{schwartz2006fluctuation}
+также опирается на спектральное разложение матрицы переходов.
+В Susceptible-Infective-Susceptible модели
+рас\-пространения~вируса в сети
+модели\-руется~\cite{wang2003epidemic,chakrabarti2008epidemic} Марков\-ским процессом
+на \( 2^N \) состояниях --- состояние сети задаётся вектором состояний всех \( N
+\) вершин . Это discrete-time модель, в~которой спектральный радиус
+матрицы смежностей графа сети  оказывается пороговым значением \( {^1/_{\tau_0}}
+\) отношения \( {^1/_\tau = ^\delta/_\nu{} \) интенсивн\-ости~\( \delta \) исцеления
 инфецированных узлов и~интенсивности~\( \nu \) заражения узлов, смежных
 инфецированным. 
-An asymptotic (endemic or epidemic) behaviour of such a system
-    is determined by \(^1/\tau\) being smaller or greater than
-    spectral radius (the largest absolute eigenvalue)
-    of the adjacency matrix.
+Асимптотическое эндемическое или эпидемическое поведение такой системы
+определяется нахож\-дением величины \(^1/\tau\) слева или справа от
+спектрального радиуса (т.е. наибольшего абсолютного собственного значения)
+матрицы смежностей графа сети.
 
-One of the most generic and common operations on graph --- 
-    \emph{non-complete extended p-sum}s~(NEPS) of
-    graphs~\cite[p.~44]{cvetkovic2010introduction}~\cite{cvetkovic1997eigenspaces}
-    --- is defined in terms of Kronecker products of graphs.
+Многие операции на графе задаются в терминах т.н.
+    \emph{non-complete extended p-sum}s~(NEPS)
+    графов~\cite[p.~44]{cvetkovic2010introduction}~\cite{cvetkovic1997eigenspaces},
+    которые в свою очередь задаются в терминах Кронекеровых произведений (степеней) матриц
+    смежностей графов.
 
-For more details and comprehensive description
-    of the graph spectra theory
-    and its applications
-    refer to~\cite{cvetkovic1980spectra,cvetkovic2010introduction,godsil2013algebraic}.
+Теория спектров и собственных подпространств графов,
+    а также теория возмущений графов, подробно изложены в
+    монографиях~\cite{cvetkovic1997eigenspaces,cvetkovic1980spectra,cvetkovic2010introduction}.
+    За общим изложением теории графов отсылаем читателя к~\cite{godsil2013algebraic}.
 
 
 \section{Introduction to the method of similar operators}

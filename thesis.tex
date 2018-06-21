@@ -892,50 +892,31 @@ N - x_{11}^o & 0 \\
             \mathbf{0} & \mathbf{0}
         \end{array}\right)\in\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K});
     \]
-    the similarity transform matrix is
+    Матрица подобия имеет вид
     \[
         U = \operatorname{columns}
         \left(f_1, \ldots, f_M, f_{1,1}, \ldots, f_{1,N{-1}}, \ldots, f_{M,N{-}1}\right).
     \]
 \end{lem}
 
-Throughout this subsection
-    we will consider block matrices
-    of the size \( {MN}{\times}{MN} \)
-    in the form
+В этой секции мы будем рассматривать матрицы размера
+    \( {MN}{\times}{MN} \)
+    в блочной форме
     \[
     X =
         \left(\begin{array}{c|c}
-            \begin{matrix}
-                x_{11} & \cdots & x_{1M} \\
-                \vdots & \ddots & \vdots \\
-                x_{M1} & \cdots & x_{MM}
-            \end{matrix} &
-            \begin{matrix}
-                x_{1,M+1} \\
-                \vdots \\
-                x_{M,M+1}
-            \end{matrix} \\ \hline
-            \begin{matrix}
-                x_{M+1,1} &
-                \cdots &
-                x_{M+1,M}
-            \end{matrix} &
-            X_{M+1,M+1}
+              X_{11} & X_{12} \\ \hline
+              X_{21} & X_{22} \\
         \end{array}\right),
     \]
-where
-\( X_{ij}      {=} x_{ij},
- \ X_{M{+}1,j} {=} x_{M{+}1,j},
- \ X_{i,M{+}1} {=} x_{i,M{+}1} \in \mathbb{K} \)
-for \( 1 \leq {i,j} \leq M \),
-and
-\( X_{M{+}1,M{+}1} \) is a block of the size \( {M(N{-}1){\times}M(N-1)} \).
+где
+\[ X_{11} \in \mathtt{Mat}_{M{\times}M}(\mathbb{K}).\]
+\[ X_{12} \in \mathtt{Mat}_{M(N-1){\times}M}(\mathbb{K}).\]
+\[ X_{21} \in \mathtt{Mat}_{M{\times}M(N-1)}(\mathbb{K}).\]
+\[ X_{22} \in \mathtt{Mat}_{M(N-1){\times}M(N-1)}(\mathbb{K}).\]
 
-Just like before we are going to investigate
-    the spectral behaviour of \( \mathbb{A} \) under perturbations.
-We begin with constructing an admissible triple.
-A natural choice for \( J \) in this case is
+Повторим процедуру
+Ествтенным выбором \( J \) является
 \[
         J X =
         \left(\begin{array}{c|c}
@@ -946,23 +927,21 @@ A natural choice for \( J \) in this case is
             \end{matrix} &
             \begin{matrix}
                 0 \\
-                \vdots \\
-                0
             \end{matrix} \\ \hline
             \begin{matrix}
-                0 & \cdots & 0
+                0 &
             \end{matrix} &
             X_{M+1,M+1}
         \end{array}\right).
 \]
 
 \begin{lem}
-Suppose \( A \) has a simple spectrum,
-    i.e.\ its eigenvalues are pairwise distinct:
+Пусть \( A \) --- простого спектра,
+    i.e.\ он имеет \( M \) различных собственных значений:
     \( \lambda_i\neq\lambda_j \) for all \( 1\leq i{\neq}j \leq M \).
 
-    Then a tuple \( (\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K}), J, \Gamma) \)
-        forms an admissible triple if we define
+    Тогда тройка \( (\mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K}), J, \Gamma) \)
+    будет допустимой, если мы положим
     \[
         \Gamma X = 
         \frac1n \left(\begin{array}{c|c}
@@ -982,19 +961,24 @@ Suppose \( A \) has a simple spectrum,
     \[
         \Gamma_{12}(X) =
             \begin{pmatrix}
-                \gamma_{1,M+1}x_{1,M+1} \\
-                \gamma_{2,M+1}x_{2,M+1} \\
-                \vdots \\
-                \gamma_{M,M+1}x_{M,M+1}
+                \gamma_{1}x_{1,M+1} & \cdots & \gamma_{1}x_{1,M(N-1)} \\
+                \gamma_{2}x_{2,M+1} & \cdots & \gamma_{2}x_{2,M(N-1)} \\
+                \vdots                & \ddots &  \vdots                \\
+                \gamma_{M}x_{M,M+1} & \cdots & \gamma_{M}x_{M,M(N-1)}
             \end{pmatrix}
     \]
     \[
-        \Gamma_{11}(X) =
-            \begin{pmatrix}
-                \gamma_{M{+}1,1}x_{M{+}1,1} &
-                \gamma_{M{+}1,2}x_{M{+}1,2} &
+        \Gamma_{21}(X) =
+            - \begin{pmatrix}
+                \gamma_{1}x_{M{+}1,1} &
                 \cdots &
-                \gamma_{M{+}1,M}x_{M{+}1,M}
+                \gamma_{M}x_{M{+}1,M}
+                \\
+                \vdots & \ddots & \vdots
+                \\
+                \gamma_{1}x_{M(N-1),1} &
+                \cdots &
+                \gamma_{M}x_{M(N-1),M}
             \end{pmatrix}
     \]
     \[
@@ -1008,12 +992,16 @@ Suppose \( A \) has a simple spectrum,
             \end{aligned}
             \right.
     \]
-    where we've used the convention:
+    \[
+        \gamma_{i} =
+                \frac{1}{ \lambda_i},\ 1\leq i \leq M,
+    \]
+    где мы использовали соглашение
     \[
         \lambda_{M{+}1} = 0.
     \]
 
-    The operator norm of \( \Gamma \) is:
+    Вычислим операторную норму \( \Gamma \):
     \[
         \|\Gamma\|_{\mathrm{op}} =
         \frac1N
@@ -1031,7 +1019,7 @@ Suppose \( A \) has a simple spectrum,
 \end{lem}
 
 \begin{thm}\label{nk:thm:tiled}
-Suppose \( A \) has simple spectrum and the following inequality holds:
+Пусть \( A \) --- простого спектра, и имеет место следующее неравенство:
 \[
     \left\| \mathbb{B} \right\|_{\mathrm{op}}
         \leq 
@@ -1042,7 +1030,7 @@ Suppose \( A \) has simple spectrum and the following inequality holds:
          \right\}.
  \]
 
-Then the spectrum of disturbed matrix \( \mathbb{A} - \mathbb{B} \) is
+Тогда спектр пертурбированной матрицы \( \mathbb{A} - \mathbb{B} \) представим в виде
 \[
     \sigma\left(\mathbb{A}\right) =
         \left\{
@@ -1051,11 +1039,11 @@ Then the spectrum of disturbed matrix \( \mathbb{A} - \mathbb{B} \) is
     \cup \sigma_{M{+}1}.
 \]
 
-The eigenvectors
+Собственные векторы
     \( \hat{f}_j,\ \hat{f}_{j,k},\ j{=}\overline{1,M},\ k{=}\overline{1,N{-1}} \)
-    of the matrix \( \mathbb{A}{-}\mathbb{B} \),
-    the values \( x_{jj}^o,\ j{=}\overline{1,M} \)
-    and the set \( \sigma_{M{+}1} \) are in the following bounds:
+    матрицы \( \mathbb{A}{-}\mathbb{B} \),
+    значения \( x_{jj}^o,\ j{=}\overline{1,M} \)
+    и множество \( \sigma_{M{+}1} \) удовлетворяют следующим ограничениям:
 \[
     \lvert x_{jj}^o\rvert,
     \ \max_{\lambda\in\sigma_{M{+}1}} \lvert\lambda\rvert
@@ -1076,9 +1064,9 @@ The eigenvectors
 for all \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).
 \end{thm}
 
-\section{Perturbed Kronecker products' spectra}
+\section{Произведение Кронекера и его возмущения}
 
-Now we consider Kronecker product
+Рассмотрим теперь Кронекеровы произведения
 \[
     A\otimes B =
     \begin{pmatrix}
@@ -1088,11 +1076,11 @@ Now we consider Kronecker product
     \end{pmatrix}
     \in \mathtt{Mat}_{{MN}{\times}{MN}}(\mathbb{K})
 \]
-of squared matrices
+квадратных матриц
 \( A={(a_{ij})}\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}),
  \ B={(b_{ij})}\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}). \)
-We will analyze its spectral properties
-    under small-norm perturbations:
+Будем исследовать спектральные свойства таких матриц под действием небольших по
+норме возмущений:
 \begin{equation}\label{-kronperturb}
     A\otimes B - F.
 \end{equation}
@@ -1104,21 +1092,23 @@ We will analyze its spectral properties
 %     (A-\Delta A)\otimes (B - \Delta B).
 % \]
 
-Kronecker product has several appealing properties~\cite{bellman-matrices-kron}.
+Обратим внимание на некоторые полезные свойства Кронекерова произведения~\cite{bellman-matrices-kron}.
 \begin{itemize}
-\item It is associative:
+\item Ассоциативность:
     \[ A\otimes (B\otimes C) = (A\otimes B)\otimes C. \]
-\item It is distributive with respect to addition:
+\item Дистрибутивность относительно сложения:
     \[ (A+B)\otimes(C+D) = A\otimes C + A\otimes D + B\otimes C + B\otimes D. \]
-\item The Kronecker product of matrix products has the following property:
+\item
     \[ (AB)\otimes(CD) = (A\otimes C)(B\otimes D) \]
-    whenever products \( AB \) and \( CD \) make sense.
-\item The trace of \( A\otimes B \) is \[ \operatorname{tr}(A\otimes B) = \operatorname{tr}A\operatorname{tr}B. \]
-\item If \( A \) and \( B \) are both symmetric matrices,
-      then \( A\otimes B \) is symmetric as well.
+    всегда, когда произведения \( AB \) и \( CD \) ``имеют смысл'' и существуют.
+  \item След (trace) матрицы \( A\otimes B \) есть
+    \[ \operatorname{tr}(A\otimes B) = \operatorname{tr}A\operatorname{tr}B. \]
+\item Если \( A \) и \( B \) --- симметричные,
+      то и произведение \( A\otimes B \) симметрично.
 \end{itemize}
-Note also that the ``tiled'' matrix from the last example
-    can be represented as a Kronecker product:
+
+Заметим, что ``tiled'' matrix из последнего примера
+можно представить как Кронекерово произведение:
 \[
     \mathbb{A} =
     \begin{pmatrix}
@@ -1129,108 +1119,110 @@ Note also that the ``tiled'' matrix from the last example
     \]
 
 \begin{lem}
-Suppose \( A \) and \( B \) have simple structure,
-    i.e. \( A \) has \( N \) eigenvectors
-    \( f_1, \ldots, f_N \)
-    whose corresponding eigenvalues are \( \mu_1, \ldots, \mu_N \)
-    and \( B \) has eigenvectors \( h_1, \ldots, h_M \)
-    with the eigenvalues \( \lambda_1, \ldots, \lambda_M \).
-Then \( A\otimes B \) also has simple structure;
-    it has \( MN \) independent eigenvectors \( f_i\otimes h_j,\ i{=}\overline{1,N}, j{=}\overline{1,M} \)
-    and the corresponding eigenvalues are \( \mu_i \lambda_j \).
+Пусть \( A \) и \( B \) --- простой структуры,
+    i.e. \( A \) имеет \( N \) независимых собственных векторов
+    \( f_1, \ldots, f_N \),
+    которым соответствуют собственные числа \( \mu_1, \ldots, \mu_N \)
+    и \( B \) имеет собственные векторы \( h_1, \ldots, h_M \)
+    с собственными значениями \( \lambda_1, \ldots, \lambda_M \).
+
+Тогда произведение \( A\otimes B \) --- также простой структуры;
+    оно имеет \( MN \) независимых Eigenvektoren \( f_i\otimes h_j,\ i{=}\overline{1,N}, j{=}\overline{1,M} \)
+    которым соответствуют Eigenwerte \( \mu_i \lambda_j \).
 \end{lem}
 
 
-Now suppose that among these pairwise products \( \mu_i \lambda_j \)
-    there are only \( s \) distinct values \( \nu_1, \ldots, \nu_s \).
-To each eigenvalue \( \nu_k \) (\( k{=}\overline{1,s} \)) there corresponds
-    an eigenspace \[ E_k = \operatorname{span}(f_i\otimes h_j;\ \mu_i\lambda_j = v_k,\ i{=}\overline{1,N},\ j{=}\overline{1,M}) \subset \mathbb{K}^{MN}. \]
-These eigenspaces form a direct-sum decomposition of \( \mathbb{K}^{MN} \):
+Сгруппируем одинаковые собственные значения: пусть среди произведений \( \mu_i
+\lambda_j \) лишь \( s \) различных чисел: \( \nu_1, \ldots, \nu_s \).
+Каждому собственному значению \( \nu_k \) (\( k{=}\overline{1,s} \)) соответствует
+собственное подпространство (eigenspace, Eigenraum)
+\[ E_k = \operatorname{span}(f_i\otimes h_j;\ \mu_i\lambda_j = v_k,\ i{=}\overline{1,N},\ j{=}\overline{1,M}) \subset \mathbb{K}^{MN}. \]
+Эти подпространства составляют разложение \( \mathbb{K}^{MN} \) в прямую сумму:
     \[ \mathbb{K}^{MN} = E_1 \oplus \cdots \oplus E_s. \]
-Any vector \( x\in\mathbb{K}^{MN} \) can be uniquely represented
-    in the form
+Всякий вектор \( x\in\mathbb{K}^{MN} \) можно единственным образом представить в виде
     \begin{equation}\label{-decomposition-x}
         x = x_1 + \cdots + x_s,\ x_k\in E_k,\ k=\overline{1,s}.
     \end{equation}
-This direct-sum decomposition of \( \mathbb{K}^{MN} \)
-    corresponds to a decomposition of the identity matrix \( E\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \)
-    (which defines an identity operator)
-    into a sum of matrices of the spectral projections:
+Этой direct-sum decomposition пространства \( \mathbb{K}^{MN} \)
+    соответствует декомпозиция единичной матрицы \( E\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \)
+    (соответствующей тождественному отображению)
+    в прямую сумму идемпотентных матриц --- \emph{спектральных проекторов}:
     \[
         E = P_1 + \cdots + P_s.
     \]
-The spectral projection \( \mathcal{P}_k \) (\(k{=}\overline{1,s}\)) is given by the formula
+Спектральная проекция \( \mathcal{P}_k \) (\(k{=}\overline{1,s}\)) определяется формулой
     \[
         \mathcal{P}_k x = x_k \in E_k\subset \mathbb{K}^{MN}
     \]
-    with respect to the decomposition~\eqref{-decomposition-x} of \( x \).
+    в соответствие с разложением~\eqref{-decomposition-x} \( x \).
 
-For any matrix \( X\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \)
-    the following trivial equality holds:
+Для всякой матрицы \( X\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \)
+верно следующее неравенство:
     \[
         X = \sum_{i,j=1}^s P_i X P_j.
     \]
 
-The matrix \( A\otimes B \) can be decomposed into
+Матрица \( A\otimes B \) может быть разложена
     \[
         \mathcal{A} = \sum v_j P_j.
     \]
 
-Now we should be able to reproduce the same steps as before
-    to retrieve the estimates.
+Наконец, мы готовы получить оценки
 
 % \begin{center}
 % \textbf{Lemma.}
 % {\it
-The natural way to define \( J \) is as follows:
+Как и прежде, вид \( J \) ``напрашивается'' сам:
     \[
         JX = \sum_{j=1}^s P_j X P_j.
     \]
-The system of equations
+Система уравнений
     \[\left\{\begin{aligned}
         & \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - JX, \\
         & J\Gamma X = 0,\ X\in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K})
     \end{aligned}\right.\]
-    has the unique solution:
+имеет единственное решение:
     \[
         \Gamma X = \sum_{1\leq i{\neq}j \leq s} \frac{1}{\nu_i-\nu_j} P_i X P_j.
     \]
-    The norm of \( \Gamma \) is:
+Норма \( \Gamma \) считается:
     \[
         \|\Gamma\|_{\mathrm{op}} = \gamma = \frac{1}{\min_{1\leq i{\neq}j\leq s}\lvert\nu_i - \nu_j\rvert}
     \]
 % \/}
 % \end{center}
 
+Непосредственным образом выводим теорему:
 
 \begin{thm}\label{nk:thm:kron}
-    Consider the perturbed matrix~\eqref{-kronperturb}
+    Рассмотрим возмущённую матрицу~\eqref{-kronperturb}:
         \[
             A{\otimes}B - F.
         \]
-    Let \( A\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}) \) and \( B\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
-        be diagonalizable matrices.
-    Let \( f_1, \ldots, f_N \) be the eigenvectors of \( A \)
-        corresponding to the eigenvalues \( \mu_1, \ldots, \mu_N \)
-        and let \( h_1, \ldots, h_M \) be the eigenvectors of \( B \)
-        corresponding to the eigenvalues \( \lambda_1, \ldots, \lambda_M \).
-    The spectrum of their Kronecker product \( A{\otimes}B \)
-        is composed of all the possible pairwise products \( \mu_i \lambda_j \)
-        and the corresponding eigenvectors are \( f_i\otimes h_j \).
-    Suppose that out of these \( MN \) eigenvalues only \( s \) are distinct:
+    Пусть \( A\in\mathtt{Mat}_{N{\times}N}(\mathbb{K}) \) and \( B\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \)
+    --- диагонализуемые матрицы.
+    Пусть \( f_1, \ldots, f_N \) --- eigen-векторы \( A \),
+        которые соответствуют eigen-числам \( \mu_1, \ldots, \mu_N \),
+        и пусть \( h_1, \ldots, h_M \) --- собственные векторы \( B \)
+        с собственными числами \( \lambda_1, \ldots, \lambda_M \).
+    Спектр их произведения Кронекера --- \( A{\otimes}B \) ---
+        состоит из всевозможных попарных произведений \( \mu_i \lambda_j \)
+        с соответствующими собственными векторами \( f_i\otimes h_j \).
+    Сгруппируем эти \( MN \) произведений в \( s \) попарно различных
+    собственных чисел:
         \( \nu_1, \ldots \nu_s \).
 
-    Suppose
+    Пусть
     \[
         \|F\| \leq \frac14 \gamma^{-1} = \frac14 \min_{1\leq i{\neq}j\leq s}\lvert\nu_i - \nu_j\rvert.
     \]
 
-    Then \( A{\otimes}B - F \) is similar to
+    Тогда матрица \( A{\otimes}B - F \) подобна матрице
     \[ \sum_{k=1}^s \nu_k P_k - JX^o = \sum_{k=1}^s (\nu_k P_k - P_k X^o P_k) \]
-    for some \( X^o \in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \),
+    для некоторого \( X^o \in \mathtt{Mat}_{MN{\times}MN}(\mathbb{K}) \),
     \( \|X^o - F\|\leq 3\|F\| \).
 
-    All the eigenvalues of \( A{\otimes}B - F \) are contained in the circles
+    Все собственные значения \( A{\otimes}B - F \) содержатся в шарах
     \[
         \Omega_k = \left\{
             \lambda\in\mathbb{C};
@@ -1238,31 +1230,32 @@ The system of equations
             \right\},
         \ k{=}\overline{1,s}.
     \]
-    There is at least one eigenvalue in each of these circles.
+    В каждом из шаров есть хотя бы одно собственное число.
 
-    Suppose the eigenvalue \( \nu_k=\mu_{i_k}\lambda_{j_k} \) of \( A{\otimes}B \) has multiplicity \( 1 \),
-        that is it has the only eigenvector \( v_k = f_{i_k}{\otimes}h_{j_k} \).
-    It is equivalent to the statement that the eigenvalue \( \mu_{i_k} \)
-        of \( A \) and the eigenvalue \( \lambda_{j_k} \) of \( B \)
-        are both of multiplicity \( 1 \).
-    Then \( A{\otimes}B - F \) has eigenvalue in the circle \( \Omega_k \)
-        and the corresponding eigenvector \( \hat{v}_k \) is within bounds
+    Пусть \( \nu_k=\mu_{i_k}\lambda_{j_k} \) --- собственное число \( A{\otimes}B \) кратности \( 1 \),
+        id est ему соответствует единственный собственный вектор \( v_k = f_{i_k}{\otimes}h_{j_k} \).
+    Эквивалентно: eigenvalue \( \mu_{i_k} \)
+        матрицы \( A \) и eigenvalue \( \lambda_{j_k} \) матрицы \( B \)
+        оба имеют кратность \( 1 \).
+    Тогда \( A{\otimes}B - F \) имеет собственно значение в шаре \( \Omega_k \)
+        которому соответствует собственный вектор \( \hat{v}_k \),
+        удовлетворяющий неравенству
     \[
         \|\hat{v}_k - v_k\| \leq 4\gamma \|F\|.
     \]
-    If \( \nu_k \) is well separated from all the other eigenvalues of \( A{\otimes}B \):
+    Если \( \nu_k \) хорошо отделено от прочего спектра \( A{\otimes}B \):
     \[
         \min_{l\neq k}
         \lvert
         \nu_k - \nu_l
         \rvert
-        \geq 4\|F\|,
+        \geq 4\|F\|,\ \text{(спектральная отделимость)},
     \]
-    then \( \nu_k \) is the only eigenvalue of \( A{\otimes}B - F \)
-    in that circle.
+    то \( \nu_k \) --- единственное собственное значение \( A{\otimes}B - F \)
+    в этом шаре.
 \end{thm}
 
-For example, in the case of a ``tiled'' matrix
+Например, в уже упомянутом случае ``tiled'' матрицы
 \[
     \mathcal{J}_N{\otimes}B =
     \begin{pmatrix}
@@ -1271,92 +1264,83 @@ For example, in the case of a ``tiled'' matrix
         B & \cdots & B
     \end{pmatrix}
 \]
-    we would have
+мы бы имели:
     \( \nu_1=N \),
     \( \nu_2=0 \).
-Let \( \lambda_1,\ldots,\lambda_M \)
-    be the eigenvalues of \( B \).
-Spectrum of \( \mathcal{J}_N{\otimes}B \) is
+Обозначим \( \lambda_1,\ldots,\lambda_M \)
+    собственные значения \( B \).
+Spectrum матрицы \( \mathcal{J}_N{\otimes}B \) есть
     \[
         \sigma(\mathcal{J}_N{\otimes}B) = \left\{ \mu_i\lambda_j;\ i{=}\overline{1,2},\ j{=}\overline{1,M}\right\} = \{0\}\cup N\sigma(B).
     \]
-All of these eigenvalues except for \( 0 \)
-    are of multiplicity \( 1 \)
-    and well-separated for sufficiently large \( N \).
-Then \( \gamma=\frac1N \).
-This directly implies the theorem of the previous section.
+Все эти значения, за вычетом \( 0 \),
+    имеют кратность \( 1 \)
+    и хорошо отделены друг от друга при достаточных \( N \).
+Получаем \( \gamma=\frac1N \).
+Теорема предыдущего параграфа непосредственно следует из этого и последней теоремы.
 
-These results might be refined
-    with the use of the theorem on splitting an operator~\cite{baskakov1987theorem}
-    which allows to consider each eigenvalue individually
-    and obtain more precise estimates for the corresponding
-    eigenvalue of the perturbed matrix.
-The higher the gap between a picked eigenvalue
-    and the rest of the spectrum
-    the higher the precision of the estimate
-    for the corresponding eigenvalue of the perturbed matrix.
+Заметим, что результаты могут быть уточнены с помощью теоремы о расщеплении~\cite{baskakov1987theorem}
+позволяющий отследить каждую отделённую часть спектра более ``независимо''
+и получить более аккуратные оценки.
+Точность метода повышается с увеличением спектральной отделимости.
 
-\section{Conclusion}
+\section{Вывод}
 
-We have derived bounds
-    for perturbations of Kronecker products
-    of matrices using the method of similar operators
-    which is a powerful tool in perturbation theory.
-Developed in the context of Banach spaces
-    this method turns out to be just as useful
-    in finite-dimensional problems.
-
-The problem of perturbation analysis for the Kronecker products
-    despite being old still has a whole open field for future research.
-An example of more general yet quite similar problem
-    is that of an analysis of tensor products
-    of finite-rank operators
-    and abstract operators in Banach spaces.
+Локализованы собственные значения и векторы пертурбаций Кронекеровых
+произведений диагонализуемых квадратных матриц. Для исследования был применён
+метод подобных операторов.
+Это оставляет возможность в будущем уточнить оценки, а также построить алгоритмы
+для численного получения (evaluation of) собственных векторов и чисел.
+Результаты также могут быть расширены на бесконечномерный случай.
 
 \newpage
 \appendix
-\section{Definitions}
+\section{Определения}
 
-\textbf{Function} --- a triple \( (X, Y, f) \) of the domain set \( X \),
-the target set \( Y \), and the rule \( f \) mapping each \( x\in X\)
-into corresponding \( y\in Y \).
+\textbf{Функция} --- тройка \( (X, Y, f) \), состоящия из domain set \( X \),
+the target set \( Y \), и правила \( f \), ставящего каждому \( x\in X\)
+в соответствие некоторый \( y=f(x)\in Y \).
 
-\textbf{Vector space over a field \(\mathbb{K}\) } --- a tuple \( (X, 0, +, \cdot) \)
-of a set \( X \) which is an Abelian group with respect to addition \( +:X\to X\)
-with identity \( 0\in X \) and a scaling (external multiplication by a scalar)
-operation \(\cdot: \mathbb{K}\times X \to X \) with usual properties.
-Sometimes we shall denote such space merely by \( X \).
-Examples: coordinate spaces \( \mathbb{K}^n,\ n\in\mathbb{N} \) with elementwise
-scaling and addition, polynomials of a given order \( k \) (i.e. of a degree
-strictly less than \( k \)), etc.
+\textbf{Векторное пространство над полем \(\mathbb{K}\)} (в.п.) --- кортеж \( (X, 0, +, \cdot) \)
+из множества \( X \), образующего Абелеву группу, относительно сложения \(
++:X\to X\), с нулём \( 0\in X \)
+и скалированием (умножением на скаляр)
+\(\cdot: \mathbb{K}\times X \to X \), обладающими естественными свойствами.
+Для простоты мы часто будем обозначать пространство со структурой как просто \( X \).
+Examples: координатные пространства \( \mathbb{K}^n,\ n\in\mathbb{N} \) с поэлементным
+скалированием и сложением, полиномы фиксированного порядка \( k \) (т.е.
+степени, не большей \( k \)), et cetera.
 
-\textbf{Linear operator} --- a mapping between vector spaces (over same field),
-which ``respects'' and ``preserves'' their linear structure, i.e. such a mapping
+\textbf{Линейный оператор} --- отображение между векторными пространствами над
+одним полем,
+которое ``уважает'' и ``сохраняет'' их линейную структуру, i.e. такое, что:
 \( A:X\to Y \) that \( A(\alpha x_1 + x_2) = \alpha Ax_1 + Ax_2,\
 \alpha\in\mathbb{K}, x_i\in X \).
 
-\textbf{Linear algebra} --- a vector space \( X \) with associative
-multiplication operation \( (A, B)\mapsto AB: X^2\to X \).
+\textbf{Линейная алгебра} --- в.п. \( X \) с ассоциативным
+умножением \( (A, B)\mapsto AB: X^2\to X \).
 
-\textbf{Inner product space}
+\textbf{Пространство с внутренним произведением (Inner product space)} --- в.п.,
+на котором определено билинейное отображение \( (x,y) \mapsto \langle (x, y) \rangle\)
+с естественными свойствами.
 
-(Directed multi-)\textbf{Graph} --- a triple \(G = (V, E, \phi)\)
-of the set \( V \) of vertices, the set \( E \) of edges,
-and the mapping \( \phi: E\to V^2\).
+(Ориентированный мульти-)\textbf{Graph} --- тройка \(G = (V, E, \phi)\)
+из множества \( V \) вершин, множества \( E \) рёбер,
+отображения \( \phi: E\to V^2\).
 
-Graph is \textbf{undirected} if for each \( e\in E, \phi(e)=(u, v)\)
-there is \( f\in E, \phi(f)=(v, u) \).
+Граф \textbf{неориентированный (undirected)} если для всех \( e\in E, \phi(e)=(u, v)\)
+найдётся \( f\in E, \phi(f)=(v, u) \).
 
-\textbf{Edge} --- an element \( e\in E \); if \( \phi(e) = (u, v)\in V^2 \)
-we will say that ``\( e \) is an edge originating at \( u \) and terminating at \(
-v \)'', or simply ``an edge from \( u \) to \( v \)''.
+\textbf{Ребро (edge)} --- элемент \( e\in E \); если \( \phi(e) = (u, v)\in V^2 \),
+то будем говорить ``ребро \( e \) исходит (originates at) из \( u \) в
+(terminates at) \( v \)'', или просто ``ребро из \( u \) в \( v \)''.
 
-A vertex \( v \) is said to be \textbf{incident with} an edge \( e \)
-if \( e \) originates (and) or terminates at \( v \).
+Вершина \( v \) называется инцидентной (\textbf{incident with}) с ребром \( e \)
+если \( e \) исходит из, и/или входит в \( v \).
 
-Two vertices \( u, v\) are said to be \textbf{adjacent}
-if they share same edge, i.e. if there is an edge \( e\in E \)
-such that \( \phi(e)\in\{(u, v),\ (v, u) \}\).
+Вершины \( u, v\) называются смежными (\textbf{adjacent})
+если они есть ребро, инцидентное им обоим, i.e. если есть \( e\in E \)
+такой что \( \phi(e)\in\{(u, v),\ (v, u) \}\).
 \newpage
 \section{References}
 \nocite{*}

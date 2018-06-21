@@ -346,19 +346,18 @@ Eigenvector-ранг \( i \)-й вершины определяется как
     в соответствующие собственные векторы второй матрицы,
     \( A_2 x = \lambda x \implies A_1 U x = \lambda U x \).
 
-The most important notion
-    in the abstract method of similar operators
-    is that of an \emph{admissible triple}.
-For our specific purposes it suffices to say
-    that \( (\mathtt{Mat}_{n{\times}n}(\mathbb{K}), J, \Gamma) \)
-    forms an \emph{admissible triple}
-    for a matrix \( A\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}) \)
-    if the following conditions are met:
+Основным понятием абстрактного метода подобных операторов
+является понятие \emph{допустимой тройки} (\emph{an admissible triple}).
+В нашем --- конечномерным случаем --- мы будем говорить, что
+    \( (\mathtt{Mat}_{n{\times}n}(\mathbb{K}), J, \Gamma) \)
+    формирует допустимую тройку
+    для матрицы \( A\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}) \)
+    если выполняются следующие условия:
 \begin{itemize}
     \item \( J, \Gamma \in \mathtt{End}(\mathtt{Mat}_{n{\times}n}(\mathbb{K})) \)
-        are transformers;
-    \item \( J \) is a projection (\( J^2 = J \));
-    \item  \( \Gamma \) satisfies the equations:
+      являются трансформерами;
+    \item \( J \) --- линейный проектор (\( J^2 = J \));
+    \item  \( \Gamma \) удовлетворяет уравнениям:
         \[
             A \Gamma X - (\Gamma X) A = X - JX,
         \]
@@ -367,99 +366,82 @@ For our specific purposes it suffices to say
         \]
 \end{itemize}
 
-The main theorem of the method
-    may be now formulated as follows:
+Теперь мы готовы сформулировать основную теорему метода подобных операторов:
 
 \begin{thm}
-    Consider a matrix \( A - B \)
-        with \( A, B \in \mathtt{Mat}_{n{\times}n}(\mathbb{K}) \).
-    Suppose \( (\mathtt{Mat}_{n{\times}n}(\mathbb{K}), J, \Gamma) \)
-        is an admissible triple for the matrix \( A \)
-        and suppose the following inequality holds:
+    Рассмотрим матрицу \( A - B \),
+         \( A, B \in \mathtt{Mat}_{n{\times}n}(\mathbb{K}) \).
+    Пусть \( (\mathtt{Mat}_{n{\times}n}(\mathbb{K}), J, \Gamma) \)
+        является допустимой тройкой для \( A \)
+        и выполняется неравенство:
         \[
             \|B\|\|\Gamma\|_{\mathrm{op}} \leq \frac14.
         \]
 
-    Then there exists such a matrix \( X^o\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}) \)
-        that \( A - B \) is similar to \( A - J X^o \);
-        the similarity matrix is \( E + \Gamma X^o \);
-        the following estimates are valid:
+    Тогда существует такая матрица \( X^o\in\mathtt{Mat}_{n{\times}n}(\mathbb{K}) \)
+        что исходная матрица \( A - B \) подобна более ``простой'' матрице \( A
+        - J X^o \);
+        соответ\-ствующие преобразование подобия определяется матрицей \( E +
+        \Gamma X^o \);
+        имеют место следующие оценки:
         \[
             \|X^o - B\| \leq 3 \left\|B\right\|,
         \]
         \[
             \operatorname{spr}(X^o) \leq \|X^o\| \leq 4 \left\|B\right\|,
         \]
-        where \( \operatorname{spr}(X^o) \)
-        is the spectral radius of \( X^o \) (the largest absolute eigenvalue).
-    Such \( X^o \) can be found as the limit of a convergent sequence
+        где \( \operatorname{spr}(X^o) \)
+        --- спектральный радиус матрицы \( X^o \) (наибольшее по модулю
+        собственное значение).
+    Эта матрица \( X^o \) может быть вычислена как предел сходящейся последовательности
         \( \left( \Phi^k(0);\ k\in\mathbb{N} \right) \)
-        in a Banach algebra \( \mathtt{Mat}_{n{\times}n}(\mathbb{K}) \).
-        Here \( \Phi \) is a nonlinear contraction mapping
-        defined on the ball \( \{X\in\mathtt{Mat}_{m{\times}n}(\mathbb{K});\ \|X-B\|\leq 3\|B\| \} \)
-        and given by
+        в Банаховой алгебре \( \mathtt{Mat}_{n{\times}n}(\mathbb{K}) \).
+        Здесь \( \Phi \) --- (нелинейное) сжимающее отображение
+        шара \( \{X\in\mathtt{Mat}_{m{\times}n}(\mathbb{K});\ \|X-B\|\leq 3\|B\| \} \)
+        в себя, определяемое формулой
     \[
         \Phi(X) = B\Gamma X - (\Gamma X)J(B + B\Gamma X) + B
     \]
-        and \( \Phi^k = \underbrace{\Phi\circ\cdots\circ\Phi}_{k\ \text{copies}} \)
-        denotes the composition.
+        а \( \Phi^k = \underbrace{\Phi\circ\cdots\circ\Phi}_{k\ \text{copies}} \)
+        означает функциональную композицию.
 \end{thm}
 
-\section{Almost complete graph adjacency matrix}
+\section{Матрица смежностей почти-полного орграфа}
 \sloppy
-Consider a digraph defined by the following adjacency matrix:
+Рассмотрим орграф заданный матрицей смежностей следующего вида:
 \[
     A = \mathcal{J}_N - B = \begin{pmatrix}1 & \cdots & 1 \\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1\end{pmatrix} - B,
 \]
 
-Here \( \mathcal{J}_N \) is the all-ones matrix.
-The unity on the intersection
-of \( i \)'th row and \( j \)'th column of \( B \)
-corresponds to an edge from \( i \) to \( j \)
-being absent in the graph.
-This example has already been considered in~\cite{sergekozlukov@volgograd}
-and here we will reproduce some steps to demonstrate the technique.
-
-Рассмотрим матрицу \( A \) размера \( N\times N \),
- составленную из \( M \) нулей и \( N^2 - M \) единиц.
-\[
-    A = \mathcal{J}_N - B = \begin{pmatrix}1 & \cdots & 1 \\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1\end{pmatrix} - B,
-\]
-Здесь \( \mathcal{J}_N \)~--- матрица, составленная из \( N\times N \) единиц,
- а~\( B \) имеет единицы в~точности на тех \( M \) местах,
- где в~\( A \) стоят нули.
-
-Как матрица смежности, \( A \) соответствует орграфу,
- полученному из полного графа с~петлями на \( N \) вершинах
- удалением некоторых \( M \) из \( N^2 \) р\"ебер.
-Некоторые важные свойства графа связаны с~спектром его матрицы смежностей.
-Спектральная теория графов и~е\"е приложения подробно рассмотрены
-в~монографии~\cite{cvetkovic1997eigenspaces,cvetkovic1980spectra,cvetkovic2010introduction,godsil2013algebraic}.
+где \( \mathcal{J}_N \) --- ``матрица единиц'' (an all-ones matrix),
+а матрица \( B \) состоит из \( N^2 - M \) нулей и \( M \) единиц.
+Матрицу \( A \) следует интерпретировать следующим образом.
+Матрица \( \mathcal{J}_N \) соответствует полному графу на \( N \) вершинах, в
+котором к каждой вершине ``подвесили'' петлю --- ребро из вершины в себя.
+Теперь, единица на пересечении
+\( i \)-й строки и \( j \)-го столбца матрица \( B \)
+означает удалённое из этого графа ребро \( (i, j) \).
+Этот пример был рассмотрен и опубликован в работе~\cite{sergekozlukov@volgograd},
+которую мы здесь воспроизведем для демонстрации техники.
 
 Что можно сказать о~собственных значениях матриц рассматриваемого вида?
 
 Спектр \( \sigma\left( \mathcal{J}_N \right) \)
- матрицы \( \mathcal{J}_N \) легко считается:
- \( \mathcal{J}_N^2 = N \mathcal{J}_N, \) т.е.
- \( \lambda(\lambda - N) \)~--- аннулирующий и, что легко проверить,
- минимальный многочлен матрицы \( \mathcal{J}_N \), а~значит
- \( \sigma\left( \mathcal{J}_N \right) = \left\{ 0,N \right\}. \)
+ матрицы \( \mathcal{J}_N \) легко считается, так как минимальный аннулирующий
+ многочлен \( \mathcal{J}_N \) имеет вид \( \lambda(\lambda - N) \) (так как \(
+ \mathcal{J}_N^2 = N \mathcal{J}_N, \)), а потому
+ \[ \sigma\left( \mathcal{J}_N \right) = \left\{ 0,N \right\}. \]
 
-One can easily find the minimal annihilating polynomial of \( \mathcal{J}_N \)
-    to be \( \lambda(\lambda - N) \).
-This comes from the fact that \( \mathcal{J}_N^2 = N \mathcal{J}_N \).
-Consequently the spectrum of \( \mathcal{J}_N \) is
-\[
-    \sigma(\mathcal{J}_N) = \left\{0, N\right\}.
-\]
-
-При достаточно малых \( M \),
- спектры матриц \( \mathcal{J}_N \) и~\( A \) будут ``близки''.
-Методом подобных операторов (см.~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}),
- позволяющим для возмущений ``идеального'' объекта, спектральные свойства которого известны,
- найти элемент рассматриваемой алгебры, изоспектральный возмущ\"енному,
- но имеющий более удобную для вычислений структуру,
- в~статье доказывается
+Очевидно, при достаточно малых \( M \),
+спектры матриц \( \mathcal{J}_N \) и~\( A \) будут ``близки''.
+В терминах теории возмущений, мы понимаем матрицу \( \mathcal{J}_N \)
+``идеальным случаем'', а матрицу \( B \) --- малым возмущением.
+Метод подобных операторов (см.~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}),
+предлагает систему уравнений для нахождения матрицы подобной \( \mathbb{J}_N -
+B \), но имеющей более ``простую'' структуру. Эти уравнения решаются методом
+простой итерации~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}
+Результатом решения этих уравнений
+является
 \begin{thm}\label{nk:thm:almost-all-ones}
     Пусть \( M < \frac{1}{16} N^2 \),
     тогда спектр матрицы \( A \) можно представить в~виде
@@ -470,16 +452,6 @@ Consequently the spectrum of \( \mathcal{J}_N \) is
     \[ \sigma_1 \subset \left\{ \mu\in\mathbb{R}; \lvert \mu - N \rvert < 4\sqrt{M} \right\}, \]
     \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C}; \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
 \end{thm}
-
-Доказательство состоит в~построении уравнения для матрицы, подобной \( A \),
- но устроеной ``проще''. Решение возникающего нелинейного уравнения
- в~Банаховой алгебре \( \mathtt{Mat}_N\mathbb{C} \)
- доставляется методом простых итераций (см., например,~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}).
-
-Подобие матриц \( \mathcal{A}_1, \mathcal{A}_2 \)
- понимается в~смысле существования обратимой матрицы \( \mathcal{U} \),
- такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
-Подобные матрицы изоспектральны (их спектры совпадают).
 
 Провед\"ем предварительные преобразования.
 
@@ -502,59 +474,39 @@ Consequently the spectrum of \( \mathcal{J}_N \) is
     \( \mathcal{J}_N = \mathcal{U}\mathcal{A} \mathcal{U}^{-1} \).
 \end{lem}
 \begin{proof}
-    Собственному значению \( 0 \) соответствует \( N-1 \) независимый собственный вектор
-        \( f_1 = {\left(1,-1,0,\ldots,0\right)}, \ldots,
-           f_{N-1} = {\left(0,\ldots,0,1,-1\right)} \),
-    а~собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
-    соответствует собственный вектор \( f_N = {\left(1,\ldots,1\right)} \).
-    Применив ортогонализацию Грама-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \):
+  Единственному ненулевому собственному значению \( N \) соответствует
+  одномерное собственное подпространство, порождённое собственным вектором
+  \[
+    h_N = \frac{1}{\sqrt{N}} \left(1, \ldots, 1\right)\in\mathbb{R}^N.
+  \]
+  Ядро (null-space) матрицы \( \mathbb{J}_N \) ортогонально вектору \( h_N \)
+  и порождается базисом
+  \( f_1 = {\left(1,-1,0,\ldots,0\right)}, \ldots,
+     f_{N-1} = {\left(0,\ldots,0,1,-1\right)}. \)
+  Применив ортогонализацию Грама-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \):
     \[
         h_k = \frac{1}{\sqrt{k(k+1)}}
-            \left(\smash{\underbrace{1,~\ldots,~1,}_{k \text{ раз}}}~-k,~0,~\ldots,~0\right)
+            \left(\smash{\underbrace{1,~\ldots,~1,}_{k\ \text{copies}}}~-k,~0,~\ldots,~0\right)
             \in \mathbb{R}^N, \quad k={1, \ldots, N-1} \]
     \[
         h_N = {\left(1,~\ldots,~1\right)} \in \mathbb{R}^N, \]
 
-The only non-zero eigenvalue \( N \) has the corresponding eigenvector
-\[
-    h_N = \frac{1}{\sqrt{N}} \left(1, \ldots, 1\right)\in\mathbb{R}^N.
-\]
-The null-space of \( \mathcal{J}_N \) is orthogonal to \( h_N \)
-    and allows the orthonormal basis:
-\[
-    h_k = \frac{1}{\sqrt{k(k+1)}} \left(\underbrace{1, \ldots, 1}_{k\ \text{copies}}, -k, 0, \ldots, 0\right),\ k=\overline{1, N-1}.
-\]
-
-
-    В~качестве матрицы \( \mathcal{U} \) выберем матрицу,
-    имеющую столбцами векторы \( h_N, h_1, \ldots, h_{N-1} \):
-    \[ \mathcal{U} =
-    \begin{pmatrix}
-        \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \vdots            & \vdots            &  \vdots             & \ddots & \vdots                      & \vdots   \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{2-N}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{(N-1)N}} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & 0                  & \frac{1-N}{\sqrt{(N-1)N}}
-    \end{pmatrix}.\]
-\end{proof}
-
-We conclude that the adjacency matrix \( A = \mathcal{J}_N - B \) of this graph
-    is similar to \( \mathcal{A} - \mathcal{B} \)
-    where \( A \) is a block matrix (subscripts denote block sizes; in what follows throughout this subsection block sizes are the same and will be omitted):
+Отсюда заключаем, что матрица смежностей \( A = \mathcal{J}_N - B \)
+рассматриваемого графа подобна матрице
+    \( \mathcal{A} - \mathcal{B} \)
+    где \( A \) --- блочная матрица:
     \[
         \mathcal{A} = \left(\begin{array}{c|c}
-        N & \mathbf{0}_{1{\times}(N{-}1)} \\ \hline
-            \mathbf{0}_{(N{-}1){\times}1} & \mathbf{0}_{(N{-}1){\times}(N{-}1)}
+        N & \mathbf{0}_{\mathtt{Mat}_{1{\times}(N{-}1)}(\mathbb{C})}\\ \hline
+            \mathbf{0}_{\mathtt{Mat}_{(N{-}1){\times}1}(\mathbb{C})} & \mathbf{0}_{\mathtt{Mat}_{(N{-}1){\times}(N{-}1)}(\mathbb{C})}
         \end{array}\right) \in \mathtt{Mat}_{N{\times}N}(\mathbb{R})
     \]
-    and \( \mathcal{B} \) is obtained with a similarity transform:
+    а \( \mathcal{B} \) получается применение преобразования подобия к матрице
+    \( B \):
     \(
         \mathcal{B} = U^{-1} B U \in \mathtt{Mat}_{N{\times}N}(\mathbb{R}).
     \)
-The similarity matrix \( U \) is given by stacking the eigenvectors in columns:
+Матрица подобия \( U \) имеет столбцами собственные векторы \( \mathcal{J}_N \):
     \[
         U = \operatorname{columns}(h_N, h_1, \ldots, h_{N-1}) =
         \begin{pmatrix}
@@ -568,6 +520,8 @@ The similarity matrix \( U \) is given by stacking the eigenvectors in columns:
 
 Таким образом, исходная матрица \( \mathcal{A} \) подобна матрице
 \( \mathcal{A} - \mathcal{B} \), где \( \mathcal{B} = \mathcal{U}^{-1} B \mathcal{U} \).
+\end{proof}
+
 Далее ортогональность матрицы \( U \) будет играть важную роль.
 
 Матрицы из \( \mathtt{Mat}_N\mathbb{C} \) будем записывать в~блочном виде

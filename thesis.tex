@@ -8,6 +8,8 @@
 \usepackage{hyperref}
 \usepackage{tabularx}
 
+\usepackage{setspace}
+
 % ----
 \usepackage[russian,english]{babel}
 \usepackage{fontspec}
@@ -17,6 +19,10 @@
 
 \usepackage{amsmath,amsthm,amssymb,euscript,calc,graphicx,ifthen,textcomp,rotating,cmap,xstring,etoolbox,xparse,l3regex,xargs,changepage,tocloft,titlecaps,enumitem,upgreek}
 \usepackage{mathrsfs}
+
+
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 \numberwithin{equation}{section}
 
@@ -53,9 +59,12 @@ sorting=ntvy,
 
 \begin{document}
 
+\pagestyle{empty}
 \input{inc_review}
 \newpage
 
+{
+  \setstretch{1.0}
 \makeatletter
 {
   \null
@@ -88,9 +97,10 @@ sorting=ntvy,
 \end{center}
 
 \vfill
+
 \begin{center}
-  {Допущена к защите в ГЭК 04.06.2018}
-  \end{center}
+  {Допущена к защите в ГЭК 04.06.2018\hfill\hfill}
+\end{center}
 
 \vfill
 \begin{center}
@@ -107,16 +117,19 @@ sorting=ntvy,
 \begin{center}
   Воронеж~2018
 \end{center}
+}
 
 {
 \pagestyle{empty}
 \newpage
 }
 \setcounter{tocdepth}{2}
+\pagestyle{fancy}
 \tableofcontents
 \newpage
 
-\section{Нотация}
+\section*{Нотация}
+\addcontentsline{toc}{section}{Нотация}
 
 В работе используются следующие обозначения и соглашения
 
@@ -169,7 +182,7 @@ sorting=ntvy,
 совместных размеров;
 
 \( \mathtt{Mat}_{n}(\mathbb{K}) = \mathtt{Mat}_{n{\times}n}(\mathbb{K}) \) ---
-Банахова алгебра квадратных матриц размера \( n{\times}n \);
+Банахова алгебра квадратных матриц размера \( n{\times}n \).
 
 
 \newpage
@@ -201,11 +214,12 @@ matrix''~\cite{Koz18,sergekozlukov@currentproblems};
 
 В ходе работы был получен ряд новых результатов, представленных на
 конференциях~\cite{sergekozlukov@vspu,sergekozlukov@currentproblems} и
-опубликованных в статьях~\cite{Koz17,Koz18}.
+опубликованных в статьях~\cite{Koz17,Koz18}. Работа в этом направлении будет
+продолжена при поддержке РФФИ~18-31-00354.
 
 \textbf{Структура и объём работы}. Работа состоит из введения, трёх секций с
 представлением основных результатов, и би\-блио\-графии, со\-став\-ляющей 29
-на\-имено\-ва\-ний. Общий объём --- 33 страницы.
+на\-имено\-ва\-ний. Общий объём --- 35 страницы.
 
 
 \subsection{Элементы теории графов}
@@ -1249,8 +1263,8 @@ Spectrum матрицы \( \mathcal{J}_N{\otimes}B \) есть
 Результаты также могут быть расширены на бесконечномерный случай.
 
 \newpage
-\appendix
-\section{Определения}
+\section*{Определения}
+\addcontentsline{toc}{section}{Определения}
 
 \textbf{Функция} --- тройка \( (X, Y, f) \), состоящия из domain set \( X \),
 the target set \( Y \), и правила \( f \), ставящего каждому \( x\in X\)
@@ -1316,7 +1330,8 @@ x\). Оно образует линейное подпространство.
 если существует ребро, инцидентное им обоим: \( e\in E \),
 \( \phi(e)\in\{(u, v),\ (v, u) \}\).
 \newpage
-\section{Список литературы}
+\section*{Список литературы}
+\addcontentsline{toc}{section}{Список литературы}
 \nocite{*}
 \printbibliography[heading=none,env=gostbibliography]
 \end{document}

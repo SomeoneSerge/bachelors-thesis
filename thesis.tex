@@ -3,7 +3,7 @@
 
 \sloppy
 
-\usepackage[left=25mm,right=20mm,top=25mm,bottom=20mm]{geometry}
+\usepackage[left=30mm,right=20mm,top=25mm,bottom=20mm]{geometry}
 \usepackage{marginnote}
 \usepackage{hyperref}
 \usepackage{tabularx}
@@ -18,14 +18,31 @@
 \usepackage{amsmath,amsthm,amssymb,euscript,calc,graphicx,ifthen,textcomp,rotating,cmap,xstring,etoolbox,xparse,l3regex,xargs,changepage,tocloft,titlecaps,enumitem,upgreek}
 \usepackage{mathrsfs}
 
+\numberwithin{equation}{section}
+
 \newtheorem{thm}{Теорема}
 \newtheorem*{thm*}{Теорема}
 \newtheorem{lem}{Лемма}
 \newtheorem{crl}{Следствие}
 \theoremstyle{definition}
 
-\usepackage{titlesec}
+
+\usepackage[dotinlabels]{titletoc}
+\usepackage[center]{titlesec}
 \titlelabel{\thetitle.\quad}
+
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\chead{\thepage}
+\pagestyle{fancy}
+
+
+\renewcommand{\contentsname}{Содержание}
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Содержание}%
+}
 
 \usepackage[backend=biber,
 bibstyle=gost-numeric,
@@ -48,16 +65,16 @@ sorting=ntvy,
 
 \setcounter{page}{0}
 \begin{center}
-  \textbf{МИНОБРНАУКИ РОССИИ\\
+  МИНОБРНАУКИ РОССИИ\\
   ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО
-  ОБРАЗОВАНИЯ ``ВОРОНЕЖСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ''\\
-(ФГБОУ ВО ``ВГУ'')}
+  ОБРАЗОВАНИЯ\\ ``ВОРОНЕЖСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ''\\
+(ФГБОУ ВО ``ВГУ'')
 \end{center}
 
 \vfill
 
 \begin{center}
-  \textbf{Факультет Прикладной математики, информатики и механики}\\
+  Факультет Прикладной математики, информатики и механики\\
   Кафедра системного анализа и управления
 \end{center}
 
@@ -65,7 +82,7 @@ sorting=ntvy,
 
 \begin{center}
   \textsc{\Large Спектральные свойства некоторых возмущённых матриц}\\[.5cm]
-  \textbf{Выпускная квалификационная работа}\\
+  Выпускная квалификационная работа\\
   Направление 01.03.02 Прикладная математика и информатика\\
   Профиль Нелинейная динамика
 \end{center}
@@ -99,7 +116,7 @@ sorting=ntvy,
 \tableofcontents
 \newpage
 
-\section*{Нотация}
+\section{Нотация}
 
 В работе используются следующие обозначения и соглашения
 
@@ -1291,7 +1308,7 @@ x\). Оно образует линейное подпространство.
 если существует ребро, инцидентное им обоим: \( e\in E \),
 \( \phi(e)\in\{(u, v),\ (v, u) \}\).
 \newpage
-\section{Библиография}
+\section{Список литературы}
 \nocite{*}
 \printbibliography[heading=none,env=gostbibliography]
 \end{document}

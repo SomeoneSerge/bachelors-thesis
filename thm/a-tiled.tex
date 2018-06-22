@@ -1,0 +1,50 @@
+Пусть \( A \) --- простого спектра, и имеет место следующее неравенство:
+\[
+    \left\| \mathbb{B} \right\|_{\mathrm{op}}
+        \leq 
+        \frac{N}{4}
+         \min\left\{
+             \min\limits_{1\leq i{\neq}j \leq M }{|\lambda_i - \lambda_j|},
+             \min\limits_{1\leq j \leq M}{|\lambda_j|}
+         \right\}.
+ \]
+
+Тогда спектр пертурбированной матрицы \( \mathbb{A} - \mathbb{B} \) представим в виде
+\[
+    \sigma\left(\mathbb{A}\right) =
+        \left\{
+            N\lambda_1 - x_{11}^o, \ldots, N\lambda_M - x_{MM}^o
+        \right\}
+    \cup \sigma_{M{+}1}.
+\]
+
+Собственные векторы
+    \( \hat{f}_j,\ \hat{f}_{j,k},\ j{=}\overline{1,M},\ k{=}\overline{1,N{-1}} \)
+    матрицы \( \mathbb{A}{-}\mathbb{B} \),
+    значения \( x_{jj}^o,\ j{=}\overline{1,M} \)
+    и множество \( \sigma_{M{+}1} \) удовлетворяют следующим ограничениям:
+\[
+    \lvert x_{jj}^o\rvert
+    \leq 4\|B\|, \]
+\[  \ \max_{\lambda\in\sigma_{M{+}1}} \lvert\lambda\rvert
+    \leq 4\|B\|,
+\]
+\[
+  d = 
+    \frac4N \|B\|
+         \max\left\{
+         \frac{1}{
+             \min\limits_{1\leq l{\neq}p \leq M }{|\lambda_l - \lambda_p|}},
+         \frac{1}{
+             \min\limits_{1\leq l \leq M}{|\lambda_l|}}
+         \right\}
+    \]
+\[
+    \left\| \hat{f}_j - f_j \right\|_2
+    \leq d
+    \]
+\[
+    \ \left\| \hat{f}_{j,k} - f_{j,k}\right\|_2
+    \leq d
+\]
+Для всех \( j{=}\overline{1,M}, k{=}\overline{1,N-1} \).

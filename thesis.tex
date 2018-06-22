@@ -24,6 +24,9 @@
 \newtheorem{crl}{Следствие}
 \theoremstyle{definition}
 
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
 \usepackage[backend=biber,
 bibstyle=gost-numeric,
 sorting=ntvy,
@@ -434,7 +437,7 @@ Eigenvector-ранг \( i \)-й вершины определяется как
 
 \newpage
 
-\section{Теорема о локализации спектра матрицы смеж\-ностей
+\section{Матрица смеж\-ностей
   почти-полного ор\-графа}
 Рассмотрим орграф заданный матрицей смежностей следующего вида:
 \[
@@ -470,7 +473,8 @@ B \), но имеющей более ``простую'' структуру. Эт
 простой итерации~\cite{baskakov1986theorem,baskakov1987theorem,baskakov1994spectral,baskakov2002splitting}
 Результатом решения этих уравнений
 является
-\begin{thm}\label{nk:thm:almost-all-ones}
+\begin{thm}[О локализации спектра матрицы смеж\-ностей
+  почти-полного ор\-графа]\label{nk:thm:almost-all-ones}
   \input{thm/almost-complete}
 \end{thm}
 
@@ -861,7 +865,7 @@ N - x_{11}^o & 0 \\
 
 \newpage
 % JPCS
-\section{О локализации спектра возмущённой ``A-tiled'' матрицы}
+\section{``A-tiled'' матрица}
 
 Пусть теперь \( A\in\mathtt{Mat}_{M{\times}M}(\mathbb{K}) \).
 Рассмотрим следующую (``A-tiled'') блочную матрицу:
@@ -1040,13 +1044,12 @@ N - x_{11}^o & 0 \\
         \]
 \end{lem}
 
-\begin{thm}\label{nk:thm:tiled}
+\begin{thm}[О локализации спектра возмущённой ``A-tiled'' матрицы]\label{nk:thm:tiled}
   \input{thm/a-tiled}
 \end{thm}
 
 \newpage
-\section{О представлении спектра и локализации собственных пространств
-  возмущений Кронекеровых произведений}
+\section{Произведения Кронекера}
 
 Рассмотрим теперь Кронекеровы произведения
 \[
@@ -1177,7 +1180,8 @@ N - x_{11}^o & 0 \\
 
 Непосредственным образом выводим теорему:
 
-\begin{thm}\label{nk:thm:kron}
+\begin{thm}[О представлении спектра и локализации собственных пространств
+  возмущений Кронекеровых произведений]\label{nk:thm:kron}
   \input{thm/kron}
 \end{thm}
 

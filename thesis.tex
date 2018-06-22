@@ -32,13 +32,15 @@
 
 \input{inc_review}
 \newpage
+
+\makeatletter
 {
   \null
   \thispagestyle{empty}
-  \setcounter{page}{0}
   \newpage
 }
 
+\setcounter{page}{0}
 \begin{center}
   \textbf{МИНОБРНАУКИ РОССИИ\\
   ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО
@@ -64,7 +66,7 @@
 
 \vfill
 \begin{center}
-  {Допущена к защите в ГЭК\ \underline{\hspace{4cm}} \hfill\hfill}
+  {Допущена к защите в ГЭК 04.06.2018}
   \end{center}
 
 \vfill
@@ -875,7 +877,7 @@ N - x_{11}^o & 0 \\
     \]
 
 \begin{lem}
-    ПУсть \( A \) обратима и самосопряжена.
+    Пусть \( A \) обратима и самосопряжена.
     Тогда она имеет \( M \) ортонормальных собственных векторов \( h_1, \ldots, h_M \)
     (\(\left\|h_i\right\|_2 = 1,\ i{=}\overline{1,M}\))
     которым соответствует (не обязательно различные) собственные значения
@@ -963,7 +965,7 @@ N - x_{11}^o & 0 \\
         \Gamma X = 
         \frac1n \left(\begin{array}{c|c}
                         \Gamma_{11}(X) & \Gamma_{12}(X) \\ \hline
-                        \Gamma_{21}(X) & \Gamma_{22}(X)
+                        \Gamma_{21}(X) & \mathbf{0}
                       \end{array}\right),
                                       \]
     \[
@@ -1040,7 +1042,7 @@ N - x_{11}^o & 0 \\
 \end{thm}
 
 \newpage
-\section{О представлении спектра и локализации собственных под\-пространств
+\section{О представлении спектра и локализации собственных пространств
   возмущений Кронекеровых произведений}
 
 Рассмотрим теперь Кронекеровы произведения
@@ -1075,8 +1077,9 @@ N - x_{11}^o & 0 \\
     \[ A\otimes (B\otimes C) = (A\otimes B)\otimes C. \]
 \item Дистрибутивность относительно сложения:
     \[ (A+B)\otimes(C+D) = A\otimes C + A\otimes D + B\otimes C + B\otimes D. \]
-\item
+\item Равенство
     \[ (AB)\otimes(CD) = (A\otimes C)(B\otimes D) \]
+    имеет место
     всегда, когда произведения \( AB \) и \( CD \) ``имеют смысл'' и существуют.
   \item След (trace) матрицы \( A\otimes B \) есть
     \[ \operatorname{tr}(A\otimes B) = \operatorname{tr}A\operatorname{tr}B. \]

@@ -24,7 +24,10 @@
 \newtheorem{crl}{Следствие}
 \theoremstyle{definition}
 
-\usepackage[backend=biber,bibstyle=gost-numeric]{biblatex}
+\usepackage[backend=biber,
+bibstyle=gost-numeric,
+sorting=ntvy,
+]{biblatex}
 \addbibresource{thesis.bib}
 \renewcommand{\baselinestretch}{1.3}
 
@@ -1286,5 +1289,5 @@ x\). Оно образует линейное подпространство.
 \newpage
 \section{Библиография}
 \nocite{*}
-\printbibliography[heading=none]
+\printbibliography[heading=none,env=gostbibliography]
 \end{document}

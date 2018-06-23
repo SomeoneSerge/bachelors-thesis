@@ -17,20 +17,25 @@
 % \setmainfont[SizeFeatures={Size=14}]{CMU Serif}
 
 
-\usepackage{amsmath,amsthm,amssymb,euscript,calc,graphicx,ifthen,textcomp,rotating,cmap,xstring,etoolbox,xparse,l3regex,xargs,changepage,tocloft,titlecaps,enumitem,upgreek}
+\usepackage{amsmath,ntheorem,amssymb,euscript,calc,graphicx,ifthen,textcomp,rotating,cmap,xstring,etoolbox,xparse,l3regex,xargs,changepage,tocloft,titlecaps,enumitem,upgreek}
 \usepackage{mathrsfs}
-
 
 \usepackage{tocloft}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 \numberwithin{equation}{section}
 
+\theoremseparator{.}
 \newtheorem{thm}{Теорема}
-\newtheorem*{thm*}{Теорема}
+%\newtheorem*{thm*}{Теорема}
 \newtheorem{lem}{Лемма}
 \newtheorem{crl}{Следствие}
-\theoremstyle{definition}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath\square}
+\newtheorem{proof}{Доказательство}
 
 
 \usepackage[dotinlabels]{titletoc}
@@ -50,7 +55,6 @@
     {Содержание}%
 }
 
-\renewcommand*{\proofname}{Доказательство}
 
 \usepackage[backend=biber,
 bibstyle=gost-numeric,
@@ -842,7 +846,7 @@ N - x_{11}^o & 0 \\
 \end{proof}
 
 Верн\"емся, наконец, к~непосредственному доказательству основной теоремы:
-\begin{proof}[Доказательство Теоремы~\ref{nk:thm:almost-all-ones}]
+\begin{proof}[Теоремы~\ref{nk:thm:almost-all-ones}]
     Рассмотрим в~пространстве \( \mathtt{Mat}_{N}(\mathbb{C}) \)
     норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
     определ\"енную формулой
